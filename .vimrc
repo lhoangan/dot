@@ -34,16 +34,6 @@ Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 call plug#end()
 
 " ============================================================================
-" Plugin settings
-" Airlines
-"
-let g:airline_theme = 'light theme'
-" Show buffer lists for 1 tab
-let g:airline#extensions#tabline#enabled = 1
-" Show just the filename
-let g:airline#extensions#tabline#fnamemod = ':t'
-"
-" ============================================================================
 " VIMRC settings
 
 set nocompatible              " be iMproved, required
@@ -53,19 +43,53 @@ filetype plugin indent on
 set t_Co=256
 syntax on
 let python_highlight_all=1
+
+" color scheme
+"colorscheme lucius
+"colorscheme vibrantink "darkbackground
+"colorscheme fruit 
+colorscheme spring
+" show line numbers
+set number
+" hight cursor line
+set cursorline
+" show command in bottom line
+set showcmd
+" show filename on title bar of console windows
+set title
+" show status line with information
+set laststatus=2
+" might not be necessary if having vim-airline
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+" show fullfile name on status line and modified flag
+set statusline+=%F [%r] %m
+
+
+" ============================================================================
+" Spaces and tabs
 set shiftwidth=4
 set tabstop=4
 set expandtab
 set ls=2
-set number
-set showcmd
-set hlsearch
 set softtabstop=4
 set nosmartindent
 set autoindent
+" ============================================================================
+" Search
+set hlsearch
 set incsearch
 set showmatch
 set ruler
+
+" ============================================================================
+" Code folding
+set foldenable          " enable folding
+set foldlevelstart=10   " open most folds by default
+set foldnestmax=10      " 10 nested fold max
+set foldmethod=indent
+
+
 nnoremap <F8> :!/opt/local/bin/ctags -R --python-kinds=-i *.py<CR>
 nnoremap <Ctrl-1> :TlistToggle<CR>
 nnoremap <Ctrl-2> :NERDTreeToggle<CR>
@@ -73,40 +97,43 @@ let Tlist_WinWidth=50
 set backspace=indent,eol,start
 set ofu=syntaxcomplete#Complete
 set completeopt=longest,menuone
-"colorscheme lucius
-"colorscheme vibrantink "darkbackground
-"colorscheme fruit 
-colorscheme spring
 "set gfn=Monaco:h12
 highlight SpellBad ctermbg=Gray
-set cursorline
 set noerrorbells
 map <silent> <F10> :set invnumber<cr>
+
 set history=50
 set ignorecase
 set smartcase
-set title
 set pastetoggle=<F11>
 set wildmenu
 set wildmode=longest:full
-set laststatus=2
 set noeb vb t_vb=
 augroup filetypedetect
     au BufNewFile,BufRead *.pig set filetype=pig syntax=pig
 augroup END 
 set colorcolumn=80
 
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
 
 if has('gui_running')
     set guifont=Ubuntu\ Mono\ 13
 endif
 
+" ============================================================================
+" Plugin settings
+" Airlines
+"
+let g:airline_theme = 'light theme'
+" Show buffer lists for 1 tab
+let g:airline#extensions#tabline#enabled = 1
+" Show just the filename
+let g:airline#extensions#tabline#fnamemod = ':t'
+"
+" Syntastic
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
 let g:syntastic_python_checkers = ['pyflakes']
+
