@@ -5,7 +5,6 @@
 
 call plug#begin('~/.vim/plugged')
 
-
 " vim airline: for status bars and other decoration
 " More information at https://github.com/vim-airline/vim-airline
 Plug 'vim-airline/vim-airline'
@@ -45,10 +44,12 @@ syntax on
 let python_highlight_all=1
 
 " color scheme
-"colorscheme lucius
-"colorscheme vibrantink "darkbackground
-"colorscheme fruit 
-colorscheme spring
+" colorscheme lucius
+" colorscheme vibrantink "darkbackground
+" colorscheme fruit 
+" colorscheme spring
+set background=light
+colorscheme PaperColor
 " show line numbers
 set number
 " hight cursor line
@@ -63,7 +64,9 @@ set laststatus=2
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 " show fullfile name on status line and modified flag
-set statusline+=%F [%r] %m
+" more information
+" http://got-ravings.blogspot.nl/2008/08/vim-pr0n-making-statuslines-that-own.html
+set statusline+=%F 
 
 
 " ============================================================================
@@ -124,7 +127,7 @@ endif
 " Plugin settings
 " Airlines
 "
-let g:airline_theme = 'light theme'
+let g:airline_theme = 'light'
 " Show buffer lists for 1 tab
 let g:airline#extensions#tabline#enabled = 1
 " Show just the filename
