@@ -32,5 +32,6 @@ cd vim
             --with-lua-prefix=${install_dir}/lua-"${lua_version}" \
             --enable-fail-if-missing \
             --prefix="${install_dir}"/vim && \
-make install
+make install && \
+echo export PATH="${install_dir}"/vim/bin/vim:$PATH >> $HOME/.my_config
 }
