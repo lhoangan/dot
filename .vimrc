@@ -14,9 +14,10 @@ Plug 'vim-airline/vim-airline-themes'
 " Code syntax checker
 Plug 'vim-syntastic/syntastic'
 
-" Code completion, jedi-vim seems to be newer and has better support
+" Code completion, jedi-vim sucks, YouCompleteMe requires too much installation
 " Plug 'Valloric/YouCompleteMe'
-Plug 'davidhalter/jedi-vim'
+" Plug 'davidhalter/jedi-vim'
+Plug 'Shougo/neocomplete' " this requires vim from 7.4 and built with lua
 
 " LaTeX plugin
 Plug 'lervag/vimtex'
