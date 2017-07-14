@@ -1,18 +1,39 @@
 #!/bin/bash
-# INSTALL VIM
+
+# =============================================================================
+# INSTALL VIM 
 
 # 1. Download vim-plug, a plugin manager, into ~/.vim/autoload
-# TODO: check if a folder named .vim is already existed in the home dir
+# check if a folder named .vim is already existed in the home dir
+[ -w ~/.vim ] && {
+    dt=$(date +"%y%m%d_%H%M%S")
+    mv ~/.vim ~/.vim_bk_"${dt}" # rename it with a datetime id
+}
 # detailed can be found here: https://github.com/junegunn/vim-plug
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 # 2. copy .vimrc from dot folder to home folder
-# TODO: check if .vimrc is already existed in the home dir
+# check if .vimrc is already existed in the home dir
+[ -w ~/.vimrc ] && {
+    dt=$(date +"%y%m%d_%H%M%S")
+    mv ~/.vimrc ~/.vimrc_bk_"${dt}" # rename it with a datetime id
+}
+
+# copy vim config to home folders
 cp .vimrc ~/
 cp -r .vim/colors ~/.vim
+
 # install vim plugins
 vim +PlugInstall +qall
-# 4. run vim plugins installation
+
+
+# ============================================================================
+# Add suplementary config to shell config
+[ -w ~/.zshrc] && {
+    cat .config >> ~/.zshrc
+} || {
+    cat .config >> ~/.bashrc
+}
 
 # .bashrc and .zshrc
 # alias for ssh
