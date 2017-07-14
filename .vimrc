@@ -1,5 +1,54 @@
-set nocompatible
-filetype on
+" ============================================================================
+" Current plugins
+"
+" Declare vim-plug plugins
+
+call plug#begin('~/.vim/plugged')
+
+
+" vim airline: for status bars and other decoration
+" More information at https://github.com/vim-airline/vim-airline
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
+" Code syntax checker
+Plug 'vim-syntastic/syntastic'
+
+" Code completion, jedi-vim seems to be newer and has better support
+" Plug 'Valloric/YouCompleteMe'
+Plug 'davidhalter/jedi-vim'
+
+" LaTeX plugin
+Plug 'lervag/vimtex'
+
+" Git integration
+Plug 'motemen/git-vim'
+
+" Buffer finders
+Plug 'ctrlpvim/ctrlp.vim'
+
+" On-demand loading
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+
+" Finish declearing plugins
+call plug#end()
+
+" ============================================================================
+" Plugin settings
+" Airlines
+"
+let g:airline_theme = 'light theme'
+" Show buffer lists for 1 tab
+let g:airline#extensions#tabline#enabled = 1
+" Show just the filename
+let g:airline#extensions#tabline#fnamemod = ':t'
+"
+" ============================================================================
+" VIMRC settings
+
+set nocompatible              " be iMproved, required
+filetype off                  " required
+filetype on                   " these 2 seems to be conflict, TODO test
 filetype plugin indent on
 set t_Co=256
 syntax on
@@ -28,7 +77,7 @@ set completeopt=longest,menuone
 "colorscheme vibrantink "darkbackground
 "colorscheme fruit 
 colorscheme spring
-set gfn=Monaco:h12
+"set gfn=Monaco:h12
 highlight SpellBad ctermbg=Gray
 set cursorline
 set noerrorbells
@@ -46,3 +95,18 @@ augroup filetypedetect
     au BufNewFile,BufRead *.pig set filetype=pig syntax=pig
 augroup END 
 set colorcolumn=80
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+if has('gui_running')
+    set guifont=Ubuntu\ Mono\ 13
+endif
+
+let g:syntastic_python_checkers = ['pyflakes']
