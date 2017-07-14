@@ -28,11 +28,12 @@ vim +PlugInstall +qall
 
 
 # ============================================================================
+# SHELL CONFIGS
 # Add suplementary config to shell config
-[ -w ~/.zshrc] && {
-    cat .config >> ~/.zshrc
+[ -w ~/.zshrc ] && {
+    cat .my_config >> ~/.zshrc
 } || {
-    cat .config >> ~/.bashrc
+    cat .my_config >> ~/.bashrc
 }
 
 # .bashrc and .zshrc
