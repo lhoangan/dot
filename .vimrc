@@ -44,6 +44,7 @@ set t_Co=256
 syntax on
 let python_highlight_all=1
 
+" GUI
 " color scheme
 " colorscheme lucius
 " colorscheme vibrantink "darkbackground
@@ -79,6 +80,7 @@ set ls=2
 set softtabstop=4
 set nosmartindent
 set autoindent
+"
 " ============================================================================
 " Search
 set hlsearch
@@ -117,6 +119,7 @@ augroup filetypedetect
     au BufNewFile,BufRead *.pig set filetype=pig syntax=pig
 augroup END 
 set colorcolumn=80
+set hidden " switch bufferes without having to save
 
 
 
