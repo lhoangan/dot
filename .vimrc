@@ -7,6 +7,7 @@ call plug#begin('~/.vim/plugged')
 
 " vim airline: for status bars and other decoration
 " More information at https://github.com/vim-airline/vim-airline
+Plug 'bling/vim-bufferline'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
@@ -128,11 +129,16 @@ endif
 " Airlines
 "
 let g:airline_theme = 'light'
-" Show buffer lists for 1 tab
-let g:airline#extensions#tabline#enabled = 1
+" Don't show the tabline bufferlist
+" let g:airline#extensions#tabline#enabled = 1
 " Show just the filename
-let g:airline#extensions#tabline#fnamemod = ':t'
-"
+" let g:airline#extensions#tabline#fnamemod = ':t'
+" Show buffers
+" let g:airline#extensions#tabline#show_buffers = 1
+" Show bufferline
+let g:airline#extensions#bufferline#enabled = 1
+let g:airline#extensions#bufferline#overwrite_variables = 1
+" ===========
 " Syntastic
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
