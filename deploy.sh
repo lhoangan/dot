@@ -2,6 +2,7 @@
 
 # =============================================================================
 # INSTALL VIM 
+# TODO: check if vim is available, install if needed or build from scratch
 
 # 1. Download vim-plug, a plugin manager, into ~/.vim/autoload
 # check if a folder named .vim is already existed in the home dir
@@ -36,11 +37,18 @@ vim +PlugInstall +qall
     cat .my_config >> ~/.bashrc
 }
 
-# .bashrc and .zshrc
-# alias for ssh
-# alias for mapping capLock to Escape
-# alias for invert screen color. Require installing xcalib
-#
+# ============================================================================
+# TMUX CONFIGS
+# TODO: check if tmux available, install if needed (or build from source?)
+[ -w ~/.tmux.conf ] && {
+    dt=$(date +"%y%m%d_%H%M%S")
+    mv ~/.tmux.conf ~/.tmux.conf_bk_"${dt}" # rename it with a datetime id
+}
+# copy my config
+cp .tmux.conf ~/
+cp .tmux.ver ~/
+cp .tmux.hor ~/
+
 # zsh, build from source?
 # download from http://www.zsh.org/pub/zsh.tar.gz
 # extract it
@@ -51,20 +59,7 @@ vim +PlugInstall +qall
 
 # vim 7 8, build from source?
 
-# vim plugin
-
-# alias ssh with ssh -X
 # other node setup with for ssh
 
-
-# change computer caplock to escape
-
-# install tmux? from source?
-
-# setup with some map keys
-# plugin for vim: displaying doc title in full, color for insert/normal, git diff
-#
-# some plugin for vim buffer http://joshldavis.com/2014/04/05/vim-tab-madness-buffers-vs-tabs/
-#
 #
 #
