@@ -34,7 +34,7 @@ cd vim
             --enable-fail-if-missing \
             --prefix="${install_dir}"/vim-8.0 && \
 make install && \
-echo 'export PATH="${install_dir}"/vim-8.0/bin:$PATH' >> $HOME/.my_config
+echo 'export PATH='"${install_dir}"'/vim-8.0/bin:$PATH' >> $HOME/.my_config
 source $HOME/.my_config
 
 # cleaning up
