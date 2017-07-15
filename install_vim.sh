@@ -19,7 +19,7 @@ export PATH="${install_dir}"/lua-"${lua_version}"/bin:$PATH
 
 cd ..
 #git clone https://github.com/vim/vim.git
-tar zxf vim
+tar zxf vim.tar.gz
 cd vim
 
 ./configure --with-features=huge \
