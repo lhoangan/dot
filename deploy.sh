@@ -5,10 +5,6 @@ install_dir=$HOME/bin
 mkdir -p "${install_dir}"
 # =============================================================================
 # INSTALL ZSH
-#wget ftp://ftp.zsh.org/pub/zsh-5.3.tar.gz
-tar xvf zsh-5.3.tar.gz
-mv zsh-5.3 "${install_dir}"/zsh
-cat .profile >> $HOME/.profile
 
 # ============================================================================
 # SHELL CONFIGS
