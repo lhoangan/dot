@@ -12,6 +12,8 @@ cat .profile >> $HOME/.profile
 
 # ============================================================================
 # SHELL CONFIGS
+cp .my_config $HOME/
+source $HOME/.my_config
 # Add suplementary config to shell config
 [ -w ~/.zshrc ] && {
     #cat .my_config >> $HOME/.zshrc
