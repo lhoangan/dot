@@ -31,6 +31,12 @@ Plug 'ctrlpvim/ctrlp.vim'
 " On-demand loading
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 
+" Color also available in my collection
+" Check their git pages at github.com/... for more configuration
+Plug 'NLKNguyen/papercolor-theme'
+Plug 'nightsense/seabird'
+Plug 'romainl/flattened'
+
 " Finish declearing plugins
 call plug#end()
 
