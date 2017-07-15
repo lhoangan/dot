@@ -18,7 +18,8 @@ make install && {
 export PATH="${install_dir}"/lua-"${lua_version}"/bin:$PATH
 
 cd ..
-git clone https://github.com/vim/vim.git
+#git clone https://github.com/vim/vim.git
+tar zxf vim
 cd vim
 
 ./configure --with-features=huge \
@@ -31,7 +32,7 @@ cd vim
             --with-lua \
             --with-lua-prefix=${install_dir}/lua-"${lua_version}" \
             --enable-fail-if-missing \
-            --prefix="${install_dir}"/vim && \
+            --prefix="${install_dir}"/vim-8.0 && \
 make install && \
 echo export PATH="${install_dir}"/vim-8.0/bin:$PATH >> $HOME/.my_config
 source $HOME/.my_config
