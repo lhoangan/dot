@@ -25,25 +25,25 @@ cat .profile >> $HOME/.profile
 # TODO: check if vim is available, install if needed or build from scratch
 ./install_vim.sh "${install_dir}" $HOME/anaconda2/bin/python-config
 
-# 1. Download vim-plug, a plugin manager, into ~/.vim/autoload
+# 1. Download vim-plug, a plugin manager, into $HOME/.vim/autoload
 # check if a folder named .vim is already existed in the home dir
-[ -w ~/.vim ] && {
+[ -w $HOME/.vim ] && {
     dt=$(date +"%y%m%d_%H%M%S")
-    mv ~/.vim ~/.vim_bk_"${dt}" # rename it with a datetime id
+    mv $HOME/.vim $HOME/.vim_bk_"${dt}" # rename it with a datetime id
 }
 # detailed can be found here: https://github.com/junegunn/vim-plug
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+curl -fLo $HOME/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 # 2. copy .vimrc from dot folder to home folder
 # check if .vimrc is already existed in the home dir
-[ -w ~/.vimrc ] && {
+[ -w $HOME/.vimrc ] && {
     dt=$(date +"%y%m%d_%H%M%S")
-    mv ~/.vimrc ~/.vimrc_bk_"${dt}" # rename it with a datetime id
+    mv $HOME/.vimrc $HOME/.vimrc_bk_"${dt}" # rename it with a datetime id
 }
 
 # copy vim config to home folders
-cp .vimrc ~/
-cp -r .vim/colors ~/.vim
+cp .vimrc $HOME/
+cp -r .vim/colors $HOME/.vim
 
 # install vim plugins
 vim +PlugInstall +qall
@@ -53,14 +53,14 @@ vim +PlugInstall +qall
 # ============================================================================
 # TMUX CONFIGS
 # TODO: check if tmux available, install if needed (or build from source?)
-[ -w ~/.tmux.conf ] && {
+[ -w $HOME/.tmux.conf ] && {
     dt=$(date +"%y%m%d_%H%M%S")
-    mv ~/.tmux.conf ~/.tmux.conf_bk_"${dt}" # rename it with a datetime id
+    mv $HOME/.tmux.conf $HOME/.tmux.conf_bk_"${dt}" # rename it with a datetime id
 }
 # copy my config
-cp .tmux.conf ~/
-cp .tmux.ver ~/
-cp .tmux.hor ~/
+cp .tmux.conf $HOME/
+cp .tmux.ver $HOME/
+cp .tmux.hor $HOME/
 
 # zsh, build from source?
 # download from http://www.zsh.org/pub/zsh.tar.gz
