@@ -9,6 +9,17 @@ tar xvf zsh-5.3.tar.gz
 mv zsh-5.3 "${install_dir}"/zsh
 cat .profile >> $HOME/.profile
 
+# ============================================================================
+# SHELL CONFIGS
+# Add suplementary config to shell config
+[ -w ~/.zshrc ] && {
+    #cat .my_config >> $HOME/.zshrc
+    echo source $HOME/.my_config >> $HOME/.zshrc
+} || {
+    #cat .my_config >> $HOME/.bashrc
+    echo source $HOME/.my_config >> $HOME/.bashrc
+}
+
 # =============================================================================
 # INSTALL VIM 
 # TODO: check if vim is available, install if needed or build from scratch
@@ -38,14 +49,6 @@ cp -r .vim/colors ~/.vim
 vim +PlugInstall +qall
 
 
-# ============================================================================
-# SHELL CONFIGS
-# Add suplementary config to shell config
-[ -w ~/.zshrc ] && {
-    cat .my_config >> ~/.zshrc
-} || {
-    cat .my_config >> ~/.bashrc
-}
 
 # ============================================================================
 # TMUX CONFIGS
