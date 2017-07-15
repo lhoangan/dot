@@ -1,9 +1,11 @@
+export EDITOR='vim'
+export VISUAL='vim'
+
 alias ssh="ssh -X"
 alias tmux="tmux -2"
 alias rmcap="xmodmap -e 'clear Lock' -e keycode 0x42 = Escape"
 alias invert="xcalib -invert -alter"
 
-export EDITOR='vim'
-export VISUAL='vim'
-
+# alias for git commands
+git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 
