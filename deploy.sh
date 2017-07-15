@@ -1,9 +1,18 @@
 #!/bin/bash
 
+install_dir=$HOME/bin
+
+# =============================================================================
+# INSTALL ZSH
+#wget ftp://ftp.zsh.org/pub/zsh-5.3.tar.gz
+tar xvf zsh-5.3.tar.gz
+mv zsh-5.3 "${install_dir}"/zsh
+cat .profile >> $HOME/.profile
+
 # =============================================================================
 # INSTALL VIM 
 # TODO: check if vim is available, install if needed or build from scratch
-./install_vim.sh $HOME/my_pkgs $HOME/anaconda2/bin/python-config
+./install_vim.sh "${install_dir}" $HOME/anaconda2/bin/python-config
 
 # 1. Download vim-plug, a plugin manager, into ~/.vim/autoload
 # check if a folder named .vim is already existed in the home dir
