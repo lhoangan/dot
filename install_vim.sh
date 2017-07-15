@@ -33,5 +33,10 @@ cd vim
             --enable-fail-if-missing \
             --prefix="${install_dir}"/vim && \
 make install && \
-echo export PATH="${install_dir}"/vim/bin/vim:$PATH >> $HOME/.my_config
+echo export PATH="${install_dir}"/vim-8.0/bin:$PATH >> $HOME/.my_config
+source $HOME/.my_config
+
+# cleaning up
+rm -rf lua-"${lua_version}"
+rm -rf vim
 }
