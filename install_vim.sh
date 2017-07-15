@@ -38,6 +38,7 @@ echo 'export PATH="${install_dir}"/vim-8.0/bin:$PATH' >> $HOME/.my_config
 source $HOME/.my_config
 
 # cleaning up
+cd ..
 rm -rf lua-"${lua_version}"
 rm -rf vim
 }
