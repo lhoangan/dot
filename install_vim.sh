@@ -21,7 +21,7 @@ cd ..
 git clone https://github.com/vim/vim.git
 cd vim
 
-./configure --with-features=huge \sc
+./configure --with-features=huge \
             --enable-multibyte \
             --enable-pythoninterp=yes \
             --with-python-config-dir="${python_config}" \
