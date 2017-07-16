@@ -55,7 +55,7 @@ let python_highlight_all=1
 " color scheme
 " colorscheme lucius
 " colorscheme vibrantink "darkbackground
-" colorscheme fruit 
+" colorscheme fruit
 " colorscheme spring
 set background=light
 colorscheme PaperColor
@@ -75,7 +75,7 @@ set statusline+=%{SyntasticStatuslineFlag()}
 " show fullfile name on status line and modified flag
 " more information
 " http://got-ravings.blogspot.nl/2008/08/vim-pr0n-making-statuslines-that-own.html
-set statusline+=%F 
+set statusline+=%F
 
 
 " ============================================================================
@@ -124,7 +124,7 @@ set wildmode=longest:full
 set noeb vb t_vb=
 augroup filetypedetect
     au BufNewFile,BufRead *.pig set filetype=pig syntax=pig
-augroup END 
+augroup END
 set colorcolumn=80
 set hidden " switch bufferes without having to save
 
@@ -148,6 +148,10 @@ let g:airline_theme = 'light'
 " Show bufferline
 let g:airline#extensions#bufferline#enabled = 1
 let g:airline#extensions#bufferline#overwrite_variables = 1
+
+" Extension
+let g:airline_section_x = ''
+let g:airline_section_y = ''
 " ===========
 " Syntastic
 let g:syntastic_always_populate_loc_list = 1
