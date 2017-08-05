@@ -6,7 +6,7 @@ alias mywatch=/home/koelma/bin/mywatch
 
 run_tensorflow ( ) {
     source /home/hale/anaconda2/bin/activate tensorflow
-    export PATH=$PATH:/usr/local/cuda-8.0/bin
-    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda-8.0/lib64
-    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/koelma/nvidia/cudnn-8.0-linux-x64-v5.1/lib64
+    export PATH=/usr/local/cuda-8.0/bin:$PATH
+    export LD_LIBRARY_PATH=/usr/local/cuda-8.0/lib64:$LD_LIBRARY_PATH
+    export LD_LIBRARY_PATH=/home/koelma/nvidia/cudnn-8.0-linux-x64-v5.1/lib64:$LD_LIBRARY_PATH
 }
