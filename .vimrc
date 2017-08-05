@@ -22,6 +22,9 @@ Plug 'Shougo/neocomplete' " this requires vim from 7.4 and built with lua
 " LaTeX plugin
 Plug 'lervag/vimtex'
 
+" Markdown plugin
+Plug 'gabrielelana/vim-markdown'
+
 " Git integration
 Plug 'motemen/git-vim'
 
