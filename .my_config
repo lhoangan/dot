@@ -3,7 +3,7 @@ export VISUAL='vim'
 
 alias ssh="ssh -X"
 alias tmux="tmux -2"
-alias rmcap="xmodmap -e 'clear Lock' -e keycode 0x42 = Escape"
+alias rmcap="xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'"
 alias invert="xcalib -invert -alter"
 alias myip="curl ipinfo.io/ip"
 
