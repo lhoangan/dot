@@ -38,11 +38,12 @@ def newfig(width):
     plt.clf()
     fig = plt.figure(figsize=figsize(width))
     ax = fig.add_subplot(111)
+    plt.tight_layout()
     return fig, ax
 
 def savefig(filename):
-    plt.savefig('{}.pgf'.format(filename))
-    plt.savefig('{}.pdf'.format(filename))
+    plt.savefig('{}.pgf'.format(filename), bbox_inches='tight')
+    plt.savefig('{}.pdf'.format(filename), bbox_inches='tight')
 
 
 
