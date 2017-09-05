@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# useful utility:
+# sudo apt-get install git diffcolor, tree
+
 install_dir=$HOME/bin
 
 mkdir -p "${install_dir}"
