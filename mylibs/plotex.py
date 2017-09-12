@@ -1,9 +1,15 @@
+import os
+os.environ['FIGSIZE'] = '496.7855'
+print 'Default Figure size is set to 496.7855 of CVPR'
+print 'Check your number by running \\the\\linewidth or \\the\\textwidth in LaTeX'
+print 'Apply the new number by overwrite it to os.environ[\'FIGSIZE\']'
 import numpy as np
 import matplotlib as mpl
 mpl.use('pgf')
 
 # Get fig_width_pt from LaTeX using \the\textwidth
-def figsize(scale=1.0, fig_width_pt=469.755):
+def figsize(scale):
+    fig_width_pt = float(os.environ['FIGSIZE'])
     inches_per_pt = 1.0/72.27                       # Convert pt to inch
     golden_mean = (np.sqrt(5.0)-1.0)/2.0            # Aesthetic ratio (you could change this)
     fig_width = fig_width_pt*inches_per_pt*scale    # width in inches
@@ -18,12 +24,12 @@ pgf_with_latex = {                      # setup matplotlib to use latex for outp
     "font.serif": [],                   # blank entries should cause plots to inherit fonts from the document
     "font.sans-serif": [],
     "font.monospace": [],
+    "font.size": 12,
     "axes.labelsize": 10,               # LaTeX default is 10pt font.
-    "text.fontsize": 10,
-    "legend.fontsize": 8,               # Make the legend/label fonts a little smaller
-    "xtick.labelsize": 8,
-    "ytick.labelsize": 8,
-    "figure.figsize": figsize(0.9),     # default fig size of 0.9 textwidth
+    "legend.fontsize": 10,              # Make the legend/label fonts a little smaller
+    "xtick.labelsize": 10,
+    "ytick.labelsize": 10,
+    "figure.figsize": figsize(0.95),     # default fig size of 0.9 textwidth
     "pgf.preamble": [
         r"\usepackage[utf8x]{inputenc}",    # use utf8 fonts becasue your computer can handle it :)
         r"\usepackage[T1]{fontenc}",        # plots will be generated using this preamble
@@ -33,8 +39,7 @@ mpl.rcParams.update(pgf_with_latex)
 
 import matplotlib.pyplot as plt
 
-# I make my own newfig and savefig functions
-def newfig(width):
+def newfig(width=1.0):
     plt.clf()
     fig = plt.figure(figsize=figsize(width))
     ax = fig.add_subplot(111)
@@ -42,21 +47,22 @@ def newfig(width):
     return fig, ax
 
 def savefig(filename):
+    plt.savefig('{}.png'.format(filename), bbox_inches='tight')
     plt.savefig('{}.pgf'.format(filename), bbox_inches='tight')
     plt.savefig('{}.pdf'.format(filename), bbox_inches='tight')
 
-
-
-def ema(y, a):
-    s = []
-    s.append(y[0])
-    for t in range(1, len(y)):
-        s.append(a * y[t] + (1-a) * s[t-1])
-    return np.array(s)
+    print '\n------\nImages saved at', os.path.join(os.getcwd(), filename)
 
 if __name__ == '__main__':
-    # Simple plot
+    # Simple test plot
     fig, ax  = newfig(0.6)
+
+    def ema(y, a):
+        s = []
+        s.append(y[0])
+        for t in range(1, len(y)):
+            s.append(a * y[t] + (1-a) * s[t-1])
+        return np.array(s)
 
     y = [0]*200
     y.extend([20]*(1000-len(y)))
