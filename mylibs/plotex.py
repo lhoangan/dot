@@ -24,11 +24,11 @@ pgf_with_latex = {                      # setup matplotlib to use latex for outp
     "font.serif": [],                   # blank entries should cause plots to inherit fonts from the document
     "font.sans-serif": [],
     "font.monospace": [],
-    "font.size": 12,
-    "axes.labelsize": 10,               # LaTeX default is 10pt font.
-    "legend.fontsize": 10,              # Make the legend/label fonts a little smaller
-    "xtick.labelsize": 10,
-    "ytick.labelsize": 10,
+    "font.size": 14,
+    "axes.labelsize": 14,               # LaTeX default is 10pt font.
+    "legend.fontsize": 12,              # Make the legend/label fonts a little smaller
+    "xtick.labelsize": 12,
+    "ytick.labelsize": 12,
     "figure.figsize": figsize(0.95),     # default fig size of 0.9 textwidth
     "pgf.preamble": [
         r"\usepackage[utf8x]{inputenc}",    # use utf8 fonts becasue your computer can handle it :)
