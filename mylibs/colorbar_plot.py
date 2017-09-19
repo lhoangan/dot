@@ -10,7 +10,7 @@ from PIL import Image
 
 def make_colorbar(colors, names):
     #fig, ax = ptx.newfig(.7)
-    fig = plt.figure(figsize=(8, 1))
+    fig = plt.figure(figsize=(12, 1))
     ax = fig.add_axes([0.05, 0.15, 0.9, 0.15])
     cmap = mpl.colors.ListedColormap(colors[:9])
     cmap.set_over(colors[9])
