@@ -16,14 +16,14 @@ source $HOME/.my_config
 # Add suplementary config to shell config
 [ -w ~/.zshrc ] && {
     #cat .my_config >> $HOME/.zshrc
-    echo source $HOME/.my_config >> $HOME/.zshrc
+    echo source ${PWD}/.my_config >> $HOME/.zshrc
 } || {
     #cat .my_config >> $HOME/.bashrc
-    echo source $HOME/.my_config >> $HOME/.bashrc
+    echo source ${PWD}/.my_config >> $HOME/.bashrc
 }
 
 # =============================================================================
-# INSTALL VIM 
+# INSTALL VIM
 # TODO: check if vim is available, install if needed or build from scratch
 ./install_vim.sh "${install_dir}" $HOME/anaconda2/bin/python-config
 
