@@ -34,7 +34,8 @@ fi
 
 
 # TODO: check if vim is available, install if needed or build from scratch
-./install_vim.sh "${install_dir}" $HOME/anaconda2/bin/python-config
+echo 'INSTALL VIM.....'
+./install_vim.sh "${install_dir}" $HOME/anaconda2/bin/python-config $HOME/anaconda2/lib
 
 # 1. Download vim-plug, a plugin manager, into $HOME/.vim/autoload
 # check if a folder named .vim is already existed in the home dir
