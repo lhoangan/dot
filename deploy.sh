@@ -7,7 +7,19 @@ install_dir=$HOME/bin
 
 mkdir -p "${install_dir}"
 # =============================================================================
-# INSTALL ZSH
+# INSTALL BASH_IT
+
+echo "INSTALL BASH_IT"
+
+git clone --depth=1 https://github.com/Bash-it/bash-it.git $HOME/.bash_it
+$HOME/.bash_it/install.sh
+# backup original theme file
+mv $HOME/.bash_it/themes/powerline-plain/powerline-plain.theme.bash /
+   $HOME/.bash_it/themes/powerline-plain/powerline-plain.theme.bash.bak
+cp ./powerline-plain.theme.bash $HOME/.bash_it/themes/powerline-plain/
+
+# use new theme
+sed -i 's@export BASH_IT_THEME=@& "powerline-plain"#@' $HOME/.bashrc
 
 # ============================================================================
 # SHELL CONFIGS
