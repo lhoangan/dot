@@ -16,10 +16,10 @@ source $HOME/.my_config
 # Add suplementary config to shell config
 [ -w ~/.zshrc ] && {
     #cat .my_config >> $HOME/.zshrc
-    echo source ${PWD}/.my_config >> $HOME/.zshrc
+    echo source ${HOME}/.my_config >> $HOME/.zshrc
 } || {
     #cat .my_config >> $HOME/.bashrc
-    echo source ${PWD}/.my_config >> $HOME/.bashrc
+    echo source ${HOME}/.my_config >> $HOME/.bashrc
 }
 
 # =============================================================================
