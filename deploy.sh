@@ -24,6 +24,15 @@ source $HOME/.my_config
 
 # =============================================================================
 # INSTALL VIM
+
+# check if anaconda is available in /home/anaconda2
+if [ ! -d $HOME/anaconda2 ]; then
+    echo "CANNOT FIND "$HOME/anaconda2". Install ANACONDA into "$HOME" and try again"
+    exit
+fi
+
+
+
 # TODO: check if vim is available, install if needed or build from scratch
 ./install_vim.sh "${install_dir}" $HOME/anaconda2/bin/python-config
 
