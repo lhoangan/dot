@@ -16,16 +16,31 @@ source $HOME/.my_config
 # Add suplementary config to shell config
 [ -w ~/.zshrc ] && {
     #cat .my_config >> $HOME/.zshrc
-    echo source ${PWD}/.my_config >> $HOME/.zshrc
+    echo source ${HOME}/.my_config >> $HOME/.zshrc
 } || {
     #cat .my_config >> $HOME/.bashrc
-    echo source ${PWD}/.my_config >> $HOME/.bashrc
+    echo source ${HOME}/.my_config >> $HOME/.bashrc
 }
 
 # =============================================================================
 # INSTALL VIM
+
+# TODO when running vim, if got problem of library linking not found
+# consider adding anaconda2/lib to LD_LIBRARY_PATH
+# if then having problem with libcrypto when doing ssh
+# add /lib/x86_64-linux-gnu/ before anaconda2/lib (or check with locate)
+
+# check if anaconda is available in /home/anaconda2
+if [ ! -d $HOME/anaconda2 ]; then
+    echo "CANNOT FIND "$HOME/anaconda2". Install ANACONDA into "$HOME" and try again"
+    exit
+fi
+
+
+
 # TODO: check if vim is available, install if needed or build from scratch
-./install_vim.sh "${install_dir}" $HOME/anaconda2/bin/python-config
+echo 'INSTALL VIM.....'
+./install_vim.sh "${install_dir}" $HOME/anaconda2/bin/python-config $HOME/anaconda2/lib
 
 # 1. Download vim-plug, a plugin manager, into $HOME/.vim/autoload
 # check if a folder named .vim is already existed in the home dir
