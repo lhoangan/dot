@@ -26,19 +26,32 @@ Plug 'lervag/vimtex'
 Plug 'gabrielelana/vim-markdown'
 
 " Git integration
-Plug 'motemen/git-vim'
+" Plug 'motemen/git-vim'
+Plug 'tpope/vim-fugitive'
 
 " Buffer finders
 Plug 'ctrlpvim/ctrlp.vim'
 
 " On-demand loading
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'Xuyuanp/nerdtree-git-plugin'
+"Plug 'ryanoasis/vim-devicons'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'qpkorr/vim-bufkill'  " kill vim buffer leaving split intact
+
+" Python highlight syntax
+Plug 'vim-python/python-syntax'
+" Plug 'kh3phr3n/python-syntax'
+" Plug 'pfdevilliers/Pretty-Vim-Python'
 
 " Color also available in my collection
 " Check their git pages at github.com/... for more configuration
+" Change color scheme instantly with :colorscheme [schemename]
 Plug 'NLKNguyen/papercolor-theme'
-Plug 'nightsense/seabird'
 Plug 'romainl/flattened'
+Plug 'nightsense/seabird' " seagull, greygull, petrel, stormpetrel
+Plug 'nightsense/vim-colorschemes' " seagull, greygull, petrel, stormpetrel
+Plug 'morhetz/gruvbox'
 
 " Finish declearing plugins
 call plug#end()
@@ -52,7 +65,6 @@ filetype on                   " these 2 seems to be conflict, TODO test
 filetype plugin indent on
 set t_Co=256
 syntax on
-let python_highlight_all=1
 
 " GUI
 " color scheme
@@ -131,10 +143,16 @@ augroup END
 set colorcolumn=80
 set hidden " switch bufferes without having to save
 
+" command to highlight unsaved lines
+if !exists(":DiffOrig")
+    command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
+              \ | wincmd p | diffthis
+endif
+
 
 
 if has('gui_running')
-    set guifont=Ubuntu\ Mono\ 13
+    set guifont=Ubuntu\ Mono\ 12
 endif
 
 " ============================================================================
@@ -155,13 +173,57 @@ let g:airline#extensions#bufferline#overwrite_variables = 1
 " Extension
 let g:airline_section_x = ''
 let g:airline_section_y = ''
+
+" ===========
+" Python-Syntax
+"
+let python_highlight_all = 1
+
+" PaperColor
+" To highlight builtin functions, removed if vim starts lagging
+let g:PaperColor_Theme_Options = {
+  \   'language': {
+  \     'python': {
+  \       'highlight_builtins' : 1
+  \     },
+  \     'cpp': {
+  \       'highlight_standard_library': 1
+  \     },
+  \     'c': {
+  \       'highlight_builtins' : 1
+  \     }
+  \   }
+  \ }
+
+let g:PaperColor_Theme_Options = {
+  \   'theme': {
+  \     'default.light': {
+  \       'override' : {
+  \         'color00' : ['#080808', '232'],
+  \         'linenumber_bg' : ['#080808', '232']
+  \       }
+  \     }
+  \   }
+  \ }
+
+
+
+"
 " ===========
 " Syntastic
-let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_always_populate_loc_list = 0
 let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 let g:syntastic_python_checkers = ['pyflakes']
+
+" close the error together with the open buffer
+nnoremap <silent> <C-d> :lclose<CR>:bdelete<CR>
+cabbrev <silent> bd <C-r>=(getcmdtype()==#':' && getcmdpos()==1 ? 'lclose\|bdelete' : 'bd')<CR>
+
+" disable style message
+" let g:syntastic_quiet_messages = { "type": "style" }
+
 
 " ===========
 " Neocomplete
@@ -234,3 +296,32 @@ endif
 " For perlomni.vim setting.
 " https://github.com/c9s/perlomni.vim
 let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+
+" =================
+" NERDTree
+
+" Open NERDTree automatically upon vim startup
+" autocmd vimenter * NERDTree
+
+" Open NERDTree automatically upon vim startup IF no files were specified
+" autocmd StdinReadPre * let s:std_in=1
+" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
+" Open NERDTree automatically when vim starts up on opening a directory?
+" autocmd StdinReadPre * let s:std_in=1
+" autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif 
+
+" Map a Ctrl-n to open NERDTree
+map <C-n> :NERDTreeToggle<CR>
+
+" Close vim if the only window left open is a NERDTree
+" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif"
+
+" Show hidden file
+" let NERDTreeShowHidden=1
+
+" ===================
+" NERDTree syntax highlight
+let g:NERDTreeFileExtensionHighlightFullName = 1
+let g:NERDTreeExactMatchHighlightFullName = 1
+let g:NERDTreePatternMatchHighlightFullName = 1
