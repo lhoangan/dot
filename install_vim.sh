@@ -30,7 +30,7 @@ cd vim
 make distclean
 rm auto/config.cache
 
-LDFLAGS="-L${python_lib}" \
+LDFLAGS="-L${python_lib} -Wl,-rpath,${HOME}/anaconda2/lib" \
 ./configure --with-features=huge \
             --enable-multibyte \
             --enable-pythoninterp=yes \

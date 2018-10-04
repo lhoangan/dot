@@ -7,7 +7,10 @@ install_dir=$HOME/bin
 
 mkdir -p "${install_dir}"
 # =============================================================================
-# INSTALL ZSH
+# INSTALL BASH_IT
+
+./install_bashit.sh
+
 
 # ============================================================================
 # SHELL CONFIGS
@@ -25,17 +28,11 @@ source $HOME/.my_config
 # =============================================================================
 # INSTALL VIM
 
-# TODO when running vim, if got problem of library linking not found
-# consider adding anaconda2/lib to LD_LIBRARY_PATH
-# if then having problem with libcrypto when doing ssh
-# add /lib/x86_64-linux-gnu/ before anaconda2/lib (or check with locate)
-
 # check if anaconda is available in /home/anaconda2
 if [ ! -d $HOME/anaconda2 ]; then
     echo "CANNOT FIND "$HOME/anaconda2". Install ANACONDA into "$HOME" and try again"
     exit
 fi
-
 
 
 # TODO: check if vim is available, install if needed or build from scratch
