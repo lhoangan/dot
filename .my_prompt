@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 # inspired from https://makandracards.com/makandra/1090-customize-your-bash-prompt
 source .colors.theme.bash
 
@@ -26,7 +24,7 @@ function prompt {
     reset_color=${reset_color%"\]"}
 
     DATE="\n${bold_purple}[$(date +"%Y-%m-%d %H:%M:%S")]"
-    if [ $? = 0 ]; then STATUS="${green}✔"; else STATUS="${bold_red}✘"; fi
+    if [ "$?" = 0 ]; then STATUS="${green}✔"; else STATUS="${bold_red}✘"; fi
     ME="${bold_blue}[$(whoami)${blue}@${bold_blue}${HOSTNAME}]"
     pwd="${reset_color}${PWD}"
     echo -e ${DATE} ${STATUS} ${ME} ✰ ${pwd}
