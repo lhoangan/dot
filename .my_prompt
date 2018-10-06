@@ -1,4 +1,5 @@
 # inspired from https://makandracards.com/makandra/1090-customize-your-bash-prompt
+
 source .colors.theme.bash
 
 function prompt {
@@ -24,12 +25,10 @@ function prompt {
     reset_color=${reset_color%"\]"}
 
     DATE="\n${bold_purple}[$(date +"%Y-%m-%d %H:%M:%S")]"
-    if [ "$?" = 0 ]; then STATUS="${green}✔"; else STATUS="${bold_red}✘"; fi
+    if [ "$?" -eq 0 ]; then STATUS="${green}✔"; else STATUS="${bold_red}✘"; fi
     ME="${bold_blue}[$(whoami)${blue}@${bold_blue}${HOSTNAME}]"
     pwd="${reset_color}${PWD}"
     echo -e ${DATE} ${STATUS} ${ME} ✰ ${pwd}
-    #echo -e '\[\e[00;37m\]$(whoami)\[\e[01;37m\]:\[\e[01;34m\]\w\[\e[00m\]\$ '
-    #echo -e "\n${bold_purple}$(date +"%Y-%m-%d %H:%M:%S")"
 }
 
 PROMPT_COMMAND=prompt
