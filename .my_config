@@ -6,7 +6,8 @@ alias tmux="tmux -2"
 alias rmcap="xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'"
 alias invert="xcalib -invert -alter"
 alias myip="curl ipinfo.io/ip"
-alias dualcntr="xcape -e 'Control_L=Escape;Control_L=Control_L'" # https://github.com/alols/xcape
+alias dualcntr="xcape -e 'Control_L=Escape;Control_L=Control_L'"
+# https://github.com/alols/xcape
 
 # alias for git commands
 git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"

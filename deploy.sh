@@ -19,7 +19,7 @@ mv $HOME/.bash_it/themes/powerline-plain/powerline-plain.theme.bash /
 cp ./powerline-plain.theme.bash $HOME/.bash_it/themes/powerline-plain/
 
 # use new theme
-sed -i 's@export BASH_IT_THEME=@& "powerline-plain"#@' $HOME/.bashrc
+sed -i "s@export BASH_IT_THEME=@&'powerline-plain' #@" $HOME/.bashrc
 
 # ============================================================================
 # SHELL CONFIGS
