@@ -8,18 +8,7 @@ install_dir=$HOME/bin
 mkdir -p "${install_dir}"
 # =============================================================================
 # INSTALL BASH_IT
-
-echo "INSTALL BASH_IT"
-
-git clone --depth=1 https://github.com/Bash-it/bash-it.git $HOME/.bash_it
-$HOME/.bash_it/install.sh
-# backup original theme file
-mv $HOME/.bash_it/themes/powerline-plain/powerline-plain.theme.bash /
-   $HOME/.bash_it/themes/powerline-plain/powerline-plain.theme.bash.bak
-cp ./powerline-plain.theme.bash $HOME/.bash_it/themes/powerline-plain/
-
-# use new theme
-sed -i "s@export BASH_IT_THEME=@&'powerline-plain' #@" $HOME/.bashrc
+./install_bashit.sh
 
 # ============================================================================
 # SHELL CONFIGS
@@ -37,17 +26,11 @@ source $HOME/.my_config
 # =============================================================================
 # INSTALL VIM
 
-# TODO when running vim, if got problem of library linking not found
-# consider adding anaconda2/lib to LD_LIBRARY_PATH
-# if then having problem with libcrypto when doing ssh
-# add /lib/x86_64-linux-gnu/ before anaconda2/lib (or check with locate)
-
 # check if anaconda is available in /home/anaconda2
 if [ ! -d $HOME/anaconda2 ]; then
     echo "CANNOT FIND "$HOME/anaconda2". Install ANACONDA into "$HOME" and try again"
     exit
 fi
-
 
 
 # TODO: check if vim is available, install if needed or build from scratch
