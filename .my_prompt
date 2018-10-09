@@ -2,9 +2,32 @@
 
 source .colors.theme.bash
 
+function make_virtualenv_prompt {
+    local environ=""
+
+    if [[ -n "$CONDA_DEFAULT_ENV" ]]; then
+        environ="conda: $CONDA_DEFAULT_ENV"
+    elif [[ -n "$VIRTUAL_ENV" ]]; then
+        environ=$(basename "$VIRTUAL_ENV")
+    fi
+
+    green=${green#"\["}
+    green=${green%"\]"}
+
+    if [[ -n "$environ" ]]; then
+        VIRENV_PROMPT=" ${green}${environ} "
+    else
+        VIRENV_PROMPT=" "
+    fi
+}
+
+
 function prompt {
 
-    PS1="`[[ $(git status 2> /dev/null) =~ Changes\ to\ be\ committed: ]] && echo "\[\e[33m\]" || echo "\[\e[31m\]"``[[ ! $(git status 2> /dev/null) =~ nothing\ to\ commit,\ working\ .+\ clean ]] || echo "\[\e[32m\]"`$(__git_ps1 "(%s)\[\e[00m\]")${green} →${reset_color} "
+    # set bash prompt
+    PS1="`[[ $(git status 2> /dev/null) =~ Changes\ to\ be\ committed: ]] && echo "\[\e[33m\]" || echo "\[\e[31m\]"``[[ ! $(git status 2> /dev/null) =~ nothing\ to\ commit,\ working\ .+\ clean ]] || echo "\[\e[32m\]"`$(__git_ps1 "(%s)\[\e[00m\]")${green} >${reset_color} "
+
+    # set decoration
 
     bold_purple=${bold_purple#"\["}
     bold_purple=${bold_purple%"\]"}
@@ -24,11 +47,13 @@ function prompt {
     reset_color=${reset_color#"\["}
     reset_color=${reset_color%"\]"}
 
+    make_virtualenv_prompt
+
     DATE="\n${bold_purple}[$(date +"%Y-%m-%d %H:%M:%S")]"
     if [ "$?" -eq 0 ]; then STATUS="${green}✔"; else STATUS="${bold_red}✘"; fi
     ME="${bold_blue}[$(whoami)${blue}@${bold_blue}${HOSTNAME}]"
     pwd="${reset_color}${PWD}"
-    echo -e ${DATE} ${STATUS} ${ME} ✰ ${pwd}
+    echo -e ${DATE} ${STATUS}${VIRENV_PROMPT}${ME} ✰ ${pwd}
 }
 
 PROMPT_COMMAND=prompt
