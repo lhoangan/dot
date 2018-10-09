@@ -1,6 +1,6 @@
 # inspired from https://makandracards.com/makandra/1090-customize-your-bash-prompt
 
-source .colors.theme.bash
+source ${HOME}/.colors.theme.bash
 
 function make_virtualenv_prompt {
     local environ=""
