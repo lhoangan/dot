@@ -15,10 +15,31 @@ function make_virtualenv_prompt {
     green=${green%"\]"}
 
     if [[ -n "$environ" ]]; then
-        VIRENV_PROMPT=" ${green}${environ} "
+        VIRENV_PROMPT="${green}[${environ}]"
     else
-        VIRENV_PROMPT=" "
+        VIRENV_PROMPT=""
     fi
+}
+
+function make_date_prompt {
+    bold_purple=${bold_purple#"\["}
+    bold_purple=${bold_purple%"\]"}
+
+    DATE="${bold_purple}[$(date +"%Y-%m-%d %H:%M:%S")]"
+}
+
+function make_user_prompt {
+    bold_blue=${bold_blue#"\["}
+    bold_blue=${bold_blue%"\]"}
+
+    ME="${bold_blue}[$(whoami)${blue}@${bold_blue}$(hostname -s)]"
+}
+
+function make_pwd_prompt {
+    reset_color=${reset_color#"\["}
+    reset_color=${reset_color%"\]"}
+
+    pwd="${reset_color}${PWD}"
 }
 
 
@@ -29,14 +50,8 @@ function prompt {
 
     # set decoration
 
-    bold_purple=${bold_purple#"\["}
-    bold_purple=${bold_purple%"\]"}
-
     blue=${blue#"\["}
     blue=${blue%"\]"}
-
-    bold_blue=${bold_blue#"\["}
-    bold_blue=${bold_blue%"\]"}
 
     bold_red=${bold_red#"\["}
     bold_red=${bold_red%"\]"}
@@ -48,12 +63,11 @@ function prompt {
     reset_color=${reset_color%"\]"}
 
     make_virtualenv_prompt
+    make_date_prompt
+    make_user_prompt
 
-    DATE="\n${bold_purple}[$(date +"%Y-%m-%d %H:%M:%S")]"
     if [ "$?" -eq 0 ]; then STATUS="${green}✔"; else STATUS="${bold_red}✘"; fi
-    ME="${bold_blue}[$(whoami)${blue}@${bold_blue}$(hostname -s)]"
-    pwd="${reset_color}${PWD}"
-    echo -e ${DATE} ${STATUS}${VIRENV_PROMPT}${ME} ✰ ${pwd}
+    echo -e "\n${DATE} ${STATUS} ${ME} ${VIRENV_PROMPT} ${bold_red}✰ ${pwd}"
 }
 
 PROMPT_COMMAND=prompt
