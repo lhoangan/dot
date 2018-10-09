@@ -51,7 +51,7 @@ function prompt {
 
     DATE="\n${bold_purple}[$(date +"%Y-%m-%d %H:%M:%S")]"
     if [ "$?" -eq 0 ]; then STATUS="${green}✔"; else STATUS="${bold_red}✘"; fi
-    ME="${bold_blue}[$(whoami)${blue}@${bold_blue}${HOSTNAME}]"
+    ME="${bold_blue}[$(whoami)${blue}@${bold_blue}$(hostname -s)]"
     pwd="${reset_color}${PWD}"
     echo -e ${DATE} ${STATUS}${VIRENV_PROMPT}${ME} ✰ ${pwd}
 }
