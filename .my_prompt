@@ -6,7 +6,7 @@ function make_virtualenv_prompt {
     local environ=""
 
     if [[ -n "$CONDA_DEFAULT_ENV" ]]; then
-        environ="conda: $CONDA_DEFAULT_ENV"
+        environ="$CONDA_DEFAULT_ENV"
     elif [[ -n "$VIRTUAL_ENV" ]]; then
         environ=$(basename "$VIRTUAL_ENV")
     fi
@@ -49,7 +49,7 @@ function prompt {
 
     make_virtualenv_prompt
 
-    DATE="\n${bold_purple}[$(date +"%Y-%m-%d %H:%M:%S")]"
+    DATE="\n${bold_purple}[$(date +"%b-%d %H:%M:%S")]"
     if [ "$?" -eq 0 ]; then STATUS="${green}✔"; else STATUS="${bold_red}✘"; fi
     ME="${bold_blue}[$(whoami)${blue}@${bold_blue}$(hostname -s)]"
     pwd="${reset_color}${PWD}"
