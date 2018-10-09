@@ -15,7 +15,7 @@ function make_virtualenv_prompt {
     green=${green%"\]"}
 
     if [[ -n "$environ" ]]; then
-        VIRENV_PROMPT=" ${green}${environ} "
+        VIRENV_PROMPT=" ${green}[${environ}] "
     else
         VIRENV_PROMPT=" "
     fi
