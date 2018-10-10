@@ -5,11 +5,6 @@
 
 install_dir=$HOME/bin
 
-mkdir -p "${install_dir}"
-# =============================================================================
-# INSTALL BASH_IT
-./install_bashit.sh
-
 # ============================================================================
 # SHELL CONFIGS
 cp .my_config $HOME/
@@ -24,7 +19,24 @@ source $HOME/.my_config
 }
 
 # =============================================================================
+# BASH CONFIGURATION
+[ -w $HOME/.bashrc ] && {
+    dt=$(date +"%y%m%d_%H%M%S")
+    mv $HOME/.bashrc $HOME/.bashrc.bk_"${dt}" # rename it with a datetime id
+}
+
+# uncomment to instal bash_it
+#./install_bashit.sh
+
+# install ls color
+wget https://raw.github.com/trapd00r/LS_COLORS/master/LS_COLORS -O $HOME/.dircolors
+echo 'eval $(dircolors -b $HOME/.dircolors)' >> $HOME/.my_config
+
+
+# =============================================================================
 # INSTALL VIM
+
+mkdir -p "${install_dir}"
 
 # check if anaconda is available in /home/anaconda2
 if [ ! -d $HOME/anaconda2 ]; then
