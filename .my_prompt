@@ -52,9 +52,9 @@ function prompt {
 
     make_virtualenv_prompt
 
-    DATE="\n${bold_purple}[$(date +"%b-%d %H:%M:%S")]"
+    DATE="\n${bold_purple}$(date +"%b-%d %H:%M:%S")"
     if [ "$?" -eq 0 ]; then STATUS="${green}✔"; else STATUS="${bold_red}✘"; fi
-    ME="${bold_blue}[$(whoami)${blue}@${bold_blue}$(hostname -s)]"
+    ME="${bold_blue}$(whoami)${blue}@${bold_blue}$(hostname -s)"
     pwd="${reset_color}${PWD}"
     echo -e ${DATE} ${STATUS} ${ME}${VIRENV_PROMPT}${bold_red}✰ ${pwd}
 }
