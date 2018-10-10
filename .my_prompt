@@ -24,6 +24,9 @@ function make_virtualenv_prompt {
 
 function prompt {
 
+    green="\[\e[0;32m\]"
+    reset_color="\[\e[39m\]"
+
     # set bash prompt
     PS1="`[[ $(git status 2> /dev/null) =~ Changes\ to\ be\ committed: ]] && echo "\[\e[33m\]" || echo "\[\e[31m\]"``[[ ! $(git status 2> /dev/null) =~ nothing\ to\ commit,\ working\ .+\ clean ]] || echo "\[\e[32m\]"`$(__git_ps1 "(%s)\[\e[00m\]")${green} >${reset_color} "
 
