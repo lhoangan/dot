@@ -156,9 +156,9 @@ function prompt {
     host_color
 
 
-    DATE="\n${bold_purple}[$(date +"%b-%d %H:%M:%S")]"
+    DATE="\n${bold_purple}$(date +"%b-%d %H:%M:%S")"
     if [ "$?" -eq 0 ]; then STATUS="${green}✔"; else STATUS="${bold_red}✘"; fi
-    ME="${bold_blue}[$(whoami)${blue}@${hostcolor}$HOSTNAME${reset_bg}]"
+    ME="${bold_blue}$(whoami)${blue}@${hostcolor}$HOSTNAME${reset_bg}"
     pwd="${reset_fg}${PWD}"
     echo -e ${DATE} ${STATUS} ${ME}${VIRENV_PROMPT}${bold_red}✰ ${pwd}
 }
