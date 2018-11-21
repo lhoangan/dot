@@ -18,3 +18,7 @@ export PYTHONPATH=${PWD}/mylibs:$PYTHONPATH
 if [ -t 1 ]; then
   cd ${HOME}
 fi
+
+
+eval $(dircolors -b $HOME/.dircolors)
+

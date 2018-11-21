@@ -44,7 +44,17 @@ echo 'Creating new .inputrc'
 ln -sf ${PWD}/.inputrc ${HOME}/
 
 #-------------------------------------------------------------------------------  
-# link .my_prompt to ${HOME}
+# link .dircolors to ${HOME}
+[ -w ~/.dircolors ] && {
+    bk=.dircolors_bk_"$(date +"%y%m%d_%H%M%S")"
+    echo 'Found old .dircolors file. Backing up to '${bk}
+    mv -v ${HOME}/.dircolors ${HOME}/${bk} # rename it with a datetime id
+}
+echo 'Creating new .dircolors'
+ln -sf ${PWD}/.dircolors ${HOME}/
+
+#-------------------------------------------------------------------------------  
+# link .myprompt to ${HOME}
 [ -w ~/.myprompt ] && {
     bk=.myprompt_bk_"$(date +"%y%m%d_%H%M%S")"
     echo 'Found old .myprompt file. Backing up to '${bk}
