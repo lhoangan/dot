@@ -25,6 +25,9 @@ Plug 'lervag/vimtex'
 " Markdown plugin
 Plug 'gabrielelana/vim-markdown'
 
+" Indent line
+Plug 'Yggdroot/indentLine'
+
 " Git integration
 " Plug 'motemen/git-vim'
 Plug 'tpope/vim-fugitive'
@@ -173,6 +176,12 @@ let g:airline#extensions#bufferline#overwrite_variables = 1
 " Extension
 let g:airline_section_x = ''
 let g:airline_section_y = ''
+
+" ===========
+" IndentLine
+"
+let g:indentLine_setColors = 0
+let g:indentLine_char = '|'
 
 " ===========
 " Python-Syntax
