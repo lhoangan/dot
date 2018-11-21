@@ -13,13 +13,13 @@ mkdir -p "${install_dir}"
 
 # ============================================================================
 # SHELL CONFIGS
-[ -w ~/.my_config ] && {
-    bk=.my_config_bk_"$(date +"%y%m%d_%H%M%S")"
-    echo 'Found old .my_config file. Backing up to '${bk}
+[ -w ~/.myconfig ] && {
+    bk=.myconfig_bk_"$(date +"%y%m%d_%H%M%S")"
+    echo 'Found old .myconfig file. Backing up to '${bk}
     mv -v ${HOME}/.my_config ${HOME}/${bk} # rename it with a datetime id
 }
-echo 'Creating new .my_config'
-ln -sf .my_config ${HOME}/
+echo 'Creating new .myconfig'
+ln -sf .myconfig ${HOME}/
 
 #-------------------------------------------------------------------------------  
 # Add supplementary config to shell config
@@ -31,7 +31,7 @@ ln -sf .my_config ${HOME}/
 
 echo 'Creating new .bashrc'
 cp -v .bashrc ${HOME}
-echo source ${HOME}/.my_config >> ${HOME}/.bashrc
+echo source ${HOME}/.myconfig >> ${HOME}/.bashrc
 
 #-------------------------------------------------------------------------------  
 # link .inputrc to ${HOME}
@@ -45,13 +45,13 @@ ln -sf ${PWD}/.inputrc ${HOME}/
 
 #-------------------------------------------------------------------------------  
 # link .my_prompt to ${HOME}
-[ -w ~/.my_prompt ] && {
-    bk=.my_prompt_bk_"$(date +"%y%m%d_%H%M%S")"
-    echo 'Found old .my_prompt file. Backing up to '${bk}
-    mv -v ${HOME}/.my_prompt ${HOME}/${bk} # rename it with a datetime id
+[ -w ~/.myprompt ] && {
+    bk=.myprompt_bk_"$(date +"%y%m%d_%H%M%S")"
+    echo 'Found old .myprompt file. Backing up to '${bk}
+    mv -v ${HOME}/.myprompt ${HOME}/${bk} # rename it with a datetime id
 }
-echo 'Creating new .my_prompt'
-ln -sf ${PWD}/.my_prompt ${HOME}/
+echo 'Creating new .myprompt'
+ln -sf ${PWD}/.myprompt ${HOME}/
 
 # =============================================================================
 # INSTALL VIM
