@@ -110,7 +110,7 @@ function host_color {
     # get hostname
     HOSTNAME=$(hostname -A)
     # try to cut the word "science" from HOSTNAME but it stays the same
-    if [ ${HOSTNAME/"science"} = ${HOSTNAME} ] ; then 
+    if [[ ${HOSTNAME/"science"} == ${HOSTNAME} ]] ; then 
         HOSTNAME=$(hostname -s) # not fs4.das4 or fs4.das5, get the short name
     else
         # grep the hostname with 'science' in it
@@ -135,7 +135,7 @@ function host_color {
             hostcolor="\e[105m"
             ;;
         *)
-            hostcolor="\e[105m"
+            hostcolor="\e[106m"
             ;;
     esac
 }
@@ -157,7 +157,7 @@ function prompt {
 
 
     DATE="\n${bold_purple}$(date +"%b-%d %H:%M:%S")"
-    if [ "$?" -eq 0 ]; then STATUS="${green}✔"; else STATUS="${bold_red}✘"; fi
+    if [[ "$?" = 0 ]]; then STATUS="${green}✔"; else STATUS="${bold_red}✘"; fi
     ME="${bold_blue}$(whoami)${blue}@${hostcolor}$HOSTNAME${reset_bg}"
     pwd="${reset_fg}${PWD}"
     echo -e ${DATE} ${STATUS} ${ME}${VIRENV_PROMPT}${bold_red}✰ ${pwd}
