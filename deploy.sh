@@ -99,6 +99,7 @@ curl -fLo ${HOME}/.vim/autoload/plug.vim --create-dirs \
 echo 'Creating new .vim and .vimrc to '${HOME}
 ln -s .vimrc ${HOME}/
 cp -r .vim/colors ${HOME}/.vim
+cp PaperColor.vim ${HOME}/.vim/colors/
 
 # install vim plugins
 vim +PlugInstall +qall
