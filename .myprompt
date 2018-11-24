@@ -119,7 +119,7 @@ function host_color {
     fi
 
     if [ -w ${HOME}/.hostcolor ]; then
-        METAHOST=$(echo ${HOME}/.hostcolor)
+        METAHOST=$(cat ${HOME}/.hostcolor)
     else
         METAHOST=${HOSTNAME}
     fi
