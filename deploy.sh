@@ -13,7 +13,7 @@ mkdir -p "${install_dir}"
 
 # ============================================================================
 # SHELL CONFIGS
-[ -w ~/.myconfig ] && {
+[ -w ${HOME}/.myconfig ] && {
     bk=.myconfig_bk_"$(date +"%y%m%d_%H%M%S")"
     echo 'Found old .myconfig file. Backing up to '${bk}
     mv -v ${HOME}/.my_config ${HOME}/${bk} # rename it with a datetime id
@@ -23,7 +23,7 @@ ln -sf ${PWD}/.myconfig ${HOME}/
 
 #-------------------------------------------------------------------------------  
 # Add supplementary config to shell config
-[ -w ~/.bashrc ] && {
+[ -w ${HOME}/.bashrc ] && {
     bk=.bashrc_bk_"$(date +"%y%m%d_%H%M%S")"
     echo 'Found old .bashrc file. Backing up to '${bk}
     mv -v ${HOME}/.bashrc ${HOME}/${bk} # rename it with a datetime id
@@ -35,7 +35,7 @@ echo source ${HOME}/.myconfig >> ${HOME}/.bashrc
 
 #-------------------------------------------------------------------------------  
 # link .inputrc to ${HOME}
-[ -w ~/.inputrc ] && {
+[ -w ${HOME}/.inputrc ] && {
     bk=.inputrc_bk_"$(date +"%y%m%d_%H%M%S")"
     echo 'Found old .inputrc file. Backing up to '${bk}
     mv -v ${HOME}/.inputrc ${HOME}/${bk} # rename it with a datetime id
@@ -45,7 +45,7 @@ ln -sf ${PWD}/.inputrc ${HOME}/
 
 #-------------------------------------------------------------------------------  
 # link .dircolors to ${HOME}
-[ -w ~/.dircolors ] && {
+[ -w ${HOME}/.dircolors ] && {
     bk=.dircolors_bk_"$(date +"%y%m%d_%H%M%S")"
     echo 'Found old .dircolors file. Backing up to '${bk}
     mv -v ${HOME}/.dircolors ${HOME}/${bk} # rename it with a datetime id
@@ -55,7 +55,7 @@ ln -sf ${PWD}/.dircolors ${HOME}/
 
 #-------------------------------------------------------------------------------  
 # link .myprompt to ${HOME}
-[ -w ~/.myprompt ] && {
+[ -w ${HOME}/.myprompt ] && {
     bk=.myprompt_bk_"$(date +"%y%m%d_%H%M%S")"
     echo 'Found old .myprompt file. Backing up to '${bk}
     mv -v ${HOME}/.myprompt ${HOME}/${bk} # rename it with a datetime id
@@ -96,11 +96,16 @@ echo source ${HOME}/.myprompt >> ${HOME}/.bashrc
 #    mv -v ${HOME}/.vimrc ${HOME}/.vimrc_bk_"${dt}" # rename it with a datetime id
 #}
 #
-## copy vim config to home folders
-#echo 'Creating new .vim and .vimrc to '${HOME}
-#ln -s .vimrc ${HOME}/
-#cp -r .vim/colors ${HOME}/.vim
-#cp PaperColor.vim ${HOME}/.vim/colors/
+# copy vim config to home folders
+[ -w ${HOME}/.vimrc ] && {
+    bk=.vimrc_bk_"$(date +"%y%m%d_%H%M%S")"
+    echo 'Found old .vimrc file. Backing up to '${bk}
+    mv -v ${HOME}/.vimrc ${HOME}/${bk} # rename it with a datetime id
+}
+echo 'Creating new .vim and .vimrc to '${HOME}
+ln -sf ${PWD}/.vimrc ${HOME}/
+cp -vr .vim/colors ${HOME}/.vim
+cp -vb PaperColor.vim ${HOME}/.vim/colors/
 
 # install vim plugins
 vim +PlugInstall +qall
