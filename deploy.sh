@@ -115,16 +115,26 @@ vim +PlugInstall +qall
 # TMUX CONFIGS
 # TODO: check if tmux available, install if needed (or build from source?)
 [ -w ${HOME}/.tmux.conf ] && {
-    dt=$(date +"%y%m%d_%H%M%S")
-    echo 'Found old .tmux.conf. Backing up...'
-    mv -v ${HOME}/.tmux.conf ${HOME}/.tmux.conf_bk_"${dt}" # rename it with a datetime id
+    bk=.tmux.conf_bk_"$(date +"%y%m%d_%H%M%S")"
+    echo 'Found old .tmux.conf file. Backing up to '${bk}
+    mv -v ${HOME}/.tmux.conf ${HOME}/${bk} # rename it with a datetime id
 }
-# copy my config
 echo 'Creating new .tmux config to '${HOME}
 ln -sf ${PWD}/.tmux.conf ${HOME}/
 ln -sf ${PWD}/.tmux.ver ${HOME}/
 ln -sf ${PWD}/.tmux.hor ${HOME}/
 
+
+# ============================================================================
+# SCREEN CONFIGS
+# TODO: check if tmux available, install if needed (or build from source?)
+[ -w ${HOME}/.screenrc ] && {
+    bk=.screenrc_bk_"$(date +"%y%m%d_%H%M%S")"
+    echo 'Found old .screenrc file. Backing up to '${bk}
+    mv -v ${HOME}/.screenrc ${HOME}/${bk} # rename it with a datetime id
+}
+echo 'Creating new .screenrc config to '${HOME}
+ln -sf ${PWD}/.screenrc ${HOME}/
 
 #=============================================================================
 source ${HOME}/.bashrc
