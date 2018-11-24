@@ -134,6 +134,9 @@ function host_color {
         TPU1604*)
             hostcolor="\e[105m"
             ;;
+        SBook2*)
+            hostcolor="\e[107m"
+            ;;
         *)
             hostcolor="\e[106m"
             ;;
