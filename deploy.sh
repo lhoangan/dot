@@ -89,13 +89,6 @@ echo source ${HOME}/.myprompt >> ${HOME}/.bashrc
 #curl -fLo ${HOME}/.vim/autoload/plug.vim --create-dirs \
 #    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 ## 2. copy .vimrc from dot folder to home folder
-## check if .vimrc is already existed in the home dir
-#[ -w ${HOME}/.vimrc ] && {
-#    dt=$(date +"%y%m%d_%H%M%S")
-#    echo 'Found old .vimrc. Backing up...'
-#    mv -v ${HOME}/.vimrc ${HOME}/.vimrc_bk_"${dt}" # rename it with a datetime id
-#}
-#
 # copy vim config to home folders
 [ -w ${HOME}/.vimrc ] && {
     bk=.vimrc_bk_"$(date +"%y%m%d_%H%M%S")"
