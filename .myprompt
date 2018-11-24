@@ -115,10 +115,17 @@ function host_color {
     else
         # grep the hostname with 'science' in it
         HOSTNAME=$(echo $(hostname -A) | grep -o '\b\w*\.science\b')
+        echo ${HOSTNAME} > ${HOME}/.hostcolor
+    fi
+
+    if [ -w ${HOME}/.hostcolor ]; then
+        METAHOST=$(echo ${HOME}/.hostcolor)
+    else
+        METAHOST=${HOSTNAME}
     fi
 
     # get host color
-    case $HOSTNAME in
+    case ${METAHOST} in
         das4*)
             hostcolor="\e[100m"
             ;;
@@ -161,7 +168,7 @@ function prompt {
 
     DATE="\n${bold_purple}$(date +"%b-%d %H:%M:%S")"
     if [[ "$?" = 0 ]]; then STATUS="${green}✔"; else STATUS="${bold_red}✘"; fi
-    ME="${bold_blue}$(whoami)${blue}@${hostcolor}$HOSTNAME${reset_bg}"
+    ME="${bold_blue}$(whoami)${blue}@${hostcolor}${HOSTNAME}${reset_bg}"
     pwd="${reset_fg}${PWD}"
     echo -e ${DATE} ${STATUS} ${ME}${VIRENV_PROMPT}${bold_red}✰ ${pwd}
 }
