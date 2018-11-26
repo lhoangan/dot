@@ -9,7 +9,7 @@ python_lib=$3
 
 lua_version=5.1.4.8
 
-echo "MAKE LUA..."
+echo "COMPILING LUA..."
 
 tar zxf lua-"${lua_version}".tar.gz
 cd lua-"${lua_version}"
@@ -18,7 +18,7 @@ make && \
 make install && {
 
 # if install lua successful
-echo "MAKE VIM..."
+echo "COMPILING VIM..."
 
 export PATH="${install_dir}"/lua-"${lua_version}"/bin:$PATH
 
@@ -43,10 +43,9 @@ LDFLAGS="-L${python_lib} -Wl,-rpath,${HOME}/anaconda2/lib" \
             --enable-fail-if-missing \
             --prefix="${install_dir}"/vim-8.0 && \
 make install && {
-echo 'export PATH='"${install_dir}"'/vim-8.0/bin:$PATH' >> $HOME/.my_config
-source $HOME/.my_config
+echo 'export PATH='"${install_dir}"'/vim-8.0/bin:$PATH' >> $HOME/.bashrc
 } || {
-    echo 'FAILED MAKING VIM!'
+    echo 'FAILED COMPILING VIM!'
 }
 
 # cleaning up
@@ -54,5 +53,5 @@ cd ..
 rm -rf lua-"${lua_version}"
 rm -rf vim
 } || {
-    echo 'FAILED MAKING LUA!'
+    echo 'FAILED COMPILING LUA!'
 }
