@@ -40,3 +40,30 @@ Install libSM on anaconda, my version is 1.2.2
    https://anaconda.org/conda-forge/xorg-libsm
    conda install -c conda-forge xorg-libsm
 ```
+
+```
+checking --with-tlib argument... tinfo
+checking for linking with tinfo library... configure: error: FAILED
+FAILED MAKING VIM!
+```
+**Solution**
+Install lncurses library in Anaconda, my version 6.1
+```
+   https://anaconda.org/anaconda/ncurses
+   conda install -c anaconda ncurses
+```
+
+
+```
+   -bash: __git_ps1: command not found
+```
+***Solution***
+Run
+```
+   curl -o ~/.git-prompt.sh \
+    https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
+```
+Then add to .bashrc
+```
+   source ${HOME}/.git-prompt.sh
+```
