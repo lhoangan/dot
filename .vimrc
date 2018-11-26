@@ -105,6 +105,8 @@ set ls=2
 set softtabstop=4
 set nosmartindent
 set autoindent
+set listchars=tab:\|.,trail:. "to show tabs as |..., only works for tabs, not spaces
+set list
 "
 " ============================================================================
 " Search
@@ -151,6 +153,7 @@ if !exists(":DiffOrig")
     command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
               \ | wincmd p | diffthis
 endif
+
 
 
 
