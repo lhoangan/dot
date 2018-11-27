@@ -121,27 +121,27 @@ function host_color {
     if [ -w ${HOME}/.hostcolor ]; then
         METAHOST=$(cat ${HOME}/.hostcolor)
     else
-        METAHOST=${HOSTNAME}
+        METAHOST=$(hostname -A)
     fi
 
     # get host color
     case ${METAHOST} in
-        das4*)
+        *das4*)
             hostcolor="\e[100m"
             ;;
-        das5*)
+        *das5*)
             hostcolor="\e[101m"
             ;;
-        lisa*)
+        *lisa*)
             hostcolor="\e[102m"
             ;;
-        dta160036*)
+        *dta160036*)
             hostcolor="\e[103m"
             ;;
-        TPU1604*)
+        *TPU1604*)
             hostcolor="\e[105m"
             ;;
-        SBook2*)
+        *SBook2*)
             hostcolor="\e[107m"
             ;;
         *)
