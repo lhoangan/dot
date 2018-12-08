@@ -122,6 +122,9 @@ function host_color {
         METAHOST=$(cat ${HOME}/.hostcolor)
     else
         METAHOST=$(hostname -A)
+        if [[ ${METAHOST/"vpn"} != ${METAHOST} ]] ; then
+            METAHOST=$(hostname)
+        fi
     fi
 
     # get host color
