@@ -110,9 +110,10 @@ function host_color {
     # get hostname
     HOSTNAME=$(hostname -A)
     # try to cut the word "science" from HOSTNAME but it stays the same
+    # meaning there is no word 'science' in ${HOSTNAME}
     if [[ ${HOSTNAME/"science"} == ${HOSTNAME} ]] ; then 
         HOSTNAME=$(hostname -s) # not fs4.das4 or fs4.das5, get the short name
-    else
+    else # if there is
         # grep the hostname with 'science' in it
         HOSTNAME=$(echo $(hostname -A) | grep -o '\b\w*\.science\b')
         echo ${HOSTNAME} > ${HOME}/.hostcolor
@@ -121,7 +122,16 @@ function host_color {
     if [ -w ${HOME}/.hostcolor ]; then
         METAHOST=$(cat ${HOME}/.hostcolor)
     else
+        # in case of vpn, hostname is changed
         METAHOST=$(hostname -A)
+        # if there is a world 'vpn' in ${METAHOST}
+        if [[ ${METAHOST/"vpn"} != ${METAHOST} ]] ; then
+            METAHOST=$(hostname)
+        else
+            # in some cases without vpn, hostname -A gives blank
+            # it's better to use hostname -s
+            METAHOST=$(hostname -s)
+        fi
     fi
 
     # get host color
