@@ -119,19 +119,9 @@ function host_color {
         echo ${HOSTNAME} > ${HOME}/.hostcolor
     fi
 
+    METAHOST="$(hostname) $(hostname -s) $(hostname -A)"
     if [ -w ${HOME}/.hostcolor ]; then
-        METAHOST=$(cat ${HOME}/.hostcolor)
-    else
-        # in case of vpn, hostname is changed
-        METAHOST=$(hostname -A)
-        # if there is a world 'vpn' in ${METAHOST}
-        if [[ ${METAHOST/"vpn"} != ${METAHOST} ]] ; then
-            METAHOST=$(hostname)
-        else
-            # in some cases without vpn, hostname -A gives blank
-            # it's better to use hostname -s
-            METAHOST=$(hostname -s)
-        fi
+        METAHOST="$(cat ${HOME}/.hostcolor) $METAHOST"
     fi
 
     # get host color
