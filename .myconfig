@@ -21,10 +21,5 @@ fi
 chmod 700 ${HOME}/.screen
 export SCREENDIR=${HOME}/.screen
 
-# always start at home
-if [ -t 1 ]; then
-  cd ${HOME}
-fi
-
 eval $(dircolors -b $HOME/.dircolors)
 
