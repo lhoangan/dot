@@ -1,0 +1,23 @@
+
+source /home/hale/.myconfig
+source /home/hale/.myprompt
+
+if [ ! -d ${HOME}/.screen ] ; then
+    mkdir ${HOME}/.screen
+fi
+chmod 700 ${HOME}/.screen
+export SCREENDIR=${HOME}/.screen
+
+# always start at home
+if [ -t 1 ]; then
+  cd ${HOME}
+fi
+
+# CUDA tools
+export PATH="/mnt/c/Program Files/NVIDIA Corporation/NVSMI":$PATH
+alias nvidia-smi='nvidia-smi.exe'
+alias _conda='conda.exe'
+alias _ipython='ipython.exe'
+alias _python='python.exe'
+alias _nosetests='nosetests.exe'
+alias _pip='pip.exe'
