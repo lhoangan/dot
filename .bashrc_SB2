@@ -23,3 +23,10 @@ alias _ipython='ipython.exe'
 alias _jupyter='jupyter.exe'
 alias _nosetests='nosetests.exe'
 alias _pip='pip.exe'
+
+# Blender
+blender() {
+    blender_path=${HOME}/bin/blender-2.79b
+    export LD_LIBRARY_PATH=${blender_path}/lib:$LD_LIBRARY_PATH
+    ${blender_path}/blender
+}
