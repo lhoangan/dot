@@ -23,7 +23,7 @@ Plug 'Shougo/neocomplete' " this requires vim from 7.4 and built with lua
 Plug 'lervag/vimtex'
 
 " Markdown plugin
-Plug 'gabrielelana/vim-markdown'
+" Plug 'gabrielelana/vim-markdown'
 
 " Indent line
 Plug 'Yggdroot/indentLine'
