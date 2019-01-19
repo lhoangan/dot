@@ -1,13 +1,3 @@
-
-source /home/hale/.myconfig
-source /home/hale/.myprompt
-
-if [ ! -d ${HOME}/.screen ] ; then
-    mkdir ${HOME}/.screen
-fi
-chmod 700 ${HOME}/.screen
-export SCREENDIR=${HOME}/.screen
-
 # always start at home
 if [ -t 1 ]; then
   cd ${HOME}
