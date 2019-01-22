@@ -26,11 +26,11 @@ ln -sf ${PWD}/.myconfig ${HOME}/
 [ -w ${HOME}/.bashrc ] && {
     bk=.bashrc_bk_"$(date +"%y%m%d_%H%M%S")"
     echo 'Found old .bashrc file. Backing up to '${bk}
-    mv -v ${HOME}/.bashrc ${HOME}/${bk} # rename it with a datetime id
+    cp -v ${HOME}/.bashrc ${HOME}/${bk} # rename it with a datetime id
 }
 
 echo 'Creating new .bashrc'
-cp -v .bashrc ${HOME}
+cat .bashrc >>  ${HOME}/.bashrc
 echo source ${HOME}/.myconfig >> ${HOME}/.bashrc
 
 #-------------------------------------------------------------------------------  
