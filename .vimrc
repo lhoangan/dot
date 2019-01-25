@@ -78,7 +78,17 @@ syntax on
 set background=light
 colorscheme PaperColor
 " show line numbers
-set number
+" hybrid mode: absolute for the current, relative for upper and lower lines
+set number relativenumber
+
+" turn of relative number when entering insert mode or buffer unfocused
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END
+
+
 " hight cursor line
 set cursorline
 " show command in bottom line
