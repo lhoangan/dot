@@ -1,0 +1,22 @@
+# always start at home
+if [ -t 1 ]; then
+  cd ${HOME}
+fi
+
+# CUDA tools
+export PATH="/mnt/c/Program Files/NVIDIA Corporation/NVSMI":$PATH
+export LD_LIBRARY_PATH="/mnt/c/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v10.0/lib/x64":$LD_LIBRARY_PATH
+alias nvidia-smi='nvidia-smi.exe'
+alias _conda='conda.exe'
+alias _python='python.exe'
+alias _ipython='ipython.exe'
+alias _jupyter='jupyter.exe'
+alias _nosetests='nosetests.exe'
+alias _pip='pip.exe'
+
+# Blender
+blender() {
+    blender_path=${HOME}/bin/blender-2.79b
+    export LD_LIBRARY_PATH=${blender_path}/lib:$LD_LIBRARY_PATH
+    ${blender_path}/blender
+}

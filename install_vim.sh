@@ -18,6 +18,7 @@ make && \
 make install && {
 
 # if install lua successful
+conda install -c conda-forge xorg-libsm
 echo "COMPILING VIM..."
 
 export PATH="${install_dir}"/lua-"${lua_version}"/bin:$PATH
