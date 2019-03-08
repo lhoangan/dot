@@ -166,6 +166,7 @@ function prompt {
 
     PS1="`[[ $(git status 2> /dev/null) =~ Changes\ to\ be\ committed: ]] && echo "\[\e[33m\]" || echo "\[\e[31m\]"``[[ ! $(git status 2> /dev/null) =~ nothing\ to\ commit,\ working\ .+\ clean ]] || echo "\[\e[32m\]"`$(__git_ps1 "(%s)\[\e[00m\]")${ps1_green} >${ps1_reset_fg} "
 
+    make_virtualenv_prompt
     DATE="\n${bold_purple}$(date +"%b-%d %H:%M:%S")"
     if [[ ${last_cmd} = 0 ]]; then STATUS="${green}✔"; else STATUS="${bold_red}✘"; fi
     pwd="${reset_fg}${PWD}"
@@ -176,7 +177,6 @@ function prompt {
 [ "$PS1" ] || return 0  
 
 # set decoration
-make_virtualenv_prompt
 host_color
 ps1_green="\["${green}"\]"
 ps1_reset_fg="\["${reset_fg}"\]"
