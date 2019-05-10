@@ -2,6 +2,10 @@
 " Current plugins
 "
 " Declare vim-plug plugins
+"
+" Add github repository to add a plugin
+" Close vimrc and open a random vim session
+" Install plugin with " :PlugInstall "
 
 call plug#begin('~/.vim/plugged')
 
@@ -46,6 +50,9 @@ Plug 'qpkorr/vim-bufkill'  " kill vim buffer leaving split intact
 Plug 'vim-python/python-syntax'
 " Plug 'kh3phr3n/python-syntax'
 " Plug 'pfdevilliers/Pretty-Vim-Python'
+
+" Parentheses and brackets completion
+Plug 'jiangmiao/auto-pairs'
 
 " Color also available in my collection
 " Check their git pages at github.com/... for more configuration
