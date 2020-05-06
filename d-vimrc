@@ -6,6 +6,7 @@
 " Add github repository to add a plugin
 " Close vimrc and open a random vim session
 " Install plugin with " :PlugInstall "
+" Check this out: https://medium.com/@huntie/10-essential-vim-plugins-for-2018-39957190b7a9 
 
 call plug#begin('~/.vim/plugged')
 

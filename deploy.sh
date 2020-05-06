@@ -150,3 +150,5 @@ source ${HOME}/.bashrc
 
 #
 #
+
+sudo apt-get install gt5 ranger
