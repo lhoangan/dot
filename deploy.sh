@@ -151,4 +151,15 @@ source ${HOME}/.bashrc
 #
 #
 
-sudo apt-get install gt5 ranger
+sudo apt-get install feh ranger gt5
+
+# Install openconnect for vpn
+# https://askubuntu.com/questions/1135065/cant-run-pulse-secure-on-ubuntu-19-04-because-libwebkitgtk-1-0-so-0-is-missing
+## Install the package
+#sudo apt-get update
+#sudo apt-get install openconnect
+## Install certificates
+#sudo apt-get install ca-certificates
+#sudo update-ca-certificates
+## Connect
+#sudo openconnect --protocol = nc vpn.example.com
