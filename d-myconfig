@@ -29,3 +29,8 @@ eval $(dircolors -b $HOME/.dircolors)
 # https://askubuntu.com/questions/1138691/ubuntu-18-04-slow-after-2019-update
 # cat /sys/devices/system/cpu/cpufreq/policy*/scaling_governor
 # echo performance | sudo tee /sys/devices/system/cpu/cpufreq/policy0/scaling_governor
+
+
+# open connect
+# sudo apt-get install openconnect
+# sudo openconnect --juniper vpn.uva.nl
