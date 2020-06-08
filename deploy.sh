@@ -84,26 +84,35 @@ echo "export SCREENDIR=${HOME}/.screen" >> ${HOME}/.bashrc
     mv -v ${HOME}/.screenrc ${HOME}/${bk} # rename it with a datetime id
 }
 echo 'Creating new .screenrc config to '${HOME}
-ln -sf ${PWD}/.screenrc ${HOME}/
+ln -sf ${PWD}/d-screenrc ${HOME}/.screenrc
 
 #=============================================================================
+#-------------------------------------------------------------------------------
+# Add supplementary config to shell config
+[ -w ${HOME}/.bashrc ] && {
+    bk=.bashrc_bk_"$(date +"%y%m%d_%H%M%S")"
+    while
+	echo 'bashrc exists. What to do? Replace new (R) or Append to it (A)'
+	#read -n 1 -s
+	read reply
+	[ "${reply^}" != "R" -a "${reply^}" != "A" ]
+    do :; done
+    if [ "${reply^}" == "R" ] ; then
+	echo 'Replace chosen. Backing up to '${bk}
+	cp -v ${HOME}/.bashrc ${HOME}/${bk} # rename it with a datetime id
+	echo 'Creating new .bashrc'
+	cat .bashrc >  ${HOME}/.bashrc
+    elif [ "${reply^}" == "A" ] ; then
+	echo 'Append chosen. No backup is created'
+    fi
+}
+[ -w ${HOME}/.bashrc ] || {
+    cat .bashrc >  ${HOME}/.bashrc
+}
+echo source ${HOME}/.myconfig >> ${HOME}/.bashrc
+
 source ${HOME}/.bashrc
-# zsh, build from source?
-# download from http://www.zsh.org/pub/zsh.tar.gz
-# extract it
 
-
-# bash-it
-# oh-my-zsh plugins
-
-# vim 7 8, build from source?
-
-# other node setup with for ssh
-
-#
-#
-
-sudo apt-get install feh ranger gt5
 
 # Install openconnect for vpn
 # https://askubuntu.com/questions/1135065/cant-run-pulse-secure-on-ubuntu-19-04-because-libwebkitgtk-1-0-so-0-is-missing
