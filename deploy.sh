@@ -4,8 +4,7 @@
 # sudo apt-get install git diffcolor, tree
 
 install_dir=${HOME}/bin
-anaconda=${HOME}/anaconda2
-
+anaconda=${HOME}/anaconda3
 mkdir -p "${install_dir}"
 # =============================================================================
 # INSTALL BASH_IT
@@ -66,43 +65,8 @@ echo source ${HOME}/.myprompt >> ${HOME}/.bashrc
 
 # =============================================================================
 # INSTALL VIM
-
-# check if anaconda is available in /home/anaconda2
-if [ ! -d ${anaconda} ]; then
-    echo "CANNOT FIND "${anaconda}". Install ANACONDA into "$(dirname ${HOME})" and try again"
-    exit
-fi
-
-
-# TODO: check if vim is available, install if needed or build from scratch
-echo 'INSTALL VIM.....'
-./install_vim.sh "${install_dir}" ${anaconda}/bin/python-config ${anaconda}/lib
-
-# 1. Download vim-plug, a plugin manager, into ${HOME}/.vim/autoload
-# check if a folder named .vim is already existed in the home dir
-[ -w ${HOME}/.vim ] && {
-    bk=.vim_bk_"$(date +"%y%m%d_%H%M%S")"
-    echo 'Found old .vim directory. Backing up to '${bk}
-    mv -v ${HOME}/.vim ${HOME}/${bk} # rename it with a datetime id
-}
-# detailed can be found here: https://github.com/junegunn/vim-plug
-curl -fLo ${HOME}/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-# 2. copy .vimrc from dot folder to home folder
-# copy vim config to home folders
-[ -w ${HOME}/.vimrc ] && {
-    bk=.vimrc_bk_"$(date +"%y%m%d_%H%M%S")"
-    echo 'Found old .vimrc file. Backing up to '${bk}
-    mv -v ${HOME}/.vimrc ${HOME}/${bk} # rename it with a datetime id
-}
-echo 'Creating new .vim and .vimrc to '${HOME}
-ln -sf ${PWD}/.vimrc ${HOME}/
-cp -vr .vim/colors ${HOME}/.vim
-cp -vb PaperColor.vim ${HOME}/.vim/colors/
-
-# install vim plugins
-vim +PlugInstall +qall
-
+chmod +x deploy_vim.sh
+./deploy_vim.sh ${anaconda} ${install_dir}
 
 # ============================================================================
 # TMUX CONFIGS

@@ -18,24 +18,28 @@ make && \
 make install && {
 
 # if install lua successful
+set -x
 conda install -c conda-forge xorg-libsm
+set +x
 echo "COMPILING VIM..."
 
 export PATH="${install_dir}"/lua-"${lua_version}"/bin:$PATH
 
 cd ..
-#git clone https://github.com/vim/vim.git
-tar zxf vim.tar.gz
+git clone https://github.com/vim/vim.git
+#tar zxf vim_8.0_python2.tar.gz
 cd vim
 
 make distclean
 rm auto/config.cache
 
-LDFLAGS="-L${python_lib} -Wl,-rpath,${HOME}/anaconda2/lib" \
+LDFLAGS="-L${python_lib} -Wl,-rpath,${python_lib}" \
 ./configure --with-features=huge \
             --enable-multibyte \
-            --enable-pythoninterp=yes \
-            --with-python-config-dir="${python_config}" \
+	    --enable-pythoninterp=no \
+	    --with-python3-command=python\
+	    --enable-python3interp \
+	    --with-python3-config-dir="${python_config}" \
             --enable-luainterp=yes \
             --enable-gui=gtk2 \
             --enable-cscope \
