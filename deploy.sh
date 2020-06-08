@@ -1,11 +1,22 @@
 #!/bin/bash
 
 # useful utility:
-# sudo apt-get install git diffcolor, tree
+# sudo apt-get install feh diffcolor tree ranger gt5
 
 install_dir=${HOME}/bin
 anaconda=${HOME}/anaconda3
 mkdir -p "${install_dir}"
+
+# =============================================================================
+# INSTALL XCAPE
+
+chmod +x deploy_xcape.sh
+./deploy_xcape.sh ${install_dir} && {
+    echo "Install xcape successfully"
+} || {
+    echo "Install xcape failed"
+}
+
 # =============================================================================
 # INSTALL BASH_IT
 #./install_bashit.sh
