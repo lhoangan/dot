@@ -18,19 +18,7 @@ mkdir -p "${install_dir}"
     mv -v ${HOME}/.my_config ${HOME}/${bk} # rename it with a datetime id
 }
 echo 'Creating new .myconfig'
-ln -sf ${PWD}/.myconfig ${HOME}/
-
-#-------------------------------------------------------------------------------  
-# Add supplementary config to shell config
-[ -w ${HOME}/.bashrc ] && {
-    bk=.bashrc_bk_"$(date +"%y%m%d_%H%M%S")"
-    echo 'Found old .bashrc file. Backing up to '${bk}
-    cp -v ${HOME}/.bashrc ${HOME}/${bk} # rename it with a datetime id
-}
-
-echo 'Creating new .bashrc'
-cat .bashrc >>  ${HOME}/.bashrc
-echo source ${HOME}/.myconfig >> ${HOME}/.bashrc
+ln -sf ${PWD}/d-myconfig ${HOME}/.myconfig
 
 #-------------------------------------------------------------------------------  
 # link .inputrc to ${HOME}
@@ -40,7 +28,7 @@ echo source ${HOME}/.myconfig >> ${HOME}/.bashrc
     mv -v ${HOME}/.inputrc ${HOME}/${bk} # rename it with a datetime id
 }
 echo 'Creating new .inputrc'
-ln -sf ${PWD}/.inputrc ${HOME}/
+ln -sf ${PWD}/d-inputrc ${HOME}/.inputrc
 
 #-------------------------------------------------------------------------------  
 # link .dircolors to ${HOME}
@@ -50,7 +38,7 @@ ln -sf ${PWD}/.inputrc ${HOME}/
     mv -v ${HOME}/.dircolors ${HOME}/${bk} # rename it with a datetime id
 }
 echo 'Creating new .dircolors'
-ln -sf ${PWD}/.dircolors ${HOME}/
+ln -sf ${PWD}/d-dircolors ${HOME}/.dircolors
 
 #-------------------------------------------------------------------------------  
 # link .myprompt to ${HOME}
@@ -60,7 +48,7 @@ ln -sf ${PWD}/.dircolors ${HOME}/
     mv -v ${HOME}/.myprompt ${HOME}/${bk} # rename it with a datetime id
 }
 echo 'Creating new .myprompt'
-ln -sf ${PWD}/.myprompt ${HOME}/
+ln -sf ${PWD}/d-myprompt ${HOME}/.myprompt
 echo source ${HOME}/.myprompt >> ${HOME}/.bashrc
 
 # =============================================================================
@@ -77,9 +65,9 @@ chmod +x deploy_vim.sh
     mv -v ${HOME}/.tmux.conf ${HOME}/${bk} # rename it with a datetime id
 }
 echo 'Creating new .tmux config to '${HOME}
-ln -sf ${PWD}/.tmux.conf ${HOME}/
-ln -sf ${PWD}/.tmux.ver ${HOME}/
-ln -sf ${PWD}/.tmux.hor ${HOME}/
+ln -sf ${PWD}/d-tmux.conf ${HOME}/.tmux.conf
+ln -sf ${PWD}/d-tmux.ver ${HOME}/.tmux.ver
+ln -sf ${PWD}/d-tmux.hor ${HOME}/.tmux.hor
 
 
 # ============================================================================

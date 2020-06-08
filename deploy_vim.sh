@@ -39,7 +39,7 @@ set +x
 }
 echo 'Creating new .vim and .vimrc to '${HOME}
 set -x
-ln -sf ${PWD}/.vimrc ${HOME}/
+ln -sf ${PWD}/d-vimrc ${HOME}/.vimrc
 cp -vr .vim/colors ${HOME}/.vim
 cp -vb PaperColor.vim ${HOME}/.vim/colors/
 set +x
