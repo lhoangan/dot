@@ -36,10 +36,10 @@ rm auto/config.cache
 LDFLAGS="-L${python_lib} -Wl,-rpath,${python_lib}" \
 ./configure --with-features=huge \
             --enable-multibyte \
-	    --enable-pythoninterp=no \
-	    --with-python3-command=python\
-	    --enable-python3interp \
-	    --with-python3-config-dir="${python_config}" \
+            --enable-pythoninterp=no \
+            --with-python3-command=python\
+            --enable-python3interp \
+            --with-python3-config-dir="${python_config}" \
             --enable-luainterp=yes \
             --enable-gui=gtk2 \
             --enable-cscope \
