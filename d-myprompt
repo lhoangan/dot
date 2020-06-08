@@ -143,7 +143,7 @@ function host_color {
         *dta160036*)
             hostcolor="\e[103m"
             ;;
-        *TPU1604*)
+        *TP-U20*)
             hostcolor="\e[105m"
             ;;
         *SBook2*)
