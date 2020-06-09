@@ -54,6 +54,11 @@ Plug 'vim-python/python-syntax'
 
 " Parentheses and brackets completion
 Plug 'jiangmiao/auto-pairs'
+" Remap the key since M[eta]- key (Alt) binding is tricky in terminal vim
+" https://www.reddit.com/r/vim/comments/818klg/plugin_instructions_say_press_me/dv1anak/
+" https://vi.stackexchange.com/questions/2350/how-to-map-alt-key
+execute "set <M-e>=\ee"
+nnoremap <M-e> e
 
 " Color also available in my collection
 " Check their git pages at github.com/... for more configuration
