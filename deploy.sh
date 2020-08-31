@@ -18,6 +18,13 @@ chmod +x deploy_xcape.sh
 }
 
 # =============================================================================
+# REGOLITH I3
+[ -w ${HOME}/.config/regolith ] || {
+    mkdir ${HOME}/.config/regolith
+}
+ln -s ${PWD}/i3 ${HOME}/.config/regolith/
+
+# =============================================================================
 # INSTALL BASH_IT
 #./install_bashit.sh
 
