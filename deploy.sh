@@ -41,6 +41,7 @@ ln -s ${PWD}/i3 ${HOME}/.config/regolith/
 }
 echo 'Creating new .myconfig'
 ln -sf ${PWD}/d-myconfig ${HOME}/.myconfig
+ln -sf ${PWD}/kb.sh ${HOME}/kb.sh
 
 #-------------------------------------------------------------------------------  
 # link .inputrc to ${HOME}
