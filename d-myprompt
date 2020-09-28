@@ -134,6 +134,9 @@ function host_color {
         *das4*)
             hostcolor="\e[100m"
             ;;
+        *k-mna-047*)
+            hostcolor="\e[102m"
+            ;;
         *das5*)
             hostcolor="\e[101m"
             ;;
