@@ -27,6 +27,9 @@ Plug 'davidhalter/jedi-vim'
 " LaTeX plugin
 Plug 'lervag/vimtex'
 
+" Jupyter vim
+Plug 'jupyter-vim/jupyter-vim'
+
 " Markdown plugin
 " Plug 'gabrielelana/vim-markdown'
 
