@@ -152,6 +152,10 @@ set foldmethod=indent
 nnoremap <F8> :!/opt/local/bin/ctags -R --python-kinds=-i *.py<CR>
 nnoremap <Ctrl-1> :TlistToggle<CR>
 nnoremap <Ctrl-2> :NERDTreeToggle<CR>
+" Ctrl-Space is mapped to Ctrl-@ by default in vim
+" Now we map them to Ctrl-X+Ctrl-F for file name completion
+" For default vim omni completion, use <C-x><C-o>
+inoremap <C-@> <C-x><C-f>
 let Tlist_WinWidth=50
 set backspace=indent,eol,start
 set ofu=syntaxcomplete#Complete
