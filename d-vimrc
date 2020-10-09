@@ -155,7 +155,8 @@ nnoremap <Ctrl-2> :NERDTreeToggle<CR>
 " Ctrl-Space is mapped to Ctrl-@ by default in vim
 " Now we map them to Ctrl-X+Ctrl-F for file name completion
 " For default vim omni completion, use <C-x><C-o>
-inoremap <C-@> <C-x><C-f>
+"inoremap <C-@> <C-F><C-F>
+inoremap <Tab> <C-X><C-F>
 let Tlist_WinWidth=50
 set backspace=indent,eol,start
 set ofu=syntaxcomplete#Complete
@@ -324,8 +325,7 @@ cabbrev <silent> bd <C-r>=(getcmdtype()==#':' && getcmdpos()==1 ? 'lclose\|bdele
 " "let g:neocomplete#disable_auto_complete = 1
 " "inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
 " 
-" " Enable omni completion.
-" autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+" " Enable omni completion.  " autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 " autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 " autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 " autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
