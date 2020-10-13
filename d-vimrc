@@ -146,7 +146,9 @@ set ruler
 set foldenable          " enable folding
 set foldlevelstart=10   " open most folds by default
 set foldnestmax=10      " 10 nested fold max
-set foldmethod=indent
+" set foldmethod=indent " causing vim crash when creating new line on top
+" nnoremap <space> za
+" vnoremap <space> zf
 
 
 nnoremap <F8> :!/opt/local/bin/ctags -R --python-kinds=-i *.py<CR>
