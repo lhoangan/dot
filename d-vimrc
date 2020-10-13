@@ -55,6 +55,11 @@ Plug 'vim-python/python-syntax'
 " Plug 'kh3phr3n/python-syntax'
 " Plug 'pfdevilliers/Pretty-Vim-Python'
 
+
+" Python folding
+Plug 'tmhedberg/SimpylFold'
+Plug 'Konfekt/FastFold'
+
 " Parentheses and brackets completion
 Plug 'jiangmiao/auto-pairs'
 " Remap the key since M[eta]- key (Alt) binding is tricky in terminal vim
@@ -378,3 +383,26 @@ let g:NERDTreePatternMatchHighlightFullName = 1
 " ======================
 " vimtex
 let g:tex_flavor = 'latex'
+
+" =====================
+" FastFold
+nmap zuz <Plug>(FastFoldUpdate)
+let g:fastfold_savehook = 1
+let g:fastfold_fold_command_suffixes =  ['x','X','a','A','o','O','c','C']
+let g:fastfold_fold_movement_commands = [']z', '[z', 'zj', 'zk']
+let g:markdown_folding = 1
+let g:tex_fold_enabled = 1
+let g:vimsyn_folding = 'af'
+let g:xml_syntax_folding = 1
+let g:javaScript_fold = 1
+let g:sh_fold_enabled= 7
+let g:ruby_fold = 1
+let g:perl_fold = 1
+let g:perl_fold_blocks = 1
+let g:r_syntax_folding = 1
+let g:rust_fold = 1
+let g:php_folding = 1
+
+" ===================
+" SimpylFold
+let g:SimpylFold_docstring_preview = 1
