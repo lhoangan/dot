@@ -163,7 +163,7 @@ nnoremap <Ctrl-2> :NERDTreeToggle<CR>
 " Now we map them to Ctrl-X+Ctrl-F for file name completion
 " For default vim omni completion, use <C-x><C-o>
 "inoremap <C-@> <C-F><C-F>
-inoremap <Tab> <C-X><C-F>
+inoremap <S-Tab> <C-X><C-F>
 let Tlist_WinWidth=50
 set backspace=indent,eol,start
 set ofu=syntaxcomplete#Complete
