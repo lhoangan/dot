@@ -1,13 +1,13 @@
 import os
 if 'FIGSIZE' not in os.environ:
     os.environ['FIGSIZE'] = '496.7855'
-print 'Default Figure size is set to ', os.environ['FIGSIZE']
-print 'Check your number by running \\the\\linewidth or \\the\\textwidth in LaTeX'
-print 'Apply the new number by overwrite it to os.environ[\'FIGSIZE\'] and reload'
-print 'the module with reload(plotex)'
-print 'Some useful textwidth numbers can be found below'
-print '\\the\\textwidth for CVPR : 496.85625 \t for ECCV : 347.12361'
-print '\\the\\linewidth for CVPR : 237.135594'
+print ('Default Figure size is set to ', os.environ['FIGSIZE'])
+print ('Check your number by running \\the\\linewidth or \\the\\textwidth in LaTeX')
+print ('Apply the new number by overwrite it to os.environ[\'FIGSIZE\'] and reload')
+print ('the module with reload(plotex)')
+print ('Some useful textwidth numbers can be found below')
+print ('\\the\\textwidth for CVPR : 496.85625 \t for ECCV : 347.12361')
+print ('\\the\\linewidth for CVPR : 237.135594')
 import numpy as np
 import matplotlib as mpl
 mpl.use('pgf')
@@ -56,7 +56,7 @@ def savefig(filename):
     plt.savefig('{}.pgf'.format(filename), bbox_inches='tight')
     plt.savefig('{}.pdf'.format(filename), bbox_inches='tight')
 
-    print '\n------\nImages saved at', os.path.join(os.getcwd(), filename)
+    print ('\n------\nImages saved at', os.path.join(os.getcwd(), filename))
 
 if __name__ == '__main__':
     # Simple test plot
