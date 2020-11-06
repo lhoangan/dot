@@ -22,23 +22,22 @@ def figsize(scale):
     fig_size = [fig_width,fig_height]
     return fig_size
 
-pgf_with_latex = {                      # setup matplotlib to use latex for output
-    "pgf.texsystem": "pdflatex",        # change this if using xetex or lautex
-    "text.usetex": True,                # use LaTeX to write all text
+pgf_with_latex = {                   # setup matplotlib to use latex for output
+    "pgf.texsystem": "pdflatex",     # change this if using xetex or lautex
+    "text.usetex": True,             # use LaTeX to write all text
     "font.family": "serif",
-    "font.serif": [],                   # blank entries should cause plots to inherit fonts from the document
+    "font.serif": [],       # blank makes plots inherit fonts from the document
     "font.sans-serif": [],
     "font.monospace": [],
     "font.size": 12,
-    "axes.labelsize": 12,               # LaTeX default is 10pt font.
-    "legend.fontsize": 10,              # Make the legend/label fonts a little smaller
+    "axes.labelsize": 12,            # LaTeX default is 10pt font.
+    "legend.fontsize": 10,           # Make the legend/label fonts a little smaller
     "xtick.labelsize": 10,
     "ytick.labelsize": 10,
-    "figure.figsize": figsize(0.95),     # default fig size of 0.9 textwidth
-    "pgf.preamble": [
-        r"\usepackage[utf8x]{inputenc}",    # use utf8 fonts becasue your computer can handle it :)
-        r"\usepackage[T1]{fontenc}",        # plots will be generated using this preamble
-        ]
+    "figure.figsize": figsize(0.95), # default fig size of 0.9 textwidth
+    # plots will be generated using this preamble
+    # use utf8 fonts becasue your computer can handle it :)
+    "pgf.preamble": r"\usepackage[utf8x]{inputenc} \usepackage[T1]{fontenc}"
     }
 mpl.rcParams.update(pgf_with_latex)
 
