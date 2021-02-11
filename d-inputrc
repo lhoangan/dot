@@ -1,8 +1,12 @@
 set editing-mode vi
 set show-mode-in-prompt on
 C-l: clear-screen
-set vi-ins-mode-string \1+\2
-set vi-cmd-mode-string \1:\2 
+set vi-ins-mode-string "+"
+set vi-cmd-mode-string ":"
+#set vi-ins-mode-string \1+\2
+#set vi-cmd-mode-string \1:\2
 
 # default indicator is (ins) and (cmd)
 # from https://www.gnu.org/software/bash/manual/html_node/Readline-Init-File-Syntax.html#index-vi_002dcmd_002dmode_002dstring
+# this suggest that \1 and \2 is for using color
+# https://stackoverflow.com/questions/7888387/the-way-to-distinguish-command-mode-and-insert-mode-in-bashs-vi-command-line-ed
