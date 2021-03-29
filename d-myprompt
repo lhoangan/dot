@@ -143,7 +143,7 @@ function host_color {
         *lisa*)
             hostcolor="\e[102m"
             ;;
-        *dta160036*)
+        *aar11*)
             hostcolor="\e[103m"
             ;;
         *TP-U20*)
