@@ -1,0 +1,41 @@
+export EDITOR='vim'
+export VISUAL='vim'
+
+alias ll="ls -lhaF"
+alias ssh="ssh -X -o ServerAliveInterval=120"
+alias tmux="tmux -2"
+#alias rmcap="xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'"
+alias rmcap="xmodmap CLockToCntr"
+alias invert="xcalib -invert -alter"
+alias myip="curl ipinfo.io/ip"
+alias dualcntr="xcape -e 'Control_L=Escape;Control_L=Control_L'"
+alias gpu="ps -up `nvidia-smi -q -x | grep pid | sed -e 's/<pid>//g' -e 's/<\/pid>//g' -e 's/^[[:space:]]*//'`"
+# https://github.com/alols/xcape
+
+# alias for git commands
+git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+git config --global color.ui true
+
+
+
+
+export PYTHONPATH=${PWD}/mylibs:$PYTHONPATH
+
+# redirect screen to home folder
+if [ ! -d ${HOME}/.screen ] ; then
+    mkdir ${HOME}/.screen
+fi
+chmod 700 ${HOME}/.screen
+export SCREENDIR=${HOME}/.screen
+
+# eval $(dircolors -b $HOME/.dircolors)
+
+# check if cpu is on powersave mode and activate performance mode
+# https://askubuntu.com/questions/1138691/ubuntu-18-04-slow-after-2019-update
+# cat /sys/devices/system/cpu/cpufreq/policy*/scaling_governor
+# echo performance | sudo tee /sys/devices/system/cpu/cpufreq/policy0/scaling_governor
+
+
+# open connect
+# sudo apt-get install openconnect
+# sudo openconnect --juniper vpn.uva.nl

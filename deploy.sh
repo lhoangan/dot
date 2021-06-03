@@ -1,12 +1,33 @@
 #!/bin/bash
 
+# 1. install git: sudo apt-get install git
+# 2. install anaconda3 (or miniconda3 to ~/anaconda3)
+# 3. clone the dot repository
+
 # useful utility:
-# sudo apt-get install git diffcolor, tree
+# sudo apt-get install feh diffcolor tree ranger gt5
 
 install_dir=${HOME}/bin
-anaconda=${HOME}/anaconda2
-
+anaconda=${HOME}/anaconda3
 mkdir -p "${install_dir}"
+
+# =============================================================================
+# INSTALL XCAPE
+
+chmod +x deploy_xcape.sh
+./deploy_xcape.sh ${install_dir} && {
+    echo "Install xcape successfully"
+} || {
+    echo "Install xcape failed"
+}
+
+# =============================================================================
+# REGOLITH I3
+[ -w ${HOME}/.config/regolith ] || {
+    mkdir ${HOME}/.config/regolith
+}
+ln -s ${PWD}/i3 ${HOME}/.config/regolith/
+
 # =============================================================================
 # INSTALL BASH_IT
 #./install_bashit.sh
@@ -19,19 +40,8 @@ mkdir -p "${install_dir}"
     mv -v ${HOME}/.my_config ${HOME}/${bk} # rename it with a datetime id
 }
 echo 'Creating new .myconfig'
-ln -sf ${PWD}/.myconfig ${HOME}/
-
-#-------------------------------------------------------------------------------  
-# Add supplementary config to shell config
-[ -w ${HOME}/.bashrc ] && {
-    bk=.bashrc_bk_"$(date +"%y%m%d_%H%M%S")"
-    echo 'Found old .bashrc file. Backing up to '${bk}
-    cp -v ${HOME}/.bashrc ${HOME}/${bk} # rename it with a datetime id
-}
-
-echo 'Creating new .bashrc'
-cat .bashrc >>  ${HOME}/.bashrc
-echo source ${HOME}/.myconfig >> ${HOME}/.bashrc
+ln -sf ${PWD}/d-myconfig ${HOME}/.myconfig
+ln -sf ${PWD}/kb.sh ${HOME}/kb.sh
 
 #-------------------------------------------------------------------------------  
 # link .inputrc to ${HOME}
@@ -41,7 +51,7 @@ echo source ${HOME}/.myconfig >> ${HOME}/.bashrc
     mv -v ${HOME}/.inputrc ${HOME}/${bk} # rename it with a datetime id
 }
 echo 'Creating new .inputrc'
-ln -sf ${PWD}/.inputrc ${HOME}/
+ln -sf ${PWD}/d-inputrc ${HOME}/.inputrc
 
 #-------------------------------------------------------------------------------  
 # link .dircolors to ${HOME}
@@ -51,7 +61,7 @@ ln -sf ${PWD}/.inputrc ${HOME}/
     mv -v ${HOME}/.dircolors ${HOME}/${bk} # rename it with a datetime id
 }
 echo 'Creating new .dircolors'
-ln -sf ${PWD}/.dircolors ${HOME}/
+ln -sf ${PWD}/d-dircolors ${HOME}/.dircolors
 
 #-------------------------------------------------------------------------------  
 # link .myprompt to ${HOME}
@@ -61,48 +71,13 @@ ln -sf ${PWD}/.dircolors ${HOME}/
     mv -v ${HOME}/.myprompt ${HOME}/${bk} # rename it with a datetime id
 }
 echo 'Creating new .myprompt'
-ln -sf ${PWD}/.myprompt ${HOME}/
+ln -sf ${PWD}/d-myprompt ${HOME}/.myprompt
 echo source ${HOME}/.myprompt >> ${HOME}/.bashrc
 
 # =============================================================================
 # INSTALL VIM
-
-# check if anaconda is available in /home/anaconda2
-if [ ! -d ${anaconda} ]; then
-    echo "CANNOT FIND "${anaconda}". Install ANACONDA into "$(dirname ${HOME})" and try again"
-    exit
-fi
-
-
-# TODO: check if vim is available, install if needed or build from scratch
-echo 'INSTALL VIM.....'
-./install_vim.sh "${install_dir}" ${anaconda}/bin/python-config ${anaconda}/lib
-
-# 1. Download vim-plug, a plugin manager, into ${HOME}/.vim/autoload
-# check if a folder named .vim is already existed in the home dir
-[ -w ${HOME}/.vim ] && {
-    bk=.vim_bk_"$(date +"%y%m%d_%H%M%S")"
-    echo 'Found old .vim directory. Backing up to '${bk}
-    mv -v ${HOME}/.vim ${HOME}/${bk} # rename it with a datetime id
-}
-# detailed can be found here: https://github.com/junegunn/vim-plug
-curl -fLo ${HOME}/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-# 2. copy .vimrc from dot folder to home folder
-# copy vim config to home folders
-[ -w ${HOME}/.vimrc ] && {
-    bk=.vimrc_bk_"$(date +"%y%m%d_%H%M%S")"
-    echo 'Found old .vimrc file. Backing up to '${bk}
-    mv -v ${HOME}/.vimrc ${HOME}/${bk} # rename it with a datetime id
-}
-echo 'Creating new .vim and .vimrc to '${HOME}
-ln -sf ${PWD}/.vimrc ${HOME}/
-cp -vr .vim/colors ${HOME}/.vim
-cp -vb PaperColor.vim ${HOME}/.vim/colors/
-
-# install vim plugins
-vim +PlugInstall +qall
-
+chmod +x deploy_vim.sh
+./deploy_vim.sh ${anaconda} ${install_dir}
 
 # ============================================================================
 # TMUX CONFIGS
@@ -113,9 +88,9 @@ vim +PlugInstall +qall
     mv -v ${HOME}/.tmux.conf ${HOME}/${bk} # rename it with a datetime id
 }
 echo 'Creating new .tmux config to '${HOME}
-ln -sf ${PWD}/.tmux.conf ${HOME}/
-ln -sf ${PWD}/.tmux.ver ${HOME}/
-ln -sf ${PWD}/.tmux.hor ${HOME}/
+ln -sf ${PWD}/d-tmux.conf ${HOME}/.tmux.conf
+ln -sf ${PWD}/d-tmux.ver ${HOME}/.tmux.ver
+ln -sf ${PWD}/d-tmux.hor ${HOME}/.tmux.hor
 
 
 # ============================================================================
@@ -132,21 +107,43 @@ echo "export SCREENDIR=${HOME}/.screen" >> ${HOME}/.bashrc
     mv -v ${HOME}/.screenrc ${HOME}/${bk} # rename it with a datetime id
 }
 echo 'Creating new .screenrc config to '${HOME}
-ln -sf ${PWD}/.screenrc ${HOME}/
+ln -sf ${PWD}/d-screenrc ${HOME}/.screenrc
 
 #=============================================================================
+#-------------------------------------------------------------------------------
+# Add supplementary config to shell config
+[ -w ${HOME}/.bashrc ] && {
+    bk=.bashrc_bk_"$(date +"%y%m%d_%H%M%S")"
+    while
+	echo 'bashrc exists. What to do? Replace new (R) or Append to it (A)'
+	#read -n 1 -s
+	read reply
+	[ "${reply^}" != "R" -a "${reply^}" != "A" ]
+    do :; done
+    if [ "${reply^}" == "R" ] ; then
+	echo 'Replace chosen. Backing up to '${bk}
+	cp -v ${HOME}/.bashrc ${HOME}/${bk} # rename it with a datetime id
+	echo 'Creating new .bashrc'
+	cat .bashrc >  ${HOME}/.bashrc
+    elif [ "${reply^}" == "A" ] ; then
+	echo 'Append chosen. No backup is created'
+    fi
+}
+[ -w ${HOME}/.bashrc ] || {
+    cat .bashrc >  ${HOME}/.bashrc
+}
+echo source ${HOME}/.myconfig >> ${HOME}/.bashrc
+
 source ${HOME}/.bashrc
-# zsh, build from source?
-# download from http://www.zsh.org/pub/zsh.tar.gz
-# extract it
 
 
-# bash-it
-# oh-my-zsh plugins
-
-# vim 7 8, build from source?
-
-# other node setup with for ssh
-
-#
-#
+# Install openconnect for vpn
+# https://askubuntu.com/questions/1135065/cant-run-pulse-secure-on-ubuntu-19-04-because-libwebkitgtk-1-0-so-0-is-missing
+## Install the package
+#sudo apt-get update
+#sudo apt-get install openconnect
+## Install certificates
+#sudo apt-get install ca-certificates
+#sudo update-ca-certificates
+## Connect
+#sudo openconnect --protocol = nc vpn.example.com
