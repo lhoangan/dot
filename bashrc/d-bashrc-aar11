@@ -142,3 +142,7 @@ source /home/hale/.myconfig
 export PATH=/usr/local/cuda-11.1/bin:$PATH
 export LD_LIBRARY_PATH=/usr/local/cuda-11.1/lib64:$LD_LIBRARY_PATH
 
+detectron2(){
+    conda activate pt1.8py3.6
+}
+
