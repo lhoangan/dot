@@ -28,6 +28,9 @@ Plug 'lervag/vimtex'
 " Indent line
 Plug 'Yggdroot/indentLine'
 
+" Auto pair
+Plug 'jiangmiao/auto-pairs'
+
 " Git integration
 " Plug 'motemen/git-vim'
 Plug 'tpope/vim-fugitive'
@@ -75,7 +78,7 @@ syntax on
 " colorscheme vibrantink "darkbackground
 " colorscheme fruit
 " colorscheme spring
-set background=light
+set background=dark
 colorscheme PaperColor
 " show line numbers
 " hybrid mode: absolute for the current, relative for upper and lower lines

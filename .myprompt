@@ -42,7 +42,8 @@ background_white="\e[47;1m"
 background_orange="\e[101m"
 
 normal="\e[0m"
-reset_fg="\e[39m"
+reset_fg="\e[0m"
+#reset_fg="\e[39m"
 reset_bg="\e[49m"
 
 # These colors are meant to be used with `echo -e`
@@ -108,7 +109,7 @@ function make_virtualenv_prompt {
 
 function host_color {
     # get hostname
-    #HOSTNAME=$(hostname -A)
+    HOSTNAME=$(hostname -A)
     # try to cut the word "science" from HOSTNAME but it stays the same
     # meaning there is no word 'science' in ${HOSTNAME}
     if [[ ${HOSTNAME/"fs4"} != ${HOSTNAME} ]] ; then 
@@ -116,13 +117,13 @@ function host_color {
         echo ${HOSTNAME} > ${HOME}/.hostcolor
     fi
 
-    #if [[ ${HOSTNAME/"science"} == ${HOSTNAME} ]] ; then 
-    #    HOSTNAME=$(hostname -s) # not fs4.das4 or fs4.das5, get the short name
-    #else # if there is
-    #    # grep the hostname with 'science' in it
-    #    HOSTNAME=$(echo $(hostname -A) | grep -o '\b\w*\.science\b')
-    #    echo ${HOSTNAME} > ${HOME}/.hostcolor
-    #fi
+    if [[ ${HOSTNAME/"science"} == ${HOSTNAME} ]] ; then 
+        HOSTNAME=$(hostname -s) # not fs4.das4 or fs4.das5, get the short name
+    else # if there is
+        # grep the hostname with 'science' in it
+        HOSTNAME=$(echo $(hostname -A) | grep -o '\b\w*\.science\b')
+        echo ${HOSTNAME} > ${HOME}/.hostcolor
+    fi
 
     METAHOST=${HOSTNAME}
     if [ -w ${HOME}/.hostcolor ]; then
@@ -164,12 +165,14 @@ function prompt {
     # size will be overflow
     last_cmd="$?"
 
-    PS1="`[[ $(git status 2> /dev/null) =~ Changes\ to\ be\ committed: ]] && echo "\[\e[33m\]" || echo "\[\e[31m\]"``[[ ! $(git status 2> /dev/null) =~ nothing\ to\ commit,\ working\ .+\ clean ]] || echo "\[\e[32m\]"`$(__git_ps1 "(%s)\[\e[00m\]")${ps1_green} >${ps1_reset_fg} "
+    #PS1="`[[ $(git status 2> /dev/null) =~ Changes\ to\ be\ committed: ]] && echo "\[\e[33m\]" || echo "\[\e[31m\]"``[[ ! $(git status 2> /dev/null) =~ nothing\ to\ commit,\ working\ .+\ clean ]] || echo "\[\e[32m\]"`$(__git_ps1 "(%s)\[\e[00m\]")${ps1_green} >${ps1_reset_fg} "
+    PS1="(no-git-mode) >${ps1_reset_fg} "
 
     make_virtualenv_prompt
     DATE="\n${bold_purple}$(date +"%b-%d %H:%M:%S")"
     if [[ ${last_cmd} = 0 ]]; then STATUS="${green}✔"; else STATUS="${bold_red}✘"; fi
     pwd="${reset_fg}${PWD}"
+    ME="${bold_blue}$(whoami)${blue}@${hostcolor}${HOSTNAME}${reset_bg}"
     echo -e ${DATE} ${STATUS} ${ME}${VIRENV_PROMPT}${bold_red}✰ ${pwd}
 }
 
@@ -180,6 +183,5 @@ function prompt {
 host_color
 ps1_green="\["${green}"\]"
 ps1_reset_fg="\["${reset_fg}"\]"
-ME="${bold_blue}$(whoami)${blue}@${hostcolor}${HOSTNAME}${reset_bg}"
 
 PROMPT_COMMAND=prompt
