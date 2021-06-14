@@ -184,6 +184,7 @@ augroup filetypedetect
     au BufNewFile,BufRead *.pig set filetype=pig syntax=pig
 augroup END
 set colorcolumn=80
+set tw=80
 set hidden " switch bufferes without having to save
 
 " command to highlight unsaved lines
