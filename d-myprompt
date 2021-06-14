@@ -140,7 +140,7 @@ function host_color {
         *das5*)
             hostcolor="\e[101m"
             ;;
-        *lisa*)
+        *FEMW10072*)
             hostcolor="\e[102m"
             ;;
         *aar11*)
