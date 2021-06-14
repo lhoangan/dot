@@ -140,10 +140,10 @@ function host_color {
         *das5*)
             hostcolor="\e[101m"
             ;;
-        *lisa*)
+        *FEMW10072*)
             hostcolor="\e[102m"
             ;;
-        *dta160036*)
+        *aar11*)
             hostcolor="\e[103m"
             ;;
         *TP-U20*)
@@ -167,7 +167,7 @@ function prompt {
     # size will be overflow
     last_cmd="$?"
 
-    PS1="`[[ $(git status 2> /dev/null) =~ Changes\ to\ be\ committed: ]] && echo "\[\e[33m\]" || echo "\[\e[31m\]"``[[ ! $(git status 2> /dev/null) =~ nothing\ to\ commit,\ working\ .+\ clean ]] || echo "\[\e[32m\]"`$(__git_ps1 "(%s)\[\e[00m\]")${ps1_green} >${ps1_reset_fg} "
+    PS1="`[[ $(git status 2> /dev/null) =~ Changes\ to\ be\ committed: ]] && echo "\[\e[33m\]" || echo "\[\e[31m\]"``[[ ! $(git status 2> /dev/null) =~ nothing\ to\ commit,\ working\ .+\ clean ]] || echo "\[\e[32m\]"`$(__git_ps1 "(%s)\[\e[00m\]")${ps1_green} >${ps1_reset_fg}"
 
     make_virtualenv_prompt
     DATE="\n${bold_purple}$(date +"%b-%d %H:%M:%S")"

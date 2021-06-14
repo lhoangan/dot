@@ -184,6 +184,7 @@ augroup filetypedetect
     au BufNewFile,BufRead *.pig set filetype=pig syntax=pig
 augroup END
 set colorcolumn=80
+set tw=80
 set hidden " switch bufferes without having to save
 
 " command to highlight unsaved lines
@@ -350,28 +351,28 @@ cabbrev <silent> bd <C-r>=(getcmdtype()==#':' && getcmdpos()==1 ? 'lclose\|bdele
 " " https://github.com/c9s/perlomni.vim
 " let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 " 
-" " =================
-" " NERDTree
-" 
-" " Open NERDTree automatically upon vim startup
-" " autocmd vimenter * NERDTree
-" 
-" " Open NERDTree automatically upon vim startup IF no files were specified
-" " autocmd StdinReadPre * let s:std_in=1
-" " autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-" 
-" " Open NERDTree automatically when vim starts up on opening a directory?
-" " autocmd StdinReadPre * let s:std_in=1
-" " autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif 
-" 
-" " Map a Ctrl-n to open NERDTree
-" map <C-n> :NERDTreeToggle<CR>
-" 
-" " Close vim if the only window left open is a NERDTree
-" " autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif"
-" 
-" " Show hidden file
-" " let NERDTreeShowHidden=1
+" =================
+" NERDTree
+
+" Open NERDTree automatically upon vim startup
+" autocmd vimenter * NERDTree
+
+" Open NERDTree automatically upon vim startup IF no files were specified
+" autocmd StdinReadPre * let s:std_in=1
+" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
+" Open NERDTree automatically when vim starts up on opening a directory?
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif 
+
+" Map a Ctrl-n to open NERDTree
+map <C-n> :NERDTreeToggle<CR>
+
+" Close vim if the only window left open is a NERDTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif"
+
+" Show hidden file
+let NERDTreeShowHidden=1
 
 " ===================
 " NERDTree syntax highlight
