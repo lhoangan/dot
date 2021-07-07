@@ -36,3 +36,6 @@ export SCREENDIR=${HOME}/.screen
 # open connect
 # sudo apt-get install openconnect
 # sudo openconnect --juniper vpn.uva.nl
+
+##################
+alias remarkable="wine /home/hale/.wine/drive_c/Program\ Files\ \(x86\)/reMarkable/reMarkable.exe"
