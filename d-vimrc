@@ -159,6 +159,8 @@ set foldnestmax=10      " 10 nested fold max
 nnoremap <F8> :!/opt/local/bin/ctags -R --python-kinds=-i *.py<CR>
 nnoremap <Ctrl-1> :TlistToggle<CR>
 nnoremap <Ctrl-2> :NERDTreeToggle<CR>
+nnoremap ls :ls<CR>:buffer<Space>
+
 " Ctrl-Space is mapped to Ctrl-@ by default in vim
 " Now we map them to Ctrl-X+Ctrl-F for file name completion
 " For default vim omni completion, use <C-x><C-o>
