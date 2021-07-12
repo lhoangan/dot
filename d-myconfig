@@ -4,6 +4,7 @@ export VISUAL='vim'
 alias ll="ls -lhaF"
 alias ssh="ssh -X -o ServerAliveInterval=120"
 alias tmux="tmux -2"
+alias feh="feh --draw-tinted"
 alias diff="diff --color"
 #alias rmcap="xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'"
 alias rmcap="xmodmap CLockToCntr"
