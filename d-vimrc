@@ -159,7 +159,7 @@ set foldnestmax=10      " 10 nested fold max
 nnoremap <F8> :!/opt/local/bin/ctags -R --python-kinds=-i *.py<CR>
 nnoremap <Ctrl-1> :TlistToggle<CR>
 nnoremap <Ctrl-2> :NERDTreeToggle<CR>
-nnoremap ls :ls<CR>:buffer<Space>
+nnoremap gs :ls<CR>:buffer<Space>
 
 " Ctrl-Space is mapped to Ctrl-@ by default in vim
 " Now we map them to Ctrl-X+Ctrl-F for file name completion
@@ -409,3 +409,35 @@ let g:tex_flavor = 'latex'
 " " ===================
 " " SimpylFold
 " let g:SimpylFold_docstring_preview = 1
+"
+" ===================
+" tidying :ls
+" https://vi.stackexchange.com/questions/4102/how-to-shorten-the-result-of-ls-to-get-only-the-file-name-and-not-the-whole-pa
+function! s:MyBufList()
+  set nomore
+  let buf_count = bufnr("$")
+  for i in range(1, buf_count)
+    if getbufvar(l:i, '&buflisted') > 0
+      let path = bufname(i)
+      let filename = fnamemodify(path, ":t")
+      let folder = fnamemodify(path, ":h")
+      echo i "|" filename . "\t(" . folder . ")"
+    endif
+  endfor
+  set more
+endfunction
+
+function! ListBuffers()
+    redir => ls_output
+    silent exec 'ls'
+    redir END
+
+    let list = substitute(ls_output, '"(\f*\ )*(\f*)"' , '\=submatch(2)',    "g")
+
+    echo list
+endfunction
+
+command! MBL call s:MyBufList()
+command! LB call ListBuffers()
+
+nmap <silent> <Leader>b :MBL<CR>:call feedkeys(':b ')<CR>
