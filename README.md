@@ -19,6 +19,33 @@ library setup)
 ### Vimrc
 
 
+#### Essentials
+- Switching buffer without having to save document
+```vim
+set hidden " switch bufferes without having to save
+```
+
+### Utility
+
+- Indication of column 80th and auto text-warping
+```
+set colorcolumn=80
+set tw=80
+```
+- Quick command to access buffer list
+```
+nnoremap gs :ls<CR>:buffer<Space>
+```
+
+- Auto highlighting the word under the cursor, toggled by `F3`
+```
+autocmd CursorMoved * exe exists("HlUnderCursor")?HlUnderCursor?printf('match DiffAdd /\V\<%s\>/', escape(expand('<cword>'), '/\')):'match none':""
+nnoremap <silent> <F3> :exe "let HlUnderCursor=exists(\"HlUnderCursor\")?HlUnderCursor*-1+1:1"<CR>
+```
+
+
+
+
 ### Tmux
 
 
