@@ -12,7 +12,7 @@ white="\e[0;37m"
 orange="\e[0;91m"
 
 bold_black="\e[30;1m"
-bold_red="\e[31;1m"
+fg_bred="\e[31;1m"
 bold_green="\e[32;1m"
 bold_yellow="\e[33;1m"
 bold_blue="\e[34;1m"
@@ -40,6 +40,7 @@ background_purple="\e[45m"
 background_cyan="\e[46m"
 background_white="\e[47;1m"
 background_orange="\e[101m"
+bg_white="\e[100m"
 
 normal="\e[0m"
 reset_fg="\e[39m"
@@ -131,14 +132,14 @@ function host_color {
 
     # get host color
     case ${METAHOST} in
-        *das4*)
-            hostcolor="\e[100m"
+        *rtx4|titan4|s1gtx1|s2titan1*)
+            hostcolor="\e[101m"
             ;;
         *k-mna-047*)
             hostcolor="\e[102m"
             ;;
-        *das5*)
-            hostcolor="\e[101m"
+        *dmis|expr|volta1*)
+            hostcolor=${fg_bred}${bg_white}
             ;;
         *FEMW10072*)
             hostcolor="\e[102m"
@@ -171,9 +172,9 @@ function prompt {
 
     make_virtualenv_prompt
     DATE="\n${bold_purple}$(date +"%b-%d %H:%M:%S")"
-    if [[ ${last_cmd} = 0 ]]; then STATUS="${green}✔"; else STATUS="${bold_red}✘"; fi
+    if [[ ${last_cmd} = 0 ]]; then STATUS="${green}✔"; else STATUS="${fg_bred}✘"; fi
     pwd="${reset_fg}${PWD}"
-    echo -e ${DATE} ${STATUS} ${ME}${VIRENV_PROMPT}${bold_red}✰ ${pwd}
+    echo -e ${DATE} ${STATUS} ${ME}${VIRENV_PROMPT}${fg_bred}✰ ${pwd}
 }
 
 # continue only when interactive
