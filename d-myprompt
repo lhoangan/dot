@@ -11,14 +11,14 @@ cyan="\e[0;36m"
 white="\e[0;37m"
 orange="\e[0;91m"
 
-bold_black="\e[30;1m"
+fg_bblack="\e[30;1m"
 fg_bred="\e[31;1m"
 bold_green="\e[32;1m"
 bold_yellow="\e[33;1m"
 bold_blue="\e[34;1m"
 bold_purple="\e[35;1m"
 bold_cyan="\e[36;1m"
-bold_white="\e[37;1m"
+fg_bwhite="\e[37;1m"
 bold_orange="\e[91;1m"
 
 underline_black="\e[30;4m"
@@ -135,8 +135,8 @@ function host_color {
         *rtx4|titan4|s1gtx1|s2titan1*)
             hostcolor="\e[101m"
             ;;
-        *k-mna-047*)
-            hostcolor="\e[102m"
+        *k-mna-047|Host-004*)
+            hostcolor=${fg_bblack}"\e[102m"
             ;;
         *dmis|expr|volta1*)
             hostcolor=${fg_bred}${bg_white}
