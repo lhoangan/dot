@@ -2,43 +2,43 @@
 # i3-gaps config file for the Regolith Desktop Environment
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
-# 
+#
 ###############################################################################
 #
-# In this config file, may values are taken from Xresources with the directive 
+# In this config file many values are taken from Xresources with the directive 
 # set_from_resource:
 #
 # set_from_resource <i3 variable name> <Xresources key> <default value>
-# 
-# This configuration file utilizes Xresource variables to enable users to
-# change the configuration without having to make a copy of this config file.
-# The benefit to not copying this file is easier upgrading in the future.
-# To update a value in this config without making a copy, update the Xresource 
+#
+# This configuration file utilizes Xresource variables to change configuration
+# without having to make a copy of this config file.
+# The benefit to not copying this file is easier upgrades in the future.
+# To update a value in this config without making a copy, update the Xresource
 # value in the file ~/.config/regolith/Xresources.
-# 
+#
 # For example, to change the bar position to the top of the screen this is the
-# i3 config entry:
+# i3 config entry in this file:
 # set_from_resource $i3-wm.bar.position i3-wm.bar.position bottom
 #
 # So add this line to ~/.config/regolith/Xresources to change it's value:
 # i3-wm.bar.position: top
 #
-# Reload i3 after making Xresource changes.  Learn more at 
-# https://regolith-linux.org/docs/howto/override-xres/
+# Reload i3 after making Xresource changes.  Learn more at
+# https://regolith-linux.org/docs/howtos/override-xres/
 #
 ###############################################################################
 #
-# This file uses a machine-parsable format for comments. The schema:
+# This file uses a machine-parsable format for comments. The schema is:
 # ## <Category> // <Action> // <Keybinding> ##
 # Learn more at https://github.com/regolith-linux/remontoire
 #
 ###############################################################################
 
 ###############################################################################
-# Meta Key Mappings
-# Alt key is Mod1, and Windows key is Mod4
+# Key Mappings
 ###############################################################################
 
+# Meta Key - Alt key is Mod1, and Windows key is Mod4
 set_from_resource $mod  i3-wm.mod Mod4
 set_from_resource $alt  i3-wm.alt Mod1
 
@@ -428,6 +428,7 @@ set_from_resource $urgent.color.text i3-wm.client.urgent.color.text "#fdf6e3"
 set_from_resource $urgent.color.indicator i3-wm.client.urgent.color.indicator "#002b36"
 set_from_resource $urgent.color.child_border i3-wm.client.urgent.color.child_border
 
+
 # Window Border color
 # class                 border                             background                         text                               indicator                          child_border
 client.focused          $focused.color.border              $focused.color.background          $focused.color.text                $focused.color.indicator           $focused.color.child_border
@@ -474,7 +475,7 @@ set_from_resource $i3-wm.bar.separator i3-wm.bar.separator " "
 set_from_resource $i3-wm.bar.trayoutput i3-wm.bar.trayoutput none
 set_from_resource $i3-wm.bar.stripworkspacenumbers i3-wm.bar.stripworkspacenumbers yes
 
-# i3xrocks config file. Override this for custom status indicators on the bar.
+# i3xrocks config file. Override this for a custom status bar generator.
 set_from_resource $i3-wm.bar.status_command i3-wm.bar.status_command i3xrocks -u ~/.config/regolith/i3xrocks/conf.d -d /etc/regolith/i3xrocks/conf.d
 
 # The bar configuration

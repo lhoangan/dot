@@ -1,0 +1,15 @@
+# consider create default ipython profile
+# https://stackoverflow.com/questions/10394302/how-do-i-use-vi-keys-in-ipython-under-nix
+alias ipython="ipython --TerminalInteractiveShell.editing_mode=vi"
+alias ll="ls -lhaF"
+alias ssh="ssh -X -o ServerAliveInterval=120"
+alias tmux="tmux -2"
+alias feh="feh --draw-tinted"
+alias diff="diff --color"
+#alias rmcap="xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'"
+alias rmcap="xmodmap CLockToCntr"
+alias invert="xcalib -invert -alter"
+alias myip="curl ipinfo.io/ip"
+alias dualcntr="xcape -e 'Control_L=Escape;Control_L=Control_L'"
+# https://github.com/alols/xcape
+

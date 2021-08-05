@@ -11,14 +11,14 @@ cyan="\e[0;36m"
 white="\e[0;37m"
 orange="\e[0;91m"
 
-bold_black="\e[30;1m"
+fg_bblack="\e[30;1m"
 fg_bred="\e[31;1m"
 bold_green="\e[32;1m"
 bold_yellow="\e[33;1m"
-bold_blue="\e[34;1m"
-bold_purple="\e[35;1m"
+fg_bblue="\e[34;1m"
+fg_bpurple="\e[35;1m"
 bold_cyan="\e[36;1m"
-bold_white="\e[37;1m"
+fg_bwhite="\e[37;1m"
 bold_orange="\e[91;1m"
 
 underline_black="\e[30;4m"
@@ -135,8 +135,8 @@ function host_color {
         *rtx4|titan4|s1gtx1|s2titan1*)
             hostcolor="\e[101m"
             ;;
-        *k-mna-047*)
-            hostcolor="\e[102m"
+        *k-mna-047|Host-004*)
+            hostcolor=${fg_bblack}"\e[102m"
             ;;
         *dmis|expr|volta1*)
             hostcolor=${fg_bred}${bg_white}
@@ -145,7 +145,7 @@ function host_color {
             hostcolor="\e[102m"
             ;;
         *aar11*)
-            hostcolor="\e[103m"
+            hostcolor=${fg_bblue}"\e[103m"
             ;;
         *TP-U20*)
             hostcolor="\e[105m"
@@ -171,7 +171,7 @@ function prompt {
     PS1="`[[ $(git status 2> /dev/null) =~ Changes\ to\ be\ committed: ]] && echo "\[\e[33m\]" || echo "\[\e[31m\]"``[[ ! $(git status 2> /dev/null) =~ nothing\ to\ commit,\ working\ .+\ clean ]] || echo "\[\e[32m\]"`$(__git_ps1 "(%s)\[\e[00m\]")${ps1_green} >${ps1_reset_fg}"
 
     make_virtualenv_prompt
-    DATE="\n${bold_purple}$(date +"%b-%d %H:%M:%S")"
+    DATE="\n${fg_bpurple}$(date +"%b-%d %H:%M:%S")"
     if [[ ${last_cmd} = 0 ]]; then STATUS="${green}✔"; else STATUS="${fg_bred}✘"; fi
     pwd="${reset_fg}${PWD}"
     echo -e ${DATE} ${STATUS} ${ME}${VIRENV_PROMPT}${fg_bred}✰ ${pwd}
@@ -184,6 +184,6 @@ function prompt {
 host_color
 ps1_green="\["${green}"\]"
 ps1_reset_fg="\["${reset_fg}"\]"
-ME="${bold_blue}$(whoami)${blue}@${hostcolor}${HOSTNAME}${reset_bg}"
+ME="${fg_bblue}$(whoami)${blue}@${hostcolor}${HOSTNAME}${reset_bg}"
 
 PROMPT_COMMAND=prompt
