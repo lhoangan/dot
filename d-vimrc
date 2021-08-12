@@ -148,12 +148,16 @@ set ruler
 
 " ============================================================================
 " Code folding
+" zj, zk for jumping up/down from one fold the others
+" zM to mask all zR to expand all
 set foldenable          " enable folding
 set foldlevelstart=10   " open most folds by default
 set foldnestmax=10      " 10 nested fold max
-" set foldmethod=indent " causing vim crash when creating new line on top
-" nnoremap <space> za
-" vnoremap <space> zf
+" May causing vim to crash when creating new line on top
+set foldmethod=indent   " set indent fold method for python
+nnoremap <space> za
+vnoremap <space> zf     " would not work with indent method
+" More folding preference https://stackoverflow.com/questions/357785/what-is-the-recommended-way-to-use-vim-folding-for-python-code
 
 
 nnoremap <F8> :!/opt/local/bin/ctags -R --python-kinds=-i *.py<CR>
