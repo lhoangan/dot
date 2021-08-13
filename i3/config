@@ -579,5 +579,13 @@ mode "swap" {
 
 bindsym $mod+s mark --add "swapee"; mode "swap"
 
+# Move focus to left and right monitor, using `focus` command
+# the same works for `move` command
+# https://faq.i3wm.org/question/4335/move-focus-to-monitor.1.html
+bindsym $mod+Control+Left focus output left
+bindsym $mod+Control+Right focus output right
+bindsym $mod+Control+h focus output left
+bindsym $mod+Control+l focus output right
+
 exec --no-startup-id /home/hale/dot/fc_last_win
 bindsym $mod+Shift+grave [con_mark=_last] focus
