@@ -578,3 +578,6 @@ mode "swap" {
 }
 
 bindsym $mod+s mark --add "swapee"; mode "swap"
+
+exec --no-startup-id /home/hale/dot/fc_last_win
+bindsym $mod+Shift+grave [con_mark=_last] focus
