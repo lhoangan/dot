@@ -55,7 +55,6 @@ Plug 'vim-python/python-syntax'
 " Plug 'kh3phr3n/python-syntax'
 " Plug 'pfdevilliers/Pretty-Vim-Python'
 
-
 " Python folding
 " Plug 'tmhedberg/SimpylFold' " Produce deadly signal SEGV from time to ttime
 " Plug 'Konfekt/FastFold'
@@ -67,6 +66,8 @@ Plug 'jiangmiao/auto-pairs'
 " https://vi.stackexchange.com/questions/2350/how-to-map-alt-key
 execute "set <M-e>=\ee"
 nnoremap <M-e> e
+
+Plug 'goerz/jupytext.vim'
 
 " Color also available in my collection
 " Check their git pages at github.com/... for more configuration
