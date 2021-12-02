@@ -3,6 +3,7 @@ export VISUAL='vim'
 
 # consider create default ipython profile
 # https://stackoverflow.com/questions/10394302/how-do-i-use-vi-keys-in-ipython-under-nix
+alias df='df -x squashfs -x tmpfs -x devtmpfs'
 alias ipython="ipython --TerminalInteractiveShell.editing_mode=vi"
 alias ll="ls -lhaF"
 alias ssh="ssh -X -o ServerAliveInterval=120"
