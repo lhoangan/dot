@@ -60,3 +60,7 @@ export LESS_TERMCAP_so=$'\E[01;44;33m' # begin reverse video
 export LESS_TERMCAP_se=$'\E[0m'        # reset reverse video
 export LESS_TERMCAP_us=$'\E[1;32m'     # begin underline
 export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
+
+# plt.rcParams['svg.fonttype'] = 'none'
+# plt.savefig(path.replace('.mat', "_"+iou[-2:]+'.svg'))
+# inkscape 75.svg --export-pdf=75.pdf --export-latex
