@@ -76,6 +76,7 @@ echo source ${HOME}/.myprompt >> ${HOME}/.bashrc
 
 # =============================================================================
 # INSTALL VIM
+yes | pip install jupytext
 chmod +x deploy_vim.sh
 ./deploy_vim.sh ${anaconda} ${install_dir}
 

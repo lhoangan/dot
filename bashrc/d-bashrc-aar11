@@ -145,4 +145,7 @@ export LD_LIBRARY_PATH=/usr/local/cuda-11.1/lib64:$LD_LIBRARY_PATH
 detectron2(){
     conda activate pt1.7py3.6
 }
+mvdnet(){
+    conda activate mvdnet
+}
 
