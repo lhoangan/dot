@@ -279,8 +279,8 @@ set_from_resource $i3-wm.program.lock i3-wm.program.lock dbus-send --type=method
 bindsym $mod+Escape exec $i3-wm.program.lock
 
 ## Session // Sleep // <><Shift> s ##
-set_from_resource $i3-wm.program.sleep i3-wm.program.sleep systemctl suspend
-bindsym $mod+Shift+s exec $i3-wm.program.sleep
+#set_from_resource $i3-wm.program.sleep i3-wm.program.sleep systemctl suspend
+#bindsym $mod+Shift+s exec $i3-wm.program.sleep
 
 ###############################################################################
 # System Management
@@ -541,7 +541,7 @@ bindsym $mod+grave workspace back_and_forth
 ### swapping 2 containers
 # https://www.reddit.com/r/i3wm/comments/ejjd7w/swap_two_containers/
 
-mode "swap" {
+mode "Swap" {
     # switch to workspace
     bindsym $mod+1 workspace $ws1
     bindsym $mod+2 workspace $ws2
@@ -574,10 +574,18 @@ mode "swap" {
     bindsym Right focus right
 
     bindsym Return swap container with mark "swapee"; unmark "swapee"; mode "default";
+    #bindsym Return swap container with id 0x2e00003
     bindsym Escape unmark "swapee"; mode "default";
 }
 
-bindsym $mod+s mark --add "swapee"; mode "swap"
+#bindsym $mod+m mark "M"
+#show_marks yes
+#bindsym $mod+m exec i3-input -F 'mark %s' -l 1 -P 'Mark: '
+#bindsym $mod+g exec i3-input -F '[con_mark="%s"] focus' -l 1 -P 'Goto: '
+bindsym $mod+s mark "swapee"; mode "Swap"
+# bindsym $mod+s swap container with id 0x2e00003
+#bindsym $mod+s swap container with mark "M"
+#bindsym $mod+g move [id=0x2e00003] to "M"
 
 # Move focus to left and right monitor, using `focus` command
 # the same works for `move` command
