@@ -6,7 +6,7 @@
 " Add github repository to add a plugin
 " Close vimrc and open a random vim session
 " Install plugin with " :PlugInstall "
-" Check this out: https://medium.com/@huntie/10-essential-vim-plugins-for-2018-39957190b7a9 
+" Check this out: https://medium.com/@huntie/10-essential-vim-plugins-for-2018-39957190b7a9
 
 call plug#begin('~/.vim/plugged')
 
@@ -15,6 +15,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'bling/vim-bufferline'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+" Consider https://github.com/itchyny/lightline.vim
 
 " Code syntax checker
 Plug 'vim-syntastic/syntastic'
@@ -55,7 +56,6 @@ Plug 'vim-python/python-syntax'
 " Plug 'kh3phr3n/python-syntax'
 " Plug 'pfdevilliers/Pretty-Vim-Python'
 
-
 " Python folding
 " Plug 'tmhedberg/SimpylFold' " Produce deadly signal SEGV from time to ttime
 " Plug 'Konfekt/FastFold'
@@ -68,10 +68,13 @@ Plug 'jiangmiao/auto-pairs'
 execute "set <M-e>=\ee"
 nnoremap <M-e> e
 
+Plug 'goerz/jupytext.vim'
+
 " Color also available in my collection
 " Check their git pages at github.com/... for more configuration
 " Change color scheme instantly with :colorscheme [schemename]
 Plug 'NLKNguyen/papercolor-theme'
+Plug 'joshdick/onedark.vim'
 Plug 'romainl/flattened'
 Plug 'nightsense/seabird' " seagull, greygull, petrel, stormpetrel
 Plug 'nightsense/vim-colorschemes' " seagull, greygull, petrel, stormpetrel
@@ -163,7 +166,7 @@ vnoremap <space> zf     " would not work with indent method
 nnoremap <F8> :!/opt/local/bin/ctags -R --python-kinds=-i *.py<CR>
 nnoremap <Ctrl-1> :TlistToggle<CR>
 nnoremap <Ctrl-2> :NERDTreeToggle<CR>
-nnoremap gs :ls<CR>:buffer<Space>
+nnoremap gb :ls<CR>:buffer<Space>
 
 " Ctrl-Space is mapped to Ctrl-@ by default in vim
 " Now we map them to Ctrl-X+Ctrl-F for file name completion
@@ -296,14 +299,14 @@ cabbrev <silent> bd <C-r>=(getcmdtype()==#':' && getcmdpos()==1 ? 'lclose\|bdele
 " let g:neocomplete#enable_smart_case = 1
 " " Set minimum syntax keyword length.
 " let g:neocomplete#sources#syntax#min_keyword_length = 3
-" 
+"
 " " Define dictionary.
 " let g:neocomplete#sources#dictionary#dictionaries = {
 "     \ 'default' : '',
 "     \ 'vimshell' : $HOME.'/.vimshell_hist',
 "     \ 'scheme' : $HOME.'/.gosh_completions'
 "         \ }
-" 
+"
 " " Define keyword.
 " if !exists('g:neocomplete#keyword_patterns')
 "     let g:neocomplete#keyword_patterns = {}
@@ -329,22 +332,22 @@ cabbrev <silent> bd <C-r>=(getcmdtype()==#':' && getcmdpos()==1 ? 'lclose\|bdele
 " inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 " " Close popup by <Space>.
 " "inoremap <expr><Space> pumvisible() ? "\<C-y>" : "\<Space>"
-" 
+"
 " " AutoComplPop like behavior.
 " "let g:neocomplete#enable_auto_select = 1
-" 
+"
 " " Shell like behavior(not recommended).
 " "set completeopt+=longest
 " "let g:neocomplete#enable_auto_select = 1
 " "let g:neocomplete#disable_auto_complete = 1
 " "inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
-" 
+"
 " " Enable omni completion.  " autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 " autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 " autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 " autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 " autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-" 
+"
 " " Enable heavy omni completion.
 " if !exists('g:neocomplete#sources#omni#input_patterns')
 "   let g:neocomplete#sources#omni#input_patterns = {}
@@ -352,11 +355,11 @@ cabbrev <silent> bd <C-r>=(getcmdtype()==#':' && getcmdpos()==1 ? 'lclose\|bdele
 " "let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
 " "let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
 " "let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-" 
+"
 " " For perlomni.vim setting.
 " " https://github.com/c9s/perlomni.vim
 " let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
-" 
+"
 " =================
 " NERDTree
 
@@ -369,13 +372,13 @@ cabbrev <silent> bd <C-r>=(getcmdtype()==#':' && getcmdpos()==1 ? 'lclose\|bdele
 
 " Open NERDTree automatically when vim starts up on opening a directory?
 autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif 
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
 
 " Map a Ctrl-n to open NERDTree
 map <C-n> :NERDTreeToggle<CR>
 
 " Close vim if the only window left open is a NERDTree
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif"
+" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif"
 
 " Show hidden file
 let NERDTreeShowHidden=1
@@ -385,6 +388,9 @@ let NERDTreeShowHidden=1
 let g:NERDTreeFileExtensionHighlightFullName = 1
 let g:NERDTreeExactMatchHighlightFullName = 1
 let g:NERDTreePatternMatchHighlightFullName = 1
+
+:let g:NERDTreeWinSize=20
+let g:NERDTreeShowLineNumbers = 0
 
 
 " ======================
