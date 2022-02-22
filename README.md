@@ -94,3 +94,13 @@ Then add to .bashrc
 ```
    source ${HOME}/.git-prompt.sh
 ```
+
+gnome-terminal flickering
+
+Explain [here](https://askubuntu.com/questions/515653/terminal-flashing-between-current-and-previous-screen)
+
+It's about Regolith desktop and gnome-terminal located at `/usr/bin/x-terminal-emulator`.
+
+Fixed by installing the old `st` terminal with `apt install stterm`,
+then changing `~/.config/regolith/i3/config` file to launch `/usr/bin/st` when pressing
+`$mod+Return` instead of `x-terminal-emulator`.
