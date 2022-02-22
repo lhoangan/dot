@@ -95,12 +95,29 @@ Then add to .bashrc
    source ${HOME}/.git-prompt.sh
 ```
 
-gnome-terminal flickering
+gnome-terminal flickering in Regolith
 
 Explain [here](https://askubuntu.com/questions/515653/terminal-flashing-between-current-and-previous-screen)
 
-It's about Regolith desktop and gnome-terminal located at `/usr/bin/x-terminal-emulator`.
+It's not a regolith-issue at all, but a known glitch between Compton and the nvidia-driver.
 
-Fixed by installing the old `st` terminal with `apt install stterm`,
-then changing `~/.config/regolith/i3/config` file to launch `/usr/bin/st` when pressing
-`$mod+Return` instead of `x-terminal-emulator`.
+> What is the compton (or picom) compositor actually used for in Regolith? I see
+> no difference?
+
+> If you don't notice a difference then not having it is probably your best bet.
+> It provides some shadowing for windows, transparency, and depending on the
+> compositor and it's configuration, can address screen tearing issues if you
+> have them.
+
+**Solution**
+
+- Kill compton with `pkill compton`
+- (optional) starting compton with `/usr/bin/compton --xrender-sync-fence`
+  option also fixes the problem 
+
+> --xrender-sync-fence
+>            Use X Sync fence to sync clients' draw calls, to 
+>            make sure all draw calls are finished before compton
+>            starts drawing. Needed on nvidia-drivers with GLX
+>            backend for some users.
+
