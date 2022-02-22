@@ -1,0 +1,24 @@
+# to IRISA cluster
+Host dmis expr volta1
+   User leh
+   ProxyCommand ssh -W %h:%p proxyssh@cluster-irisa.univ-ubs.fr
+
+Host das5-415
+    User hale
+    Hostname node415
+    ProxyCommand ssh -W %h:%p hale@fs4.das5.science.uva.nl
+
+Host ivi-cn009
+    User hle1
+    Hostname ivi-cn009
+    ProxyCommand ssh -W %h:%p hle1@ivi-h0.science.uva.nl
+
+Host ivi-cn014
+    User hle1
+    Hostname ivi-cn014
+    ProxyCommand ssh -W %h:%p hle1@ivi-h0.science.uva.nl
+
+Host ivi-h0
+    User hle1
+    Hostname ivi-h0.science.uva.nl
+    ProxyCommand ssh -W %h:%p hle1@pascal.ic.uva.nl
