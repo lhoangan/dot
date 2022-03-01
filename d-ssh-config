@@ -1,7 +1,41 @@
-# to IRISA cluster
+ServerAliveInterval 300
+
+# More info for UBS cluster: https://intranet-irisa.univ-ubs.fr/ressources-ubs/ssh
+#
+# ssh -fN -o StrictHostKeyChecking=accept-new -L 2222:layout:22 turing@transit.univ-ubs.fr
+# or
+# ssh -fN -o -L 2222:layout:22 turing@transit.univ-ubs.fr
+Host transit
+    User leh
+    Hostname transit.univ-ubs.fr
+    LocalForward 2222 layout:22
+
+Host aar11
+    Hostname pc-mna-247
+    RequestTTY auto
+    User hale
+    ProxyCommand ssh -p 2222 leh@localhost nc %h %p
+
+
+# More info for IRISA cluster: https://cluster-irisa.univ-ubs.fr/wiki/acces-ssh
 Host dmis expr volta1
    User leh
    ProxyCommand ssh -W %h:%p proxyssh@cluster-irisa.univ-ubs.fr
+
+Host das4-410
+    User hale
+    Hostname node410
+    ProxyCommand ssh -W %h:%p hale@fs4.das4.science.uva.nl
+
+Host das4-414
+    User hale
+    Hostname node414
+    ProxyCommand ssh -W %h:%p hale@fs4.das4.science.uva.nl
+
+Host das4-404
+    User hale
+    Hostname node404
+    ProxyCommand ssh -W %h:%p hale@fs4.das4.science.uva.nl
 
 Host das5-415
     User hale
@@ -16,6 +50,11 @@ Host ivi-cn009
 Host ivi-cn014
     User hle1
     Hostname ivi-cn014
+    ProxyCommand ssh -W %h:%p hle1@ivi-h0.science.uva.nl
+
+Host ivi-cn005
+    User hle1
+    Hostname ivi-cn005
     ProxyCommand ssh -W %h:%p hle1@ivi-h0.science.uva.nl
 
 Host ivi-h0
