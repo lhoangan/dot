@@ -142,10 +142,7 @@ function host_color {
             hostcolor=${fg_bred}${bg_white}
             ;;
         *DPT5810*)
-            hostcolor="\e[102m"
-            ;;
-        *aar11*)
-            hostcolor=${fg_bblue}"\e[103m"
+            hostcolor=${fg_bblack}"\e[103m"
             ;;
         *TP-U20*)
             hostcolor="\e[105m"
