@@ -66,6 +66,7 @@ set_from_resource $ws16 i3-wm.workspace.16.name "16"
 set_from_resource $ws17 i3-wm.workspace.17.name "17"
 set_from_resource $ws18 i3-wm.workspace.18.name "18"
 set_from_resource $ws19 i3-wm.workspace.19.name "19"
+set_from_resource $ws20 i3-wm.workspace.20.name "20"
 
 ###############################################################################
 # Launcher dialogs
@@ -136,6 +137,7 @@ bindsym $mod+Ctrl+6 workspace number $ws16
 bindsym $mod+Ctrl+7 workspace number $ws17
 bindsym $mod+Ctrl+8 workspace number $ws18
 bindsym $mod+Ctrl+9 workspace number $ws19
+bindsym $mod+Ctrl+0 workspace number $ws20
 
 ## Navigate // Next Workspace // <> Tab ##
 bindsym $mod+Tab workspace next
@@ -213,6 +215,7 @@ bindsym $mod+$alt+Ctrl+6 move container to workspace number $ws16
 bindsym $mod+$alt+Ctrl+7 move container to workspace number $ws17
 bindsym $mod+$alt+Ctrl+8 move container to workspace number $ws18
 bindsym $mod+$alt+Ctrl+9 move container to workspace number $ws19
+bindsym $mod+$alt+Ctrl+0 move container to workspace number $ws20
 
 # move focused container to workspace, move to workspace
 ## Modify // Carry Window to Workspace 1 - 10// <><Alt> 0..9 ##
@@ -236,6 +239,7 @@ bindsym $mod+Shift+Ctrl+6 move container to workspace number $ws16; workspace nu
 bindsym $mod+Shift+Ctrl+7 move container to workspace number $ws17; workspace number $ws17
 bindsym $mod+Shift+Ctrl+8 move container to workspace number $ws18; workspace number $ws18
 bindsym $mod+Shift+Ctrl+9 move container to workspace number $ws19; workspace number $ws19
+bindsym $mod+Shift+Ctrl+0 move container to workspace number $ws20; workspace number $ws20
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
