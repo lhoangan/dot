@@ -67,3 +67,5 @@ export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
 # plt.rcParams['svg.fonttype'] = 'none'
 # plt.savefig(path.replace('.mat', "_"+iou[-2:]+'.svg'))
 # inkscape 75.svg --export-pdf=75.pdf --export-latex
+#
+# sshfs leh@share-irisa.univ-ubs.fr:/share/home/leh /media/hale/
