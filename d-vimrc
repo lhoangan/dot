@@ -33,6 +33,8 @@ Plug 'jupyter-vim/jupyter-vim'
 
 " Markdown plugin
 " Plug 'gabrielelana/vim-markdown'
+Plug 'godlygeek/tabular'
+Plug 'preservim/vim-markdown'
 
 " Indent line
 Plug 'Yggdroot/indentLine'
