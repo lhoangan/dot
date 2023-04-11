@@ -141,11 +141,8 @@ function host_color {
         *dmis|expr|volta1*)
             hostcolor=${fg_bred}${bg_white}
             ;;
-        *FEMW10072*)
-            hostcolor="\e[102m"
-            ;;
-        *aar11*)
-            hostcolor=${fg_bblue}"\e[103m"
+        *DPT5810*)
+            hostcolor=${fg_bblack}"\e[103m"
             ;;
         *TP-U20*)
             hostcolor="\e[105m"

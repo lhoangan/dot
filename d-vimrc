@@ -15,6 +15,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'bling/vim-bufferline'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+" Consider https://github.com/itchyny/lightline.vim
 
 " Code syntax checker
 Plug 'vim-syntastic/syntastic'
@@ -32,6 +33,8 @@ Plug 'davidhalter/jedi-vim'
 
 " Markdown plugin
 " Plug 'gabrielelana/vim-markdown'
+Plug 'godlygeek/tabular'
+Plug 'preservim/vim-markdown'
 
 " Indent line
 Plug 'Yggdroot/indentLine'
@@ -215,6 +218,13 @@ endif
 autocmd CursorMoved * exe exists("HlUnderCursor")?HlUnderCursor?printf('match DiffAdd /\V\<%s\>/', escape(expand('<cword>'), '/\')):'match none':""
 nnoremap <silent> <F3> :exe "let HlUnderCursor=exists(\"HlUnderCursor\")?HlUnderCursor*-1+1:1"<CR>
 
+" Auto change working directory to the current file
+" https://vim.fandom.com/wiki/Set_working_directory_to_the_current_file
+" 'cd' towards the directory in which the current file is edited
+" but only change the path for the current window
+" ref: https://vimways.org/2019/vim-and-the-working-directory/
+nnoremap <leader>cd :lcd %:h:p
+autocmd BufEnter * silent! lcd %:p:h
 
 
 if has('gui_running')

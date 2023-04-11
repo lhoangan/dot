@@ -1,7 +1,7 @@
 export EDITOR='vim'
 export VISUAL='vim'
 
-# alias
+# aliases
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 source $SCRIPT_DIR/dot/d-bash_aliases
 
@@ -42,6 +42,7 @@ export LESS_TERMCAP_se=$'\E[0m'        # reset reverse video
 export LESS_TERMCAP_us=$'\E[1;32m'     # begin underline
 export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
 
+<<<<<<< HEAD
 
 ####################
 # Installing Jekyll
@@ -55,3 +56,10 @@ export PATH="$HOME/gems/bin:$PATH"
 
 # intall gem, run once
 # gem install jekyll bundler
+=======
+# plt.rcParams['svg.fonttype'] = 'none'
+# plt.savefig(path.replace('.mat', "_"+iou[-2:]+'.svg'))
+# inkscape 75.svg --export-pdf=75.pdf --export-latex
+#
+# sshfs leh@share-irisa.univ-ubs.fr:/share/home/leh /media/hale/
+>>>>>>> da1750f3d8dce720f0dd5772b614e3e19f019b66
