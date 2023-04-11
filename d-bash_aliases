@@ -1,5 +1,6 @@
 # consider create default ipython profile
 # https://stackoverflow.com/questions/10394302/how-do-i-use-vi-keys-in-ipython-under-nix
+alias df='df -x squashfs -x tmpfs -x devtmpfs'
 alias ipython="ipython --TerminalInteractiveShell.editing_mode=vi"
 alias ll="ls -lhaF"
 alias ssh="ssh -X -o ServerAliveInterval=120"
@@ -17,6 +18,7 @@ alias dualcntr="xcape -e 'Control_L=Escape;Control_L=Control_L'"
 git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
 git config --global color.ui true
 
-
 alias squeue='squeue -o "%.7i %.6P %.10j %.8u %.8T %.12M %.12l %.3D %b %C %m %R"'
-
+#
+##################
+alias remarkable="wine /home/hale/.wine/drive_c/Program\ Files\ \(x86\)/reMarkable/reMarkable.exe"
