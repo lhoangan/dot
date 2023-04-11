@@ -13,3 +13,10 @@ alias myip="curl ipinfo.io/ip"
 alias dualcntr="xcape -e 'Control_L=Escape;Control_L=Control_L'"
 # https://github.com/alols/xcape
 
+# alias for git commands
+git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+git config --global color.ui true
+
+
+alias squeue='squeue -o "%.7i %.6P %.10j %.8u %.8T %.12M %.12l %.3D %b %C %m %R"'
+
