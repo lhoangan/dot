@@ -18,10 +18,12 @@ alias dualcntr="xcape -e 'Control_L=Escape;Control_L=Control_L'"
 # https://github.com/alols/xcape
 
 # alias for git commands
+# should not run global on home folder
+# better to add to $(HOME)/.gitconfig file once
 # explanation: https://stackoverflow.com/questions/2553786/how-do-i-alias-commands-in-git
-git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
-git config --global color.ui true
-git config --global alias.addel "add `git ls-files --deleted`"
+# git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+# git config --global color.ui true
+# git config --global alias.addel "add `git ls-files --deleted`"
 
 
 export PYTHONPATH=${PWD}/mylibs:$PYTHONPATH
