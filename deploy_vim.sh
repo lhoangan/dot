@@ -27,7 +27,7 @@ set +x
 
 set -x
 # detailed can be found here: https://github.com/junegunn/vim-plug
-sudo apt install curl
+# sudo apt install curl
 curl -fLo ${HOME}/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 set +x
