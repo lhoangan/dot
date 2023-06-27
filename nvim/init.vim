@@ -139,111 +139,55 @@ nmap <silent> <Leader>b :MBL<CR>:call feedkeys(':b ')<CR>
 " Declaring plugins using vim-plug " https://github.com/junegunn/vim-plug
 call plug#begin()
 
+" LSP and coding language ---------------------------------------------------------------------
+Plug 'williamboman/mason.nvim'
+Plug 'williamboman/mason-lspconfig.nvim'
+Plug 'neovim/nvim-lspconfig'
+Plug 'ray-x/lsp_signature.nvim'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " better code highlighting
+Plug 'jose-elias-alvarez/null-ls.nvim'
+" Autocompletion
+Plug 'hrsh7th/nvim-cmp'
+Plug 'L3MON4D3/LuaSnip'         " https://github.com/hrsh7th/nvim-cmp/
+Plug 'saadparwaiz1/cmp_luasnip' " as suggested by nvim-cmp
+Plug 'onsails/lspkind.nvim'     " VSCode-like pictorgrams
 " Interface ---------------------------------------------------------------------
 " OneDark theme
 Plug 'navarasu/onedark.nvim'
 " Lualine
 Plug 'nvim-lualine/lualine.nvim'    " :help lua-heredoc
-Plug 'nvim-tree/nvim-web-devicons'  " Adding icon to lualine
 "--------------------------------------------------------------------------------
 " Utilities----------------------------------------------------------------------
 " Vim Script
 Plug 'nvim-lua/plenary.nvim'        " Part of todo-comments plugin
 Plug 'folke/todo-comments.nvim'
 "--------------------------------------------------------------------------------
+Plug 'nvim-telescope/telescope-ui-select.nvim'
 Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.1' } "
 "--------------------------------------------------------------------------------
 Plug 'nvim-tree/nvim-tree.lua/'
+Plug 'nvim-tree/nvim-web-devicons'  " Adding icon to lualine
 "--------------------------------------------------------------------------------
+Plug 'lukas-reineke/indent-blankline.nvim' " Showing indent line
+Plug 'ekickx/clipboard-image.nvim'         " Paste image directly from clipboard for Markdown
 "--------------------------------------------------------------------------------
 "
 "--------------------------------------------------------------------------------
 call plug#end()
-"================================================================================ 
-"================================================================================ 
+"================================================================================
+"================================================================================
 "
 "--------------------------------------------------------------------------------
 " OneDark theme
 " Available style: dark, darker, deep, cool, warm, warmer, light
-lua require('onedark').setup { style = 'darker' }
+lua require('onedark').setup { style = 'dark' }
 lua require('onedark').load()
 
-"--------------------------------------------------------------------------------
-" Lualine :help lua-heredoc
-lua << END
-require('lualine').setup() -- start lua line
-require('lualine').setup{
-sections = {
-  lualine_c = {
-    {
-      'buffers',
-      show_filename_only = true,   -- Shows shortened relative path when set to false.
-      hide_filename_extension = false,   -- Hide filename extension when set to true.
-      show_modified_status = true, -- Shows indicator when the buffer is modified.
-
-      mode = 0, -- 0: Shows buffer name
-                -- 1: Shows buffer index
-                -- 2: Shows buffer name + buffer index
-                -- 3: Shows buffer number
-                -- 4: Shows buffer name + buffer number
-
-      max_length = vim.o.columns * 2 / 3, -- Maximum width of buffers component,
-                                          -- it can also be a function that returns
-                                          -- the value of `max_length` dynamically.
-
-      -- Automatically updates active buffer color to match color of other components (will be overidden if buffers_color is set)
-      use_mode_colors = false,
-
-      buffers_color = {
-        -- Same values as the general color option can be used here.
-        active = {fg='white'}, -- lualine_section_normal',     -- Color for active buffer.
-        inactive = 'lualine_section_inactive', -- Color for inactive buffer.
-      },
-
-      symbols = {
-        modified = ' ●',      -- Text to show when the buffer is modified
-        alternate_file = '#', -- Text to show to identify the alternate file
-        directory =  '',     -- Text to show when the buffer is a directory
-      },
-    }
-  }
-}
-}
-
-END
-"--------------------------------------------------------------------------------
-" Todo-comment
-lua << EOF
-require("todo-comments").setup {
-    -- your configuration comes here
-    -- or leave it empty to use the default settings
-    -- refer to the configuration section below
-  }
-EOF
-"--------------------------------------------------------------------------------
-" nvim-tree config
-lua << END
--- disable netrw at the very start of your init.lua (strongly advised)
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-
--- set termguicolors to enable highlight groups
-vim.opt.termguicolors = true
-
--- empty setup using defaults
-require("nvim-tree").setup()
-
--- OR setup with some options
-require("nvim-tree").setup({
-  sort_by = "case_sensitive",
-  view = {
-    width = 30,
-  },
-  renderer = {
-    group_empty = true,
-  },
-  filters = {
-    dotfiles = true,
-  },
-})
-END
+" Config content in in lua/configs/todo-comments-nvim.lua
+lua require("configs/todo-comments-nvim")
+lua require("configs/lualine")
+" lua require("configs/nvim-tree")
+lua require("configs/mason-lspconfig")
+lua require("configs/nvim-treesitter")
+lua require("configs/telescope")
+lua require("configs/nvim-cmp")
