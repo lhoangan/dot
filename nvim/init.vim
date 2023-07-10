@@ -145,6 +145,7 @@ Plug 'williamboman/mason-lspconfig.nvim'
 Plug 'neovim/nvim-lspconfig'
 Plug 'ray-x/lsp_signature.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " better code highlighting
+Plug 'nvim-treesitter/nvim-treesitter-context' " show current function signature on top
 Plug 'jose-elias-alvarez/null-ls.nvim'
 " Autocompletion
 Plug 'hrsh7th/nvim-cmp'
@@ -168,8 +169,9 @@ Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.1' } "
 Plug 'nvim-tree/nvim-tree.lua/'
 Plug 'nvim-tree/nvim-web-devicons'  " Adding icon to lualine
 "--------------------------------------------------------------------------------
-Plug 'lukas-reineke/indent-blankline.nvim' " Showing indent line
-Plug 'ekickx/clipboard-image.nvim'         " Paste image directly from clipboard for Markdown
+Plug 'lukas-reineke/indent-blankline.nvim'  " Showing indent line
+Plug 'simrat39/symbols-outline.nvim'        " Show file layout
+Plug 'ekickx/clipboard-image.nvim'          " Paste image directly from clipboard for Markdown
 "--------------------------------------------------------------------------------
 "
 "--------------------------------------------------------------------------------
@@ -191,3 +193,4 @@ lua require("configs/mason-lspconfig")
 lua require("configs/nvim-treesitter")
 lua require("configs/telescope")
 lua require("configs/nvim-cmp")
+lua require("configs/symbols-outline")
