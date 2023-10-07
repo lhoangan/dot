@@ -92,14 +92,11 @@ set statusline+=%#warningmsg#
 set statusline+=%F
 "------------------------------------------------------------------------------- 
 
-
-
 " set ofu=syntaxcomplete#Complete " specifing function Insert mode omni completion C-X C-O.
 " set completeopt=longest,menuone
 " map <silent> <F10> :set invnumber<cr>
 " set pastetoggle=<F11>
 " syntax highlight
-
 
 " ===================
 " tidying :ls
@@ -174,6 +171,7 @@ Plug 'simrat39/symbols-outline.nvim'        " Show file layout
 Plug 'ekickx/clipboard-image.nvim'          " Paste image directly from clipboard for Markdown
 "--------------------------------------------------------------------------------
 "
+Plug 'windwp/nvim-autopairs'                " auto closing brackets, parentheses
 "--------------------------------------------------------------------------------
 call plug#end()
 "================================================================================
