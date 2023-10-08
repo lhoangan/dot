@@ -1,11 +1,14 @@
 # consider create default ipython profile
 # https://stackoverflow.com/questions/10394302/how-do-i-use-vi-keys-in-ipython-under-nix
+alias df='df -x squashfs -x tmpfs -x devtmpfs'
 alias ipython="ipython --TerminalInteractiveShell.editing_mode=vi"
 alias ll="ls -lhaF"
 alias ssh="ssh -X -o ServerAliveInterval=120"
 alias tmux="tmux -2"
 alias feh="feh --draw-tinted"
 alias diff="diff --color"
+alias grep="grep -n -B 1 -A 1 --color=always"
+alias less="less -r"
 #alias rmcap="xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'"
 alias rmcap="xmodmap CLockToCntr"
 alias invert="xcalib -invert -alter"
@@ -13,3 +16,13 @@ alias myip="curl ipinfo.io/ip"
 alias dualcntr="xcape -e 'Control_L=Escape;Control_L=Control_L'"
 # https://github.com/alols/xcape
 
+# alias for git commands
+git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+git config --global color.ui true
+# git config --global alias.addel "add `git ls-files --deleted`"
+
+alias squeue='sload ; echo "" ; squeue -o "%.7i %.6P %.10j %.8u %.8T %.12M %.12l %.3D %b %C %m %R";'
+#
+##################
+alias remarkable="wine /home/hale/.wine/drive_c/Program\ Files\ \(x86\)/reMarkable/reMarkable.exe"
+#

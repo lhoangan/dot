@@ -1,28 +1,8 @@
 export EDITOR='vim'
 export VISUAL='vim'
 
-# consider create default ipython profile
-# https://stackoverflow.com/questions/10394302/how-do-i-use-vi-keys-in-ipython-under-nix
-alias df='df -x squashfs -x tmpfs -x devtmpfs'
-alias ipython="ipython --TerminalInteractiveShell.editing_mode=vi"
-alias ll="ls -lhaF"
-alias ssh="ssh -X -o ServerAliveInterval=120"
-alias tmux="tmux -2"
-alias feh="feh --draw-tinted"
-alias diff="diff --color"
-#alias rmcap="xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'"
-alias rmcap="xmodmap CLockToCntr"
-alias invert="xcalib -invert -alter"
-alias myip="curl ipinfo.io/ip"
-alias dualcntr="xcape -e 'Control_L=Escape;Control_L=Control_L'"
-# https://github.com/alols/xcape
-
-# alias for git commands
-# explanation: https://stackoverflow.com/questions/2553786/how-do-i-alias-commands-in-git
-git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
-git config --global color.ui true
-git config --global alias.addel "add `git ls-files --deleted`"
-
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+source $SCRIPT_DIR/dot/d-bash_aliases
 
 export PYTHONPATH=${PWD}/mylibs:$PYTHONPATH
 
@@ -45,9 +25,6 @@ export SCREENDIR=${HOME}/.screen
 # sudo apt-get install openconnect
 # sudo openconnect --juniper vpn.uva.nl
 
-##################
-alias remarkable="wine /home/hale/.wine/drive_c/Program\ Files\ \(x86\)/reMarkable/reMarkable.exe"
-
 #################
 # Upgrade less command
 # https://www.topbug.net/blog/2016/09/27/make-gnu-less-more-powerful/
@@ -64,6 +41,18 @@ export LESS_TERMCAP_se=$'\E[0m'        # reset reverse video
 export LESS_TERMCAP_us=$'\E[1;32m'     # begin underline
 export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
 
+####################
+# Installing Jekyll
+# Assuming ruby and other requirementss are already satisfied
+# https://jekyllrb.com/docs/installation/#requirements
+# Following instruction here
+# https://jekyllrb.com/docs/installation/ubuntu/
+# Install Ruby Gems to ~/gems' >> ~/.bashrc
+export GEM_HOME="$HOME/gems"
+export PATH="$HOME/gems/bin:$PATH"
+
+# intall gem, run once
+# gem install jekyll bundler
 # plt.rcParams['svg.fonttype'] = 'none'
 # plt.savefig(path.replace('.mat', "_"+iou[-2:]+'.svg'))
 # inkscape 75.svg --export-pdf=75.pdf --export-latex
