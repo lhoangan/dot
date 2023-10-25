@@ -133,7 +133,8 @@ lsp_installer.on_server_ready(function(server)
     -- Customize the options passed to the server
     opts = vim.tbl_extend("error", opts, lsp_setup_opts[server.name] or {})
 
-    -- This setup() function is exactly the same as lspconfig's setup function (:help lspconfig-quickstart)
+    -- This setup() function is exactly the same as lspconfig's setup function
+    -- (:help lspconfig-quickstart)
     server:setup(opts)
     vim.cmd [[ do User LspAttachBuffers ]]
 end)
