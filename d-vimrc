@@ -178,6 +178,7 @@ nnoremap <F8> :!/opt/local/bin/ctags -R --python-kinds=-i *.py<CR>
 nnoremap <Ctrl-1> :TlistToggle<CR>
 nnoremap <Ctrl-2> :NERDTreeToggle<CR>
 nnoremap gb :ls<CR>:buffer<Space>
+cnoremap <expr> ls (getcmdtype() == ':' && getcmdpos() == 1) ? "ls\<CR>:b" : "ls"
 
 " Ctrl-Space is mapped to Ctrl-@ by default in vim
 " Now we map them to Ctrl-X+Ctrl-F for file name completion
