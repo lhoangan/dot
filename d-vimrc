@@ -470,3 +470,13 @@ command! MBL call s:MyBufList()
 command! LB call ListBuffers()
 
 nmap <silent> <Leader>b :MBL<CR>:call feedkeys(':b ')<CR>
+
+" https://stackoverflow.com/questions/6778961/alt-key-shortcuts-not-working-on-gnome-terminal-with-vim
+let c='a'
+while c <= 'z'
+  exec "set <A-".c.">=\e".c
+  exec "imap \e".c." <A-".c.">"
+  let c = nr2char(1+char2nr(c))
+endw
+
+set timeout ttimeoutlen=50
