@@ -162,10 +162,17 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " better code highli
 Plug 'nvim-treesitter/nvim-treesitter-context' " show current function signature on top
 Plug 'jose-elias-alvarez/null-ls.nvim'
 " Autocompletion
-Plug 'hrsh7th/nvim-cmp'
 Plug 'L3MON4D3/LuaSnip'         " https://github.com/hrsh7th/nvim-cmp/
 Plug 'saadparwaiz1/cmp_luasnip' " as suggested by nvim-cmp
 Plug 'onsails/lspkind.nvim'     " VSCode-like pictorgrams
+Plug 'hrsh7th/cmp-nvim-lsp'     " source for neovim's built-in language server client
+Plug 'hrsh7th/cmp-buffer'       " source for buffer words
+Plug 'hrsh7th/cmp-path'         " source for filesystem paths
+Plug 'hrsh7th/cmp-cmdline'      " source for vim's cmdline
+Plug 'hrsh7th/cmp-nvim-lsp-signature-help'," src for func. sign. w current param emphasized
+Plug 'hrsh7th/cmp-calc',        " source for math calculation
+Plug 'hrsh7th/nvim-cmp'
+
 " Interface ---------------------------------------------------------------------
 " OneDark theme
 Plug 'navarasu/onedark.nvim'

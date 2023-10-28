@@ -22,6 +22,10 @@ cmp.setup({
             -- vim.fn["UltiSnips#Anon"](args.body)
         end,
     },
+    window = {
+        completion = cmp.config.window.bordered(),
+        documentation = cmp.config.window.bordered(),
+    },
     mapping = {
         ['<C-k>'] = cmp.mapping.scroll_docs(-4),
         ['<C-j>'] = cmp.mapping.scroll_docs(4),
@@ -54,19 +58,16 @@ cmp.setup({
     },
     sources = {
         { name = 'nvim_lsp' },
+        { name = 'luasnip' },       -- For luasnip user.
+        { name = 'buffer' },        -- source for buffer words
+        { name = 'path' },          -- source for filesystem paths
+        { name = 'nvim_lsp_signature_help' }, -- display func.sign w current var emphasized
+        { name = 'calc' },          -- source for math calculation
+        --{ name = 'vsnip' },       -- For vsnip user.
+        --{ name = 'ultisnips' },  -- For ultisnips user.
 
-        -- For vsnip user.
-        --{ name = 'vsnip' },
-
-        -- For luasnip user.
-        { name = 'luasnip' },
-
-        -- For ultisnips user.
-        -- { name = 'ultisnips' },
-
-        { name = 'buffer' },
     },
     formatting = {
-        format = require('lspkind').cmp_format(),
+        format = require('lspkind').cmp_format({mode='symbol_text', preset='codicons'}),
     },
 })
