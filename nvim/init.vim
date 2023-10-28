@@ -26,28 +26,28 @@ set cursorline                  " highlight the line where the cursor is
 set title                       " show filename on title bar of console windows
 set showmatch
 "
-" Spaces and Tabs -------------------------------------------------------------- 
+" Spaces and Tabs --------------------------------------------------------------
 set ls=2                        " TODO: what?
 set tabstop=4                   " defining width of tab to be as 4 spaces
 set expandtab                   " adding spaces when tab is hit
 set softtabstop=4               " illustration is here
 set shiftwidth=4                " http://vimcasts.org/episodes/tabs-and-spaces/
 "
-" Indentation and Columns ------------------------------------------------------ 
-set nosmartindent               " keeping indents for lines starting with # 
+" Indentation and Columns ------------------------------------------------------
+set nosmartindent               " keeping indents for lines starting with #
 set list                        " using with next line to show spaces, tabs,
 set listchars=tab:\|.,trail:.   " showing tabs (not 4 spaces) as |...
 set colorcolumn=80              " colorizing the 80th column
 set tw=80                       " warping text at 80th column
 "
-" Line numbers and Rule -------------------------------------------------------- 
+" Line numbers and Rule --------------------------------------------------------
 set number relativenumber       " using relative number
 augroup numbertoggle            " turning off in insert mode or buffer unfocused
   autocmd!
   autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
   autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
   "
-" Folding----------------------------------------------------------------------- 
+" Folding-----------------------------------------------------------------------
 set foldenable                  " enable folding
 " zj, zk for jumping up/down from one fold the others
 " zM to mask all zR to expand all
@@ -58,8 +58,9 @@ set foldmethod=indent           " set indent fold method for python
 nnoremap <space> za
 vnoremap <space> zf             " would not work with indent method
 " More folding preference https://stackoverflow.com/questions/357785/what-is-the-recommended-way-to-use-vim-folding-for-python-code
+let g:markdown_folding = 1
 
-" Splitting -------------------------------------------------------------------- 
+" Splitting --------------------------------------------------------------------
 set splitbelow                  " more natural split opening
 set splitright                  " more natural split opening
 nnoremap <C-J> <C-W><C-J>
@@ -82,7 +83,7 @@ autocmd CursorMoved * exe exists("HlUnderCursor")?HlUnderCursor?printf('match Di
 nnoremap <silent> <F3> :exe "let HlUnderCursor=exists(\"HlUnderCursor\")?HlUnderCursor*-1+1:1"<CR>
 
 
-" Status line with information ------------------------------------------------- 
+" Status line with information -------------------------------------------------
 set laststatus=2
 " might not be necessary if having vim-airline
 set statusline+=%#warningmsg#
@@ -90,7 +91,7 @@ set statusline+=%#warningmsg#
 " more information
 " http://got-ravings.blogspot.nl/2008/08/vim-pr0n-making-statuslines-that-own.html
 set statusline+=%F
-"------------------------------------------------------------------------------- 
+"-------------------------------------------------------------------------------
 
 " set ofu=syntaxcomplete#Complete " specifing function Insert mode omni completion C-X C-O.
 " set completeopt=longest,menuone
@@ -98,7 +99,7 @@ set statusline+=%F
 " set pastetoggle=<F11>
 " syntax highlight
 
-" ===================
+"================================================================================
 " tidying :ls
 " https://vi.stackexchange.com/questions/4102/how-to-shorten-the-result-of-ls-to-get-only-the-file-name-and-not-the-whole-pa
 function! s:MyBufList()
@@ -129,10 +130,26 @@ command! MBL call s:MyBufList()
 command! LB call ListBuffers()
 
 nmap <silent> <Leader>b :MBL<CR>:call feedkeys(':b ')<CR>
+cnoremap <expr> ls (getcmdtype() == ':' && getcmdpos() == 1) ? "MBL\<CR>:b" : "ls"
 
+"================================================================================
+" neovim highlight yanked text
+" ref: https://www.reddit.com/r/neovim/comments/gofplz/neovim_has_added_the_ability_to_highlight_yanked/
+augroup highlight_yank
+    autocmd!
+    autocmd TextYankPost * silent! lua vim.highlight.on_yank {higroup=(vim.fn['hlexists']('HighlightedyankRegion') > 0 and 'HighlightedyankRegion' or 'IncSearch'), timeout=500}
+augroup END
 
-"================================================================================ 
-"================================================================================ 
+"================================================================================
+" Auto change working directory to the current file
+" https://vim.fandom.com/wiki/Set_working_directory_to_the_current_file
+" 'cd' towards the directory in which the current file is edited
+" but only change the path for the current window
+" ref: https://vimways.org/2019/vim-and-the-working-directory/
+nnoremap <leader>cd :lcd %:h:p
+autocmd BufEnter * silent! lcd %:p:h
+
+"================================================================================
 " Declaring plugins using vim-plug " https://github.com/junegunn/vim-plug
 call plug#begin()
 

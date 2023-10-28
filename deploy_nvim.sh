@@ -1,4 +1,4 @@
-NVIM_VERSION="v0.9.0"
+NVIM_VERSION="v0.9.4"
 
 INSTALL_DIR="$HOME/.local"
 if [ $# -eq 0 ]; then
@@ -77,6 +77,15 @@ rm nvim-linux64.tar.gz
 
 ln -sf $DOT/nvim $NVIM_CONFIG
 echo "export 'PATH=$NVIM_INST/bin:$PATH'" >> $HOME/.bashrc
+
+# -----------------------------------------------------------------------------
+# Install NERD font
+# -----------------------------------------------------------------------------
+
+installed_dir=$HOME/.local/share/font
+echo "Downloading NERD font JetBrainsMono.zip"
+wget "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/JetBrainsMono.zip"
+unzip JetBrainsMono.zip -d ${installed_dir}
 
 # -----------------------------------------------------------------------------
 # Install package manager
