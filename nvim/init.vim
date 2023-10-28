@@ -190,12 +190,13 @@ Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.1' } "
 Plug 'nvim-tree/nvim-tree.lua/'
 Plug 'nvim-tree/nvim-web-devicons'  " Adding icon to lualine
 "--------------------------------------------------------------------------------
-Plug 'lukas-reineke/indent-blankline.nvim'  " Showing indent line
 Plug 'simrat39/symbols-outline.nvim'        " Show file layout
 Plug 'ekickx/clipboard-image.nvim'          " Paste image directly from clipboard for Markdown
+Plug 'lukas-reineke/indent-blankline.nvim', { 'main': 'ibl' }   " Showing indent line
 "--------------------------------------------------------------------------------
 "
 Plug 'windwp/nvim-autopairs'                " auto closing brackets, parentheses
+Plug 'Pocco81/true-zen.nvim'
 "--------------------------------------------------------------------------------
 call plug#end()
 "================================================================================
@@ -216,3 +217,6 @@ lua require("configs/nvim-treesitter")
 lua require("configs/telescope")
 lua require("configs/nvim-cmp")
 lua require("configs/symbols-outline")
+lua require("configs/indent-blankline")
+lua require("configs/true-zen")
+lua require("configs/nvim-autopairs")
