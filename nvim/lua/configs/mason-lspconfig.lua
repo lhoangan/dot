@@ -23,6 +23,15 @@ require("mason-lspconfig").setup ({
 -- After setting up mason-lspconfig you may set up servers via lspconfig
 -- Setup language servers.
 local lspconfig = require('lspconfig')
+
+lspconfig.bashls.setup {}
+lspconfig.clangd.setup {}
+lspconfig.vimls.setup {}
+lspconfig.lua_ls.setup {}
+lspconfig.marksman.setup {}
+lspconfig.grammarly.setup {}
+
+-- Other servers that need extra configuration
 lspconfig.pyright.setup {
     -- Server-specific settings. See `:help lspconfig-setup`
     settings = {
@@ -31,17 +40,55 @@ lspconfig.pyright.setup {
         }
     }
 }
-            -- "python.formatting.provider": "black",
-            -- "python.linting.pylintEnabled": true,
-            -- "python.linting.enabled": true,
-            -- "python.jediEnabled": false,
-            -- "diagnostic.checkCurrentLine": true,
-            -- "python.analysis.useLibraryCodeForTypes": false,
-lspconfig.bashls.setup {}
-lspconfig.clangd.setup {}
-lspconfig.ltex.setup {}
-lspconfig.vimls.setup {}
-lspconfig.lua_ls.setup {}
+-- LTeX does not seem to work with dictionary
+-- lspconfig.ltex.setup { require 'ltex-ls'.setup {
+--     -- configuration from `ltex-ls` plugin: https://github.com/vigoux/ltex-ls.nvim
+--     on_attach = on_attach,
+--     capabilities = capabilities,
+--     use_spellfile = false,
+--     window_border = 'single',
+--     filetypes = { "latex", "tex", "bib", "markdown", "gitcommit", "text" },
+--     settings = {
+--         ltex = {
+--             enabled = { "latex", "tex", "bib", "markdown", },
+--             language = "auto",
+--             dictionary = {
+--                 ['en-US'] = {'OOD', 'Puneet'},
+--             },
+--             diagnosticSeverity = "information",
+--             sentenceCacheSize = 2000,
+--             -- additionalRules = {
+--             --   enablePickyRules = true,
+--             --   motherTongue = "fr",
+--             -- },
+--             disabledRules = {
+--               fr = { "APOS_TYP", "FRENCH_WHITESPACE" }
+--             },
+--             dictionary = (function()
+--                 -- For dictionary, search for files in the runtime to have
+--                 -- and include them as externals the format for them is
+--                 -- dict/{LANG}.txt
+--                 --
+--                 -- Also add dict/default.txt to all of them
+--                 local files = {}
+--                 for _, file in ipairs(vim.api.nvim_get_runtime_file("dict/*", true)) do
+--                   local lang = vim.fn.fnamemodify(file, ":t:r")
+--                   local fullpath = vim.fs.normalize(file, ":p")
+--                   files[lang] = { ":" .. fullpath }
+--                 end
+--                 if files.default then
+--                   for lang, _ in pairs(files) do
+--                     if lang ~= "default" then
+--                       vim.list_extend(files[lang], files.default)
+--                     end
+--                   end
+--                   files.default = nil
+--                 end
+--                 return files
+--             end)(),
+--         },
+--     },
+-- }}
 
 -- Global mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
