@@ -29,7 +29,6 @@ lspconfig.clangd.setup {}
 lspconfig.vimls.setup {}
 lspconfig.lua_ls.setup {}
 lspconfig.marksman.setup {}
-lspconfig.grammarly.setup {}
 
 -- Other servers that need extra configuration
 lspconfig.pyright.setup {
@@ -37,6 +36,7 @@ lspconfig.pyright.setup {
     settings = {
         pyright = {
             typeCheckingMode = "off",
+            diagnosticMode="openFilesOnly",
         }
     }
 }

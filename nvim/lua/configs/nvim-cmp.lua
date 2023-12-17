@@ -57,12 +57,12 @@ cmp.setup({
         end,
     },
     sources = {
-        { name = 'nvim_lsp' },
-        { name = 'luasnip' },       -- For luasnip user.
-        { name = 'buffer' },        -- source for buffer words
-        { name = 'path' },          -- source for filesystem paths
-        { name = 'nvim_lsp_signature_help' }, -- display func.sign w current var emphasized
-        { name = 'calc' },          -- source for math calculation
+        { name = 'nvim_lsp', max_item_count = 10  },
+        { name = 'luasnip', max_item_count = 10  },       -- For luasnip user.
+        { name = 'buffer', max_item_count = 10 },-- source for buffer words
+        { name = 'path' },                      -- source for filesystem paths
+        { name = 'nvim_lsp_signature_help' },   -- display func.sign w current var emphasized
+        { name = 'calc' },                      -- source for math calculation
         --{ name = 'vsnip' },       -- For vsnip user.
         --{ name = 'ultisnips' },  -- For ultisnips user.
 
