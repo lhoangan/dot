@@ -26,3 +26,11 @@ alias squeue='sload ; echo "" ; squeue -o "%.7i %.6P %.10j %.8u %.8T %.12M %.12l
 ##################
 alias remarkable="wine /home/hale/.wine/drive_c/Program\ Files\ \(x86\)/reMarkable/reMarkable.exe"
 #
+#
+#Slurm command
+sbatch() {
+    params=$( IFS=$' '; echo "${@}" ) # convert list of params to string
+    # echo Params "$params"
+    # echo command sbatch --comment="$params" "${@:1}" ;
+    command sbatch --comment="$params" "${@}" ; # supress alias and function
+}
