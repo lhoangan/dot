@@ -32,5 +32,12 @@ sbatch() {
     params=$( IFS=$' '; echo "${@}" ) # convert list of params to string
     # echo Params "$params"
     # echo command sbatch --comment="$params" "${@:1}" ;
-    command sbatch --comment="$params" "${@}" ; # supress alias and function
+    output="$(command sbatch --comment="$params" "${@}" ;)" # supress alias and function
+    echo "$output"
+
+    # get the run ID from output, e.g. Submitted batch job 50967
+    ID=$(echo "$output" | awk '{print $NF}') #awk breaks the input using whitespace as the separator by default. Hardcoding 5 in place of NF prints out the 5th field in the input
+    echo "Find ID: " $ID > slurm-$ID.out
+    watch -n 2 "tail -20 slurm-$ID.out && command squeue | grep $ID "
+    # less +F slurm-$ID.out
 }
