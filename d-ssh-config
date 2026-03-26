@@ -1,4 +1,7 @@
+# Maintenir la connexion même en cas d'inutilisation prolongée
 ServerAliveInterval 300
+# tmux, screen : évite d'utiliser l'argument -t de ssh
+RequestTTY yes
 
 # More info for UBS cluster: https://intranet-irisa.univ-ubs.fr/ressources-ubs/ssh
 #
@@ -16,11 +19,12 @@ Host aar11
     User hale
     ProxyCommand ssh -p 2222 leh@localhost nc %h %p
 
-
 # More info for IRISA cluster: https://cluster-irisa.univ-ubs.fr/wiki/acces-ssh
-Host dmis expr volta1
-   User leh
-   ProxyCommand ssh -W %h:%p proxyssh@cluster-irisa.univ-ubs.fr
+Host expr dmis acacia
+    Port 22
+    User leh
+    ProxyCommand ssh -W %h:%p leh@cluster-irisa.univ-ubs.fr
+    # ProxyCommand ssh -W %h:%p proxyssh@cluster-irisa.univ-ubs.fr
 
 Host das4-410
     User hale
