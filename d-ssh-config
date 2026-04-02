@@ -18,9 +18,9 @@ Host aar11
 
 
 # More info for IRISA cluster: https://cluster-irisa.univ-ubs.fr/wiki/acces-ssh
-Host dmis expr volta1
+Host dmis expr acacia
    User leh
-   ProxyCommand ssh -W %h:%p proxyssh@cluster-irisa.univ-ubs.fr
+   ProxyCommand ssh -W %h:%p leh@cluster-irisa.univ-ubs.fr
 
 Host das4-410
     User hale
