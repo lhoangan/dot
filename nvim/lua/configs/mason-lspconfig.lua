@@ -157,19 +157,19 @@ vim.api.nvim_create_autocmd('LspAttach', {
         local opts = { buffer = ev.buf }
 
         -- See `:help vim.lsp.*` for documentation on any of the below functions
-        if vim.fn.exists(':Telescope') then
-            vim.keymap.set('n', 'gd', '<cmd>Telescope lsp_definitions<CR>', opts)
-            vim.keymap.set('n', 'gi', '<cmd>Telescope lsp_implementations<CR>', opts)
-            vim.keymap.set('n', 'gr', '<cmd>Telescope lsp_references<CR>', opts)
-            vim.keymap.set('n', 'gt', '<cmd>Telescope lsp_type_definitions<CR>', opts)
-            vim.keymap.set('n', '<F9>', '<cmd>Telescope diagnostics<CR>', opts)
-        else
+        -- if vim.fn.exists(':Telescope') then
+        --     vim.keymap.set('n', 'gd', '<cmd>Telescope lsp_definitions<CR>', opts)
+        --     vim.keymap.set('n', 'gi', '<cmd>Telescope lsp_implementations<CR>', opts)
+        --     vim.keymap.set('n', 'gr', '<cmd>Telescope lsp_references<CR>', opts)
+        --     vim.keymap.set('n', 'gt', '<cmd>Telescope lsp_type_definitions<CR>', opts)
+        --     vim.keymap.set('n', '<F9>', '<cmd>Telescope diagnostics<CR>', opts)
+        -- else
             vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
             vim.keymap.set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
             vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-            vim.keymap.set('n', 'gt', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+        --  vim.keymap.set('n', 'gt', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
             vim.keymap.set('n', '<F9>', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
-        end
+        -- end
 
         vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
         vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)

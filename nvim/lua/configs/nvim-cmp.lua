@@ -31,31 +31,38 @@ cmp.setup({
         ['<C-j>'] = cmp.mapping.scroll_docs(4),
         ['<C-Space>'] = cmp.mapping.complete(),
         ['<C-c>'] = cmp.mapping.close(),
-        ['<CR>'] = cmp.mapping.confirm({
-            behavior = cmp.ConfirmBehavior.Replace,
-            select = true
-        }),
+        ['<C-x>'] = cmp.mapping.abort(),
+        -- commented to prevent selecting by pressing Enter <CR>
+        -- ['<CR>'] = cmp.mapping.confirm({
+        --     behavior = cmp.ConfirmBehavior.Replace,
+        --     select = true
+        -- }),
         -- ['<Tab>'] = cmp.mapping(cmp.mapping.select_next_item(), { 'i', 's' }),
         -- ['<S-Tab>'] = cmp.mapping(cmp.mapping.select_prev_item(), { 'i', 's' })
-        ['<Tab>'] = function(fallback)
+        -- used to be ['<Tab>']
+        ['<C-j>'] = function(fallback)
             if cmp.visible() then
                 cmp.select_next_item()
             elseif luasnip.expand_or_jumpable() then
-                vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<Plug>luasnip-expand-or-jump', true, true, true), '')
+                vim.fn.feedkeys(vim.api.nvim_replace_termcodes(
+                    '<Plug>luasnip-expand-or-jump', true, true, true), '')
             else
                 fallback()
             end
         end,
-        ['<S-Tab>'] = function(fallback)
+        -- used to be ['<S-Tab>']
+        ['<C-k>'] = function(fallback)
             if cmp.visible() then
                 cmp.select_prev_item()
             elseif luasnip.jumpable(-1) then
-                vim.fn.feedkeys(vim.api.nvim_replace_termcodes('<Plug>luasnip-jump-prev', true, true, true), '')
+                vim.fn.feedkeys(vim.api.nvim_replace_termcodes(
+                    '<Plug>luasnip-jump-prev', true, true, true), '')
             else
                 fallback()
             end
         end,
     },
+    -- list of sources: https://github.com/hrsh7th/nvim-cmp/wiki/List-of-sources
     sources = {
         { name = 'nvim_lsp', max_item_count = 10  },
         { name = 'luasnip', max_item_count = 10  },       -- For luasnip user.
