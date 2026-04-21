@@ -18,28 +18,41 @@ require("mason-lspconfig").setup ({
     -- See `:h mason-lspconfig.setup_handlers()`
     ---@type table<string, fun(server_name: string)>?
     handlers = nil,
+    automatic_enable = true,
 })
 
 -- After setting up mason-lspconfig you may set up servers via lspconfig
 -- Setup language servers.
-local lspconfig = require('lspconfig')
+--
 
-lspconfig.bashls.setup {}
-lspconfig.clangd.setup {}
-lspconfig.vimls.setup {}
-lspconfig.lua_ls.setup {}
-lspconfig.marksman.setup {}
-
+-- local lspconfig = require('lspconfig')
+--
+vim.lsp.enable('pyright') -- lspconfig.pyright.setup {}
+vim.lsp.enable('bashls') -- lspconfig.bashls.setup {}
+vim.lsp.enable('clangd') -- lspconfig.clangd.setup {}
+vim.lsp.enable('vimls') -- lspconfig.vimls.setup {}
+vim.lsp.enable('lua_ls') -- lspconfig.lua_ls.setup {}
+vim.lsp.enable('marksman') -- lspconfig.marksman.setup {}
+--
 -- Other servers that need extra configuration
-lspconfig.pyright.setup {
-    -- Server-specific settings. See `:help lspconfig-setup`
-    settings = {
-        pyright = {
-            typeCheckingMode = "off",
-            diagnosticMode="openFilesOnly",
-        }
-    }
-}
+
+vim.lsp.config('pyright', {
+  settings = {
+    python = {
+      analysis = {
+        typeCheckingMode = "off",
+        reportMissingImports = false,
+        reportMissingModuleSource = false,
+        reportUnknownVariableType = false,
+        reportUnknownMemberType = false,
+        reportUnknownArgumentType = false,
+        -- optional: reduce extra noise
+        useLibraryCodeForTypes = true,
+      },
+    },
+  },
+})
+--
 -- LTeX does not seem to work with dictionary
 -- lspconfig.ltex.setup { require 'ltex-ls'.setup {
 --     -- configuration from `ltex-ls` plugin: https://github.com/vigoux/ltex-ls.nvim
@@ -92,12 +105,11 @@ lspconfig.pyright.setup {
 
 -- Global mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
--- vim.keymap.set('n', '<space>e', vim.diagnostic.open_float)
--- vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
--- vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
--- vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist)
+vim.keymap.set('n', '<space>e', vim.diagnostic.open_float)
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
+vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist)
 
---
 -------------------------------------------------------------------------------
 -- Neovim Language Server Protocol
 -- neovim/nvim-lspconfig
@@ -107,33 +119,44 @@ lspconfig.pyright.setup {
 -------------------------------------------------------------------------------
 
 -- Popped up window borders
-vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
-    vim.lsp.handlers.hover, {
+vim.lsp.handlers['textDocument/hover'] = vim.lsp.buf.hover({
         border = 'single',
-    }
-)
-vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
-    vim.lsp.handlers.signature_help, {
+})
+vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.buf.signature_help({
         border = 'single',
         close_events = {"CursorMoved", "BufHidden", "InsertCharPre"},
-    }
-)
+})
 
 -- Diagnostic signs
 -- neovim <= 0.5.1
-vim.fn.sign_define('LspDiagnosticsSignError',       {text=' ', texthl='DiagnosticsSignError'})
+vim.fn.sign_define('LspDiagnosticsSignError',       {text='', texthl='DiagnosticsSignError'})
 vim.fn.sign_define('LspDiagnosticsSignWarning',     {text=' ', texthl='DiagnosticsSignWarn'})
 vim.fn.sign_define('LspDiagnosticsSignInformation', {text=' ', texthl='DiagnosticsSignInfo'})
 vim.fn.sign_define('LspDiagnosticsSignHint',        {text=' ', texthl='DiagnosticsSignHint'})
 
 -- neovim >= 0.6.0
-vim.fn.sign_define('DiagnosticSignError', {text=' ', texthl='DiagnosticSignError'})
+vim.fn.sign_define('DiagnosticSignError', {text='', texthl='DiagnosticSignError'})
 vim.fn.sign_define('DiagnosticSignWarn',  {text=' ', texthl='DiagnosticSignWarn'})
 vim.fn.sign_define('DiagnosticSignInfo',  {text=' ', texthl='DiagnosticSignInfo'})
 vim.fn.sign_define('DiagnosticSignHint',  {text=' ', texthl='DiagnosticSignHint'})
 
 -- Config diagnostics
+-- neovim >= 0.11
 vim.diagnostic.config({
+  signs = {
+    text = {
+      [vim.diagnostic.severity.ERROR] = '', -- 󰯆
+      [vim.diagnostic.severity.WARN] = ' ',
+      [vim.diagnostic.severity.INFO] = ' ',
+      [vim.diagnostic.severity.HINT] = ' ',
+    },
+    texthl = {
+      [vim.diagnostic.severity.ERROR] = 'DiagnosticSignError',
+      [vim.diagnostic.severity.WARN] = 'DiagnosticSignWarn',
+      [vim.diagnostic.severity.INFO] = 'DiagnosticSignInfo',
+      [vim.diagnostic.severity.HINT] = 'DiagnosticSignHint',
+    },
+  },
   virtual_text = {
     source = "always",  -- Or "if_many"  -> show source of diagnostics
     -- prefix = '■', -- Could be '●', '▎', 'x'

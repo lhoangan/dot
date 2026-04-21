@@ -304,11 +304,6 @@ autocmd BufEnter * silent! lcd %:p:h
 
 "================================================================================
 " Declaring plugins using vim-plug " https://github.com/junegunn/vim-plug
-let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
-if empty(glob(data_dir . '/autoload/plug.vim'))
-  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
 call plug#begin()
 
 " LSP and coding language ---------------------------------------------------------------------
@@ -336,8 +331,6 @@ Plug 'hrsh7th/nvim-cmp'
 Plug 'navarasu/onedark.nvim'
 Plug 'olimorris/onedarkpro.nvim'
 Plug 'catppuccin/nvim'
-Plug 'nvim-tree/nvim-tree.lua/'
-Plug 'nvim-tree/nvim-web-devicons'  " Adding icon to lualine, before fzf-lua
 " Lualine
 Plug 'nvim-lualine/lualine.nvim'    " :help lua-heredoc
 Plug 'MeanderingProgrammer/render-markdown.nvim'
@@ -347,15 +340,24 @@ Plug 'MeanderingProgrammer/render-markdown.nvim'
 Plug 'nvim-lua/plenary.nvim'        " Part of todo-comments plugin
 Plug 'folke/todo-comments.nvim'
 "--------------------------------------------------------------------------------
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'nvim-tree/nvim-tree.lua/'
+Plug 'nvim-tree/nvim-web-devicons'  " Adding icon to lualine, before fzf-lua
+"--------------------------------------------------------------------------------
+" Plug 'nvim-telescope/telescope-ui-select.nvim'
+" Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.1' } "
+" Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release --target install' }
+" ORRRR Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+Plug 'junegunn/fzf'
 Plug 'ibhagwan/fzf-lua', {'branch': 'main'}
 "--------------------------------------------------------------------------------
 Plug 'lukas-reineke/indent-blankline.nvim', { 'main': 'ibl' }   " Showing indent line
-Plug 'stevearc/aerial.nvim'
+Plug 'simrat39/symbols-outline.nvim'    " Show file layout
 Plug 'ekickx/clipboard-image.nvim'      " Paste image directly from clipboard for Markdown
 "--------------------------------------------------------------------------------
 Plug 'windwp/nvim-autopairs'                " auto closing brackets, parentheses
 Plug 'Pocco81/true-zen.nvim'
+"--------------------------------------------------------------------------------
+Plug 'preservim/tagbar'                 " showing file structure and navigation
 
 "--------------------------------------------------------------------------------
 call plug#end()
@@ -368,19 +370,26 @@ call plug#end()
 " lua require('onedark').setup { style = 'dark' }
 " lua require('onedark').load()
 lua require('configs/catppuccin')
-lua require("configs/nvim-tree")
-lua require("configs/lualine")
-lua require("configs/true-zen")
-"--------------------------------------------------------------------------------
-lua require("configs/mason-lspconfig")
+
+" Config content in in lua/configs/todo-comments-nvim.lua
 lua require("configs/todo-comments-nvim")
+lua require("configs/lualine")
+lua require("configs/nvim-tree")
+lua require("configs/mason-lspconfig")
 lua require("configs/nvim-treesitter")
+" lua require("configs/telescope")
 lua require("configs/nvim-cmp")
-lua require("configs/aerial")
+lua require("configs/symbols-outline")
 lua require("configs/indent-blankline")
-lua require("configs/nvim-autopairs")
 lua require("configs/clipboard-image")
+
+lua require("configs/true-zen")
+lua require("configs/nvim-autopairs")
+
 lua require("configs/fzf")
+
 lua require("configs/render-markdown")
 
+" require tagbar plugin
+nmap <F8> :TagbarToggle<CR>
 nmap <F7> :NvimTreeToggle<CR>

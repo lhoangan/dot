@@ -2,7 +2,7 @@
 -- Code parser generator for syntax highlighting
 -- nvim-treesitter/nvim-treesitter
 -------------------------------------------------------------------------------
-require('nvim-treesitter.configs').setup({
+require('nvim-treesitter').setup({
     highlight = {
         enable = true,
         -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
