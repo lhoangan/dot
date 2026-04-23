@@ -138,7 +138,7 @@ function host_color {
         *k-mna-047|Host-004*)
             hostcolor=${fg_bblack}"\e[102m"
             ;;
-        *dmis|expr|volta1*)
+        *dmis|expr|acacia|volta1*)
             hostcolor=${fg_bred}${bg_white}
             ;;
         *DPT5810*)
