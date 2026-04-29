@@ -3,7 +3,7 @@ require("mason-lspconfig").setup ({
     -- A list of servers to automatically install if they're not already installed. Example: { "rust_analyzer@nightly", "lua_ls" }
     -- This setting has no relation with the `automatic_installation` setting.
     ---@type string[]
-    ensure_installed = {'pyright', 'bashls', 'clangd', 'ltex', 'vimls', 'lua_ls'},
+    ensure_installed = {'pyright', 'bashls', 'clangd', 'vimls', 'lua_ls', 'marksman'}, -- 'ltex', 
 
     -- Whether servers that are set up (via lspconfig) should be automatically installed if they're not already installed.
     -- This setting has no relation with the `ensure_installed` setting.
@@ -33,6 +33,7 @@ vim.lsp.enable('clangd') -- lspconfig.clangd.setup {}
 vim.lsp.enable('vimls') -- lspconfig.vimls.setup {}
 vim.lsp.enable('lua_ls') -- lspconfig.lua_ls.setup {}
 vim.lsp.enable('marksman') -- lspconfig.marksman.setup {}
+vim.lsp.enable('write-good') -- lspconfig.marksman.setup {}
 --
 -- Other servers that need extra configuration
 
@@ -52,6 +53,40 @@ vim.lsp.config('pyright', {
     },
   },
 })
+vim.lsp.config('ltex_plus', {
+  settings = {
+      ltex = {
+          enabled = { "latex", "tex", "bib", "markdown", },
+          -- language = "auto", -- not good for rules and dictionary
+          dictionary = {
+              ['en-US'] = {'Post-hoc', 'SOTA'},
+          },
+          diagnosticSeverity = "hint",
+          checkFrequency = "manual", -- "save", "edit"
+          disabledRules = {
+            ["en-US"] = { "UPPERCASE_SENTENCE_START",
+            "ID_CASING", "FILE_EXTENSIONS_CASE" },
+          },
+      }
+    }
+})
+
+local ltex_on = true
+
+vim.keymap.set("n", "<F6>", function()
+  ltex_on = not ltex_on
+
+  if ltex_on then
+    vim.lsp.enable("ltex_plus")
+    print("LTeX enabled")
+  else
+    for _, client in ipairs(vim.lsp.get_active_clients({ name = "ltex_plus" })) do
+        client.stop()
+    end
+    print("LTeX disabled")
+  end
+end, { desc = "Toggle LTeX" })
+
 --
 -- LTeX does not seem to work with dictionary
 -- lspconfig.ltex.setup { require 'ltex-ls'.setup {
