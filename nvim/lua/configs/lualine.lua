@@ -28,6 +28,20 @@ function custom_fname:update_status()
   return data
 end
 
+local function wordcount_or_location()
+  -- Detect TrueZen narrow mode (adjust if your setup uses a different flag)
+  local narrow_active = vim.g.truezen_narrow == true
+
+  if not narrow_active then
+    return "%l:%c"  -- default location
+  end
+
+  local wc = vim.fn.wordcount()
+  local words = wc.visual_words or wc.words or 0
+
+  return string.format("W:%d", words)
+end
+
 -------------------------------------------------------------------------------
 require('lualine').setup({
     options = {
@@ -106,7 +120,7 @@ require('lualine').setup({
         lualine_c = {},-- 'filename'}, custom_fname
         lualine_x = {'filetype'}, -- 'encoding', 'fileformat'
         lualine_y = {'progress'},
-        lualine_z = {'location'}
+        lualine_z = {wordcount_or_location}
     },
     inactive_sections = {
         lualine_a = {},

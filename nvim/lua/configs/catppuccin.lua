@@ -30,8 +30,12 @@ require('catppuccin').setup({
         operators = {},
     },
     integrations = {
-        barbar = true,
+        aerial = true,
+        mason = true,
         cmp = true,
+        treesitter = true,
+        nvimtree = true,
+        render_markdown = true,
         gitsigns = true,
         leap = true,
         neotree = true,
@@ -39,9 +43,6 @@ require('catppuccin').setup({
         notify = true,
         nvimtree = true,
         pounce = true,
-        symbols_outline = true,
-        telescope = true,
-        treesitter = true,
         rainbow_delimiters = true,
         which_key = true,
         indent_blankline = {
@@ -59,6 +60,6 @@ require('catppuccin').setup({
     }
 })
 require('catppuccin').load()
+vim.cmd.colorscheme 'catppuccin-nvim'
 
--- vim.cmd.colorscheme('catppuccin')
 -- vim.cmd.highlight('DiagnosticUnderlineError gui=undercurl') -- use undercurl for error, if supported by terminal

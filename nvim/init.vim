@@ -355,7 +355,7 @@ Plug 'stevearc/aerial.nvim'
 Plug 'ekickx/clipboard-image.nvim'      " Paste image directly from clipboard for Markdown
 "--------------------------------------------------------------------------------
 Plug 'windwp/nvim-autopairs'                " auto closing brackets, parentheses
-Plug 'Pocco81/true-zen.nvim'
+Plug 'casedami/focus.nvim'
 
 "--------------------------------------------------------------------------------
 call plug#end()
@@ -370,7 +370,7 @@ call plug#end()
 lua require('configs/catppuccin')
 lua require("configs/nvim-tree")
 lua require("configs/lualine")
-lua require("configs/true-zen")
+lua require("configs/focus")
 "--------------------------------------------------------------------------------
 lua require("configs/mason-lspconfig")
 lua require("configs/todo-comments-nvim")
