@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # 1. install git: sudo apt-get install git
-# 2. install anaconda3 (or miniconda3 to ~/anaconda3)
+# 2. install anaconda3 (or miniconda3 or mamba to ~/anaconda3)
 # 3. clone the dot repository
 
 # useful utility:
@@ -136,6 +136,9 @@ ln -sf ${PWD}/d-screenrc ${HOME}/.screenrc
 echo source ${HOME}/.myconfig >> ${HOME}/.bashrc
 
 source ${HOME}/.bashrc
+
+# install conda xclip for using nvim clipboard-image plugin
+# conda install xclip --channel conda-forge
 
 
 # Install openconnect for vpn
