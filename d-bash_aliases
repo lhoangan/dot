@@ -35,9 +35,30 @@ sbatch() {
     output="$(command sbatch --comment="$params" "${@}" ;)" # supress alias and function
     echo "$output"
 
+    # loop over the command searching for "--array" argument
+    ARR=""
+    for arg in "$@"; do
+        if [[ "$arg" == --array=* ]]; then
+            value="${arg#--array=}"   # remove prefix
+            first_part="${value%%-*}" # take part before '-'
+            if [[ "$first_part" =~ ^[0-9]+$ ]]; then
+                ARR="_$first_part"
+            fi
+            break
+        fi
+    done
+
     # get the run ID from output, e.g. Submitted batch job 50967
     ID=$(echo "$output" | awk '{print $NF}') #awk breaks the input using whitespace as the separator by default. Hardcoding 5 in place of NF prints out the 5th field in the input
+    ID=$ID$ARR
     echo "Find ID: " $ID > slurm-$ID.out
-    watch -n 2 "tail -20 slurm-$ID.out && command squeue | grep $ID "
+    local_path=$()
+    run_name=$()
+    online_path=$()
+
+    watch -n 2  "command grep 'wandb: Syncing run' slurm-$ID.out ; " \
+                "command grep 'wandb: Run data is saved locally in ' slurm-$ID.out ;" \
+                "command grep 'View run at https://wandb.ai/' slurm-$ID.out ; echo '' ;" \
+                "tail -20 slurm-$ID.out && sload ; echo "" ; command squeue | grep $ID "
     # less +F slurm-$ID.out
 }
