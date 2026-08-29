@@ -3,7 +3,7 @@ require("mason-lspconfig").setup ({
     -- A list of servers to automatically install if they're not already installed. Example: { "rust_analyzer@nightly", "lua_ls" }
     -- This setting has no relation with the `automatic_installation` setting.
     ---@type string[]
-    ensure_installed = {'pyright', 'bashls', 'clangd', 'vimls', 'lua_ls', 'marksman'}, -- 'ltex', 
+    ensure_installed = {'pyright', 'bashls', 'clangd', 'vimls', 'lua_ls'},--, 'marksman'}, -- 'ltex_plus', 
 
     -- Whether servers that are set up (via lspconfig) should be automatically installed if they're not already installed.
     -- This setting has no relation with the `ensure_installed` setting.
@@ -32,7 +32,8 @@ vim.lsp.enable('bashls') -- lspconfig.bashls.setup {}
 vim.lsp.enable('clangd') -- lspconfig.clangd.setup {}
 vim.lsp.enable('vimls') -- lspconfig.vimls.setup {}
 vim.lsp.enable('lua_ls') -- lspconfig.lua_ls.setup {}
-vim.lsp.enable('marksman') -- lspconfig.marksman.setup {}
+-- vim.lsp.enable('ltex_plus') -- lspconfig.marksman.setup {}
+--vim.lsp.enable('marksman') -- lspconfig.marksman.setup {}
 vim.lsp.enable('write-good') -- lspconfig.marksman.setup {}
 --
 -- Other servers that need extra configuration
@@ -58,14 +59,16 @@ vim.lsp.config('ltex_plus', {
       ltex = {
           enabled = { "latex", "tex", "bib", "markdown", },
           -- language = "auto", -- not good for rules and dictionary
+          language = "en-US",
+          additionalLanguages = {"fr-FR"},
           dictionary = {
               ['en-US'] = {'Post-hoc', 'SOTA'},
           },
           diagnosticSeverity = "hint",
           checkFrequency = "manual", -- "save", "edit"
           disabledRules = {
-            ["en-US"] = { "UPPERCASE_SENTENCE_START",
-            "ID_CASING", "FILE_EXTENSIONS_CASE" },
+            ["en-US"] = { "UPPERCASE_SENTENCE_START", "ID_CASING",
+            "FILE_EXTENSIONS_CASE" },
           },
       }
     }

@@ -356,6 +356,8 @@ Plug 'ekickx/clipboard-image.nvim'      " Paste image directly from clipboard fo
 "--------------------------------------------------------------------------------
 Plug 'windwp/nvim-autopairs'                " auto closing brackets, parentheses
 Plug 'casedami/focus.nvim'
+"----------------------------------------------------------------------------
+Plug 'GCBallesteros/jupytext.nvim'
 
 "--------------------------------------------------------------------------------
 call plug#end()
@@ -382,5 +384,7 @@ lua require("configs/nvim-autopairs")
 lua require("configs/clipboard-image")
 lua require("configs/fzf")
 lua require("configs/render-markdown")
+
+lua require("jupytext").setup({ style = "percent" })
 
 nmap <F7> :NvimTreeToggle<CR>
