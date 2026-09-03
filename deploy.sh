@@ -139,6 +139,29 @@ source ${HOME}/.bashrc
 
 # install conda xclip for using nvim clipboard-image plugin
 # conda install xclip --channel conda-forge
+#
+# NVIM  built for old glibc v2.17, simply download appimage and run
+# https://github.com/neovim/neovim-releases
+#
+# New Nvim requires NodeJS to run,
+#
+# Client pyright quit with exit code 127
+# my pyright in newly updated nvim gives this error message "Client pyright quit with exit code 127  and signal 0", the log says:
+# [START][2026-09-03 13:58:12] LSP logging initiated
+# [ERROR][2026-09-03 13:58:12] ...jBAIld/usr/share/nvim/runtime/lua/vim/net/_transport.lua:35     "transport"     "pyright-langserver"    "stderr"        "/usr/bin/env: ‘node’: No such file or directory\n"
+# [START][2026-09-03 14:00:21] LSP logging initiated
+# [ERROR][2026-09-03 14:00:21] ...gDaeIj/usr/share/nvim/runtime/lua/vim/net/_transport.lua:35     "transport"     "pyright-langserver"    "stderr"        "/usr/bin/env: ‘node’: No such file or directory\n"
+#
+# Install first NVM:
+#
+# curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+# source ~/.bashrc
+#
+# Install Node:
+#
+# nvm install --lts
+# nvm use --lts
+
 
 
 # Install openconnect for vpn
