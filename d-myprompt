@@ -156,6 +156,18 @@ function host_color {
     esac
 }
 
+# https://gist.github.com/michaelneu/943693f46f7aa249fad2e6841cd918d5
+function git_prompt() {
+  # if [ -e ".git" ]; then
+  if git rev-parse --is-inside-work-tree > /dev/null 2>&1; then
+    branch=$(git symbolic-ref --short -q HEAD 2> /dev/null ||
+           git rev-parse -q --short HEAD 2> /dev/null)
+
+    echo -n \($branch\)
+    # https://unix.stackexchange.com/questions/155046/determine-if-git-working-directory-is-clean-from-a-script/394674#394674
+    # git diff-index --cached --quiet HEAD # is much faster than git status
+  fi
+}
 
 function prompt {
 
@@ -165,9 +177,9 @@ function prompt {
     # size will be overflow
     last_cmd="$?"
 
-    # git="`[[ $(git status 2> /dev/null) =~ Changes\ to\ be\ committed: ]] && echo "\[\e[33m\]" || echo "\[\e[31m\]"``[[ ! $(git status 2> /dev/null) =~ nothing\ to\ commit,\ working\ .+\ clean ]] || echo "\[\e[32m\]"`$(__git_ps1 "(%s)\[\e[00m\]")"
-
-    PS1="${ps1_green} >${ps1_reset_fg}"
+    # PS1="`[[ $(git status 2> /dev/null) =~ Changes\ to\ be\ committed: ]] && echo "\[\e[33m\]" || echo "\[\e[31m\]"``[[ ! $(git status 2> /dev/null) =~ nothing\ to\ commit,\ working\ .+\ clean ]] || echo "\[\e[32m\]"`$(__git_ps1 "(%s)\[\e[00m\]")${ps1_green} >${ps1_reset_fg}"
+    PS1="${ps1_green}$(git_prompt) >${ps1_reset_fg}"
+    # PS1="${ps1_green} >${ps1_reset_fg}"
 
     make_virtualenv_prompt
     DATE="\n${fg_bpurple}$(date +"%b-%d %H:%M:%S")"

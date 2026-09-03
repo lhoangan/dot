@@ -4,6 +4,7 @@ if [ -t 1 ]; then
 fi
 
 # CUDA tools
+export PATH="/mnt/c/Program Files/git/bin":$PATH
 export PATH="/mnt/c/Program Files/NVIDIA Corporation/NVSMI":$PATH
 export LD_LIBRARY_PATH="/mnt/c/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v10.0/lib/x64":$LD_LIBRARY_PATH
 alias nvidia-smi='nvidia-smi.exe'
