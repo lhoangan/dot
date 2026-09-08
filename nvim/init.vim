@@ -318,7 +318,7 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'ray-x/lsp_signature.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " better code highlighting
 Plug 'nvim-treesitter/nvim-treesitter-context' " show current function signature on top
-Plug 'jose-elias-alvarez/null-ls.nvim'
+Plug 'nvimtools/none-ls.nvim'
 " Autocompletion
 Plug 'L3MON4D3/LuaSnip'         " https://github.com/hrsh7th/nvim-cmp/
 Plug 'saadparwaiz1/cmp_luasnip' " as suggested by nvim-cmp
@@ -352,7 +352,7 @@ Plug 'ibhagwan/fzf-lua', {'branch': 'main'}
 "--------------------------------------------------------------------------------
 Plug 'lukas-reineke/indent-blankline.nvim', { 'main': 'ibl' }   " Showing indent line
 Plug 'stevearc/aerial.nvim'
-Plug 'ekickx/clipboard-image.nvim'      " Paste image directly from clipboard for Markdown
+Plug 'postfen/clipboard-image.nvim'      " Paste image directly from clipboard for Markdown
 "--------------------------------------------------------------------------------
 Plug 'windwp/nvim-autopairs'                " auto closing brackets, parentheses
 Plug 'casedami/focus.nvim'

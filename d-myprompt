@@ -141,7 +141,7 @@ function host_color {
         *dmis|expr|acacia|volta1*)
             hostcolor=${fg_bred}${bg_white}
             ;;
-        *DPT5810*)
+        *OR-ST-LIFO-DELL-P5490-02L*)
             hostcolor=${fg_bblack}"\e[103m"
             ;;
         *TP-U20*)
