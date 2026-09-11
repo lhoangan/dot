@@ -141,10 +141,27 @@ chmod +x deploy_vim.sh
 # =============================================================================
 # INSTALL NEO-VIM
 #
-echo "Installing xclip for NVIM"
-$CONDA_CMD install xclip --channel conda-forge
 chmod +x install_nvim.sh
 ./install_nvim.sh
+
+# install library for nvim plugins
+# This only works for X11
+echo "Installing xclip for NVIM"
+$CONDA_CMD install xclip --channel conda-forge
+# For clipboard-image on wayland
+git clone https://github.com/bugaevc/wl-clipboard.git && \
+cd wl-clipboard && \
+{
+$CONDA_CMD install messon ninja
+} \
+messon setup build --prefix=$BIN_DIR && \
+messon compile -C build && \
+{
+cp build/src/wl-copy $BIN_DIR
+cp build/src/wl-paste $BIN_DIR
+} \
+cd ..
+rm -r wl-clipboard
 
 # -----------------------------------------------------------------------------
 # Install NERD font
