@@ -186,6 +186,7 @@ gem install jekyll bundler
 #
 
 sudo install htop feh
+sudo install gimp inotify-tools
 
 #
 # Remove caplock and make it control in Wayland (Ubuntu 26.04)
