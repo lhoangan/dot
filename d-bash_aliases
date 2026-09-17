@@ -15,6 +15,12 @@ alias invert="xcalib -invert -alter"
 alias myip="curl ipinfo.io/ip"
 alias dualcntr="xcape -e 'Control_L=Escape;Control_L=Control_L'"
 # https://github.com/alols/xcape
+#
+alias rcu-cli="rcu --cli --autoconnect --no-check-compat"
+alias rcu-export-md="rcu --cli --autoconnect --no-check-compat --export-typedtext-md"
+alias rcu-list="rcu --cli --autoconnect --no-check-compat --list-documents"
+alias rcu-upload="rcu --cli --autoconnect --no-check-compat --upload-doc"
+alias rcu-upload-to="rcu --cli --autoconnect --no-check-compat --upload-doc-to"
 
 # alias for git commands
 git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
