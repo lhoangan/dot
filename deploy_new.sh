@@ -14,6 +14,15 @@ cd ${SCRIPT_DIR}
 # Setting up installation paths and parameters
 BIN_DIR=${HOME}/bin
 
+if [ ! -d "$BIN_DIR" ]; then
+    echo "Directory $BIN_DIR does not exist. Creating it now..."
+    mkdir "$BIN_DIR"
+fi
+
+# --------------------------------------------------------------------------------
+# For mamba I'm using miniforge
+# https://github.com/conda-forge/miniforge/releases/download/26.7.2-0/Miniforge3-26.7.2-0-Linux-x86_64.sh
+
 # Setting up Conda install directory
 echo 'Install first Anaconda / MiniConda / Mamba before starting!'
 while
@@ -26,14 +35,14 @@ if [ "${reply^}" == "C" ] ; then
     anaconda=${HOME}/anaconda3
     echo ""
     while true; do
-	    read -rp "Enter path where Anaconda is installed (default: $HOME/anaconda3)" dir
-	    # Simple Enter → exit
+        read -rp "Enter path where Anaconda is installed (default: $HOME/anaconda3)" dir
+        # Simple Enter → exit
         [[ -z "$dir" ]] && break
 
         # Check that it exists and is a directory
         if [[ -d "$dir" ]]; then
             echo "Valid directory: $dir"
-    	anaconda=$dir
+        anaconda=$dir
             break
         else
             echo "Error: '$dir' is not an existing directory."
@@ -170,38 +179,6 @@ font_dir=$HOME/.local/share/fonts
 echo "Downloading NERD font JetBrainsMono.zip"
 wget "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/JetBrainsMono.zip"
 unzip JetBrainsMono.zip -d ${font_dir}
-
-# Install Ruby and other prerequisites for Jekyll
-# https://jekyllrb.com/docs/installation/ubuntu/
-sudo apt-get install ruby-full build-essential zlib1g-dev
-echo '# Install Ruby Gems to $HOME/gems' >> $HOME/.bashrc
-echo 'export GEM_HOME="$HOME/gems"' >> $HOME/.bashrc
-echo 'export PATH="$HOME/gems/bin:$PATH"' >> $HOME/.bashrc
-source $HOME/.bashrc
-
-gem install jekyll bundler
-
-#
-# Install useful applications
-#
-
-sudo install htop feh
-sudo install gimp inotify-tools
-
-#
-# Remove caplock and make it control in Wayland (Ubuntu 26.04)
-# Need logging off and back in
-#
-gsettings set org.gnome.desktop.input-sources xkb-options "['ctrl:nocaps']"
-#
-# Make dual function of caplock, xcape does not work on wayland
-sudo apt install keyd
-sudo mkdir -p /etc/keyd
-sudo cp ${SCRIPT_DIR}/default.conf /etc/keyd
-# sudo nano /etc/keyd/default.conf
-sudo systemctl enable --now keyd
-systemctl status keyd
-
 
 # execute bashrc
 echo export PATH=$BIN_DIR:$PATH >> ${HOME}/.bashrc
