@@ -338,6 +338,7 @@ Plug 'olimorris/onedarkpro.nvim'
 Plug 'catppuccin/nvim'
 Plug 'nvim-tree/nvim-tree.lua/'
 Plug 'nvim-tree/nvim-web-devicons'  " Adding icon to lualine, before fzf-lua
+Plug 'stephansama/fzf-nerdfont.nvim' " picker
 " Lualine
 Plug 'nvim-lualine/lualine.nvim'    " :help lua-heredoc
 Plug 'MeanderingProgrammer/render-markdown.nvim'
@@ -384,7 +385,9 @@ lua require("configs/nvim-autopairs")
 lua require("configs/clipboard-image")
 lua require("configs/fzf")
 lua require("configs/render-markdown")
+lua require("configs/fzf-nerdfont")
 
 lua require("jupytext").setup({ style = "percent" })
+" lua require("fzf-nerdfont").setup({})
 
 nmap <F7> :NvimTreeToggle<CR>
