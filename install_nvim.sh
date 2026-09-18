@@ -1,7 +1,17 @@
 #!/bin/bash
 #
-#
+# Installing newer NVIM which requires newer NODEJS
 
+if [ $# -eq 0 ]; then
+    APPIMG_URL="https://github.com/neovim/neovim/releases/download/v0.12.5/nvim-linux-x86_64.appimage"
+else
+    APPIMG_URL=$1
+fi
+
+echo "DOWNLOADING NVIM from "$APPIMG_URL
+
+DOT=$(pwd)
+NOW=$(date +"%y%m%d_%H%M%S")
 BIN_DIR=${HOME}/bin
 
 if [ ! -d "$BIN_DIR" ]; then
@@ -10,12 +20,15 @@ if [ ! -d "$BIN_DIR" ]; then
 fi
 
 cd $BIN_DIR
-wget "https://github.com/neovim/neovim/releases/download/v0.12.5/nvim-linux-x86_64.appimage"
+# Get the filename from the URL
+FILENAME="${APPIMG_URL##*/}"
+wget $APPIMG_URL
+chmod +x $FILENAME
 
 # Check if a system has FUSE --------------------------------------------------
 
 # Target AppImage name
-APPIMAGE=$BIN_DIR/"nvim-linux-x86_64.appimage"
+APPIMAGE=$BIN_DIR/$FILENAME
 
 # 1. Check if the FUSE kernel device is available and writable by the user
 if [ -w /dev/fuse ]; then
@@ -43,21 +56,51 @@ else
     $APPIMAGE --appimage-extract
     #
     # Run the extracted binary directly
-    ln -s $BIN_DIR/squashfs-root/usr/bin/nvim nvim
+    rm $FILENAME
+    mv squashfs-root $FILENAME
+    ln -s $APPIMAGE/usr/bin/nvim nvim
 fi
-#
+
+###
+echo "Configuring nvim..."
+
+NVIM_CONFIG="$HOME/.config/nvim"
+
+if [ ! -d "$HOME/.config" ]; then
+    echo "Directory $HOME/.config does not exist. Creating it now..."
+    mkdir "$HOME/.config"
+fi
+
+# Remove old nvim CONFIG if exists
+[ -w $NVIM_CONFIG ] && {
+    bk=$NVIM_CONFIG-bk_$NOW
+    echo 'Found existing nvim CONFIG. Backing up to '${bk}
+    mv -v $NVIM_CONFIG ${bk}
+}
+
+
+ln -sf $DOT/nvim $NVIM_CONFIG
+
+if [[ "$PATH" != *"$NVIM_INST/bin"* ]]; then
+    echo "export PATH=$NVIM_INST/bin:\$PATH" >> $HOME/.bashrc
+    source $HOME/bashrc
+fi
+
+
 # -----------------------------------------------------------------------------
 # Install NODEJS
 # -----------------------------------------------------------------------------
+echo "Installing NODEJS"
 # sudo apt update
 # sudo apt install curl
-# curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+# assuming curl exists
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
 #
-wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+#wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
 
-source ~/.bashrc
+source $HOME/.nvm/nvm.sh
 nvm install --lts
-nvim use --lts
+nvm use --lts
 
 # -----------------------------------------------------------------------------
 # Install package manager: PLUG
