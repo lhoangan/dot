@@ -146,19 +146,14 @@ chmod +x install_nvim.sh
 echo "Installing xclip for NVIM"
 $CONDA_CMD install xclip --channel conda-forge
 # For clipboard-image on wayland
-git clone https://github.com/bugaevc/wl-clipboard.git && \
-cd wl-clipboard && \
-{
-$CONDA_CMD install messon ninja
-} \
-messon setup build --prefix=$BIN_DIR && \
-messon compile -C build && \
+git clone https://github.com/bugaevc/wl-clipboard.git && cd wl-clipboard && \
+$CONDA_CMD install meson ninja && \
+meson setup build --prefix=$BIN_DIR && meson compile -C build && \
 {
 cp build/src/wl-copy $BIN_DIR
 cp build/src/wl-paste $BIN_DIR
-} \
-cd ..
-rm -r wl-clipboard
+} && \
+cd .. ; rm -fr wl-clipboard
 
 # -----------------------------------------------------------------------------
 # Install NERD font
