@@ -1,4 +1,18 @@
 
+# =============================================================================
+# INSTALL XCAPE
+
+echo -e "\n Installing XCAPE...\n"
+
+chmod +x deploy_xcape.sh
+./deploy_xcape.sh ${BIN_DIR} && {
+    echo "XCAPE installation succeeds"
+} || {
+    echo "XCAPE installation failed"
+}
+
+
+# =============================================================================
 # Install Ruby and other prerequisites for Jekyll
 # https://jekyllrb.com/docs/installation/ubuntu/
 sudo apt-get install ruby-full build-essential zlib1g-dev

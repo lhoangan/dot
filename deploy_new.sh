@@ -83,18 +83,6 @@ ln -s $bashrc $HOME/.bashrc
 set +x
 
 # =============================================================================
-# INSTALL XCAPE
-
-echo -e "\n Installing XCAPE...\n"
-
-chmod +x deploy_xcape.sh
-./deploy_xcape.sh ${BIN_DIR} && {
-    echo "XCAPE installation succeeds"
-} || {
-    echo "XCAPE installation failed"
-}
-
-# =============================================================================
 # CREATING myconfig
 
 echo -e "\n Creating .myconfig \n"
