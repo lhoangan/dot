@@ -12,11 +12,11 @@ SCRIPT_DIR="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)"
 cd ${SCRIPT_DIR}
 
 # Setting up installation paths and parameters
-BIN_DIR=${HOME}/bin
+BIN_DIR=${HOME}/.local/bin
 
 if [ ! -d "$BIN_DIR" ]; then
     echo "Directory $BIN_DIR does not exist. Creating it now..."
-    mkdir "$BIN_DIR"
+    mkdir -p "$BIN_DIR"
 fi
 
 # --------------------------------------------------------------------------------
@@ -138,8 +138,28 @@ chmod +x deploy_vim.sh
 # =============================================================================
 # INSTALL NEO-VIM
 #
-chmod +x install_nvim.sh
-./install_nvim.sh
+
+ldd --version
+
+echo 'Check the GLIBC version above'
+while
+    echo "Is it higher than 2.28? (Y/N): "
+    #read -n 1 -s
+    read reply
+    [ "${reply^}" != "Y" -a "${reply^}" != "N" ]
+do :; done
+if [ "${reply^}" == "Y" ] ; then
+
+    chmod +x install_nvim.sh # using newer version of NVIM
+    ./install_nvim.sh
+
+elif [ "${reply^}" == "N" ] ; then
+    chmod +x deploy_nvim.sh # using older version of NVIM
+    ./deloy_nvim.sh
+fi
+
+
+
 
 # install library for nvim plugins
 # This only works for X11

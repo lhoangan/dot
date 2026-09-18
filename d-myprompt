@@ -136,7 +136,10 @@ function host_color {
             hostcolor="\e[101m"
             ;;
         *mirevserver*)
-            hostcolor=${fg_bblack}"\e[102m"
+            hostcolor=${fg_black}"\e[102m"
+            ;;
+        *mirev??)
+            hostcolor=${black}"\e[102m"
             ;;
         *dmis|expr|acacia|volta1*)
             hostcolor=${fg_bred}${bg_white}
