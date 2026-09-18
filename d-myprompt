@@ -135,7 +135,7 @@ function host_color {
         *rtx4|titan4|s1gtx1|s2titan1*)
             hostcolor="\e[101m"
             ;;
-        *k-mna-047|Host-004*)
+        *mirevserver*)
             hostcolor=${fg_bblack}"\e[102m"
             ;;
         *dmis|expr|acacia|volta1*)
