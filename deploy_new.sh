@@ -155,7 +155,7 @@ if [ "${reply^}" == "Y" ] ; then
 
 elif [ "${reply^}" == "N" ] ; then
     chmod +x deploy_nvim.sh # using older version of NVIM
-    ./deloy_nvim.sh
+    ./deploy_nvim.sh
 fi
 
 
@@ -165,15 +165,26 @@ fi
 # This only works for X11
 echo "Installing xclip for NVIM"
 $CONDA_CMD install xclip --channel conda-forge
+
 # For clipboard-image on wayland
-git clone https://github.com/bugaevc/wl-clipboard.git && cd wl-clipboard && \
-$CONDA_CMD install meson ninja && \
-meson setup build --prefix=$BIN_DIR && meson compile -C build && \
-{
-cp build/src/wl-copy $BIN_DIR
-cp build/src/wl-paste $BIN_DIR
-} && \
-cd .. ; rm -fr wl-clipboard
+while
+    echo "Are we using Wayland? (Y/N): "
+    #read -n 1 -s
+    read reply
+    [ "${reply^}" != "Y" -a "${reply^}" != "N" ]
+do :; done
+if [ "${reply^}" == "Y" ] ; then
+
+    git clone https://github.com/bugaevc/wl-clipboard.git && cd wl-clipboard && \
+    $CONDA_CMD install meson ninja && \
+    meson setup build --prefix=$BIN_DIR && meson compile -C build && \
+    {
+        cp build/src/wl-copy $BIN_DIR
+        cp build/src/wl-paste $BIN_DIR
+    } && \
+    cd .. ; rm -fr wl-clipboard
+
+fi
 
 # -----------------------------------------------------------------------------
 # Install NERD font

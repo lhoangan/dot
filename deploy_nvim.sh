@@ -14,7 +14,7 @@ else # Assuming $# can't be negative
 
     if [ $# -eq 2 ]; then
         INSTALL_DIR=$2
-    	echo "Change installing dir to $2"
+        echo "Change installing dir to $2"
     fi
 fi
 
@@ -133,6 +133,10 @@ NVIM="nvim-$NVIM_VERSION"
 NVIM_CONFIG="$HOME/.config/nvim"
 
 echo "Installing nvim..."
+if [ ! -d "$HOME/.config" ]; then
+    echo "Directory $HOME/.config does not exist. Creating it now..."
+    mkdir "$HOME/.config"
+fi
 
 # https://github.com/neovim/neovim-releases/releases/download/v0.12.4/nvim-linux-x86_64.tar.gz
 wget "https://github.com/neovim/neovim-releases/releases/download/$NVIM_VERSION/$NVIM_FNAME"
@@ -177,15 +181,6 @@ tar zxf $NVIM_FNAME && {
 
 ln -sf $DOT/nvim $NVIM_CONFIG
 echo "export 'PATH=$NVIM_INST/bin:$PATH'" >> $HOME/.bashrc
-
-# -----------------------------------------------------------------------------
-# Install NERD font
-# -----------------------------------------------------------------------------
-
-installed_dir=$HOME/.local/share/font
-echo "Downloading NERD font JetBrainsMono.zip"
-wget "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/JetBrainsMono.zip"
-unzip JetBrainsMono.zip -d ${installed_dir}
 
 # -----------------------------------------------------------------------------
 # Install package manager

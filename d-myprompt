@@ -132,11 +132,11 @@ function host_color {
 
     # get host color
     case ${METAHOST} in
-        *rtx4|titan4|s1gtx1|s2titan1*)
-            hostcolor="\e[101m"
+        *leto*)
+            hostcolor=${fg_bblack}"\e[101m"
             ;;
         *mirevserver*)
-            hostcolor=${fg_black}"\e[102m"
+            hostcolor=${fg_bblack}"\e[102m"
             ;;
         *mirev??)
             hostcolor=${black}"\e[102m"
