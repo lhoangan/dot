@@ -59,4 +59,6 @@ rm -rf lua-"${lua_version}"
 rm -rf vim
 } || {
     echo 'FAILED COMPILING LUA!'
+    cd ..
+    rm -rf lua-"${lua_version}"
 }

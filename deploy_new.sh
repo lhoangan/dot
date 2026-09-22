@@ -191,8 +191,9 @@ fi
 # -----------------------------------------------------------------------------
 font_dir=$HOME/.local/share/fonts
 echo "Downloading NERD font JetBrainsMono.zip"
-wget "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/JetBrainsMono.zip"
-unzip JetBrainsMono.zip -d ${font_dir}
+wget "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/JetBrainsMono.zip" && \
+unzip JetBrainsMono.zip -d ${font_dir} && \
+rm JetBrainsMono.zip
 
 # execute bashrc
 echo export PATH=$BIN_DIR:$PATH >> ${HOME}/.bashrc

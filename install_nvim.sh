@@ -12,7 +12,7 @@ echo "DOWNLOADING NVIM from "$APPIMG_URL
 
 DOT=$(pwd)
 NOW=$(date +"%y%m%d_%H%M%S")
-BIN_DIR=${HOME}/bin
+BIN_DIR=${HOME}/.local/bin
 
 if [ ! -d "$BIN_DIR" ]; then
     echo "Directory $BIN_DIR does not exist. Creating it now..."
