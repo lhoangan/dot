@@ -43,6 +43,21 @@ echo 'Creating new .myconfig'
 ln -sf ${PWD}/d-myconfig ${HOME}/.myconfig
 ln -sf ${PWD}/kb.sh ${HOME}/kb.sh
 
+# ============================================================================
+# SSH CONFIGS
+[ -w ${HOME}/.ssh/config ] && {
+    bk=.ssh/config_bk_"$(date +"%y%m%d_%H%M%S")"
+    echo 'Found old .ssh/config file. Backing up to '${bk}
+    mv -v ${HOME}/.ssh/config ${HOME}/${bk} # rename it with a datetime id
+}
+
+if [ ! -d "$HOME/.ssh" ]; then
+    echo "Directory $HOME/.ssh does not exist. Creating it now..."
+    mkdir -p "$HOME"/.ssh
+fi
+
+echo 'Creating new .myconfig'
+ln -sf ${PWD}/d-ssh-config ${HOME}/.ssh/config
 #-------------------------------------------------------------------------------  
 # link .inputrc to ${HOME}
 [ -w ${HOME}/.inputrc ] && {

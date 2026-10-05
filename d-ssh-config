@@ -3,6 +3,38 @@ ServerAliveInterval 300
 # tmux, screen : évite d'utiliser l'argument -t de ssh
 RequestTTY yes
 
+
+#================================================================================
+# LIFO
+# ssh -fNT -L 2000:127.0.0.1:5000  mirev44
+# assigning port 2000 of localhost to localhost at port 5000 on the server
+# test: python -m http.server 5000
+#
+Host sully
+    Hostname sully.univ-orleans.fr
+    IdentityFile ~/.ssh/id_rsa.pub
+
+Host mirevserver
+    Hostname mirevserver
+    RequestTTY auto
+    User le
+    ProxyCommand ssh -W %h:%p le@sully
+
+Host mirev44
+    Hostname mirev44
+    RequestTTY auto
+    User le
+    ProxyCommand ssh -W %h:%p le@mirevserver
+
+Host mirev45
+    Hostname mirev45
+    RequestTTY auto
+    User le
+    ProxyCommand ssh -W %h:%p le@mirevserver
+
+
+#================================================================================
+
 # More info for UBS cluster: https://intranet-irisa.univ-ubs.fr/ressources-ubs/ssh
 #
 # ssh -fN -o StrictHostKeyChecking=accept-new -L 2222:layout:22 turing@transit.univ-ubs.fr
