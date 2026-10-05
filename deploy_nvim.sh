@@ -163,7 +163,7 @@ tar zxf $NVIM_FNAME && {
         echo 'Found existing nvim CONFIG. Backing up to '${bk}
         mv -v $NVIM_CONFIG ${bk}
     }
-    ln -sf $DOT/nvim $NVIM_CONFIG
+    ln -sf $DOT/d-config/nvim $NVIM_CONFIG
 
     if [[ "$PATH" != *"$BIN_DIR"* ]]; then
         echo "export PATH=$BIN_DIR:\$PATH" >> $HOME/.bashrc
@@ -179,7 +179,7 @@ tar zxf $NVIM_FNAME && {
     echo -e "\033[0;31m[FAILED]\e[0m Cannot unpacking NVIM"
 }
 
-ln -sf $DOT/nvim $NVIM_CONFIG
+ln -sf $DOT/d-config/nvim $NVIM_CONFIG
 echo "export 'PATH=$NVIM_INST/bin:$PATH'" >> $HOME/.bashrc
 
 # -----------------------------------------------------------------------------

@@ -79,7 +79,7 @@ fi
 }
 
 
-ln -sf $DOT/nvim $NVIM_CONFIG
+ln -sf $DOT/d-config/nvim $NVIM_CONFIG
 
 if [[ "$PATH" != *"$NVIM_INST/bin"* ]]; then
     echo "export PATH=$NVIM_INST/bin:\$PATH" >> $HOME/.bashrc
