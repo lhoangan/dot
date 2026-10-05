@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+echo "DONE"
+
+state="${XDG_RUNTIME_DIR:-/tmp}/sway-last-windows"
+
+[[ -r "$state" ]] || exit 0
+
+read -r current previous < "$state"
+
+[[ -z "$previous" ]] && exit 0
+
+# Make the previous window the current one.
+swaymsg "[con_id=$previous] focus"
+
+# Swap them, so pressing the key again goes back.
+printf '%s %s\n' "$previous" "$current" > "$state"
+echo "DONE"

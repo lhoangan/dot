@@ -1,0 +1,30 @@
+#!/bin/sh
+
+# check device name with `nmcli device status`
+# or `nmcli connection show`
+# can also specify by name
+# nmcli connection up "Wired connection"
+# nmcli connection down "MyHomeWifi"
+#
+ETH="enp0s13f0u2u4u4"
+WIF="wlp2s0f0"
+
+# nmcli radio wifi on/off actually turns on/off wifi hardware
+# which causes NetworkManager to rediscover networks, reconnect, reacquire DHCP configuration, update routes and DNS, etc.
+
+ETH_STATE="$(nmcli -g GENERAL.STATE device show "$ETH" | cut -d' ' -f1)"
+WIF_STATE="$(nmcli -g GENERAL.STATE device show "$WIF" | cut -d' ' -f1)"
+
+if [ "$WIF_STATE" = "100" ]; then
+    # Switch to Ethernet
+    # nmcli radio wifi off # <- turn off wifi hardware
+    nmcli device disconnect "$WIF"
+    nmcli device connect "$ETH"
+    notify-send "Network" "Wi-Fi disabled — Ethernet enabled"
+else
+    # Currently using Ethernet -> switch to Wi-Fi
+    nmcli device disconnect "$ETH"
+    # nmcli radio wifi on # <- turn on wifi hardware
+    nmcli device connect "$WIF"
+    notify-send "Network" "Ethernet disabled — Wi-Fi enabled"
+fi

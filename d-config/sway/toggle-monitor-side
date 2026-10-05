@@ -1,0 +1,78 @@
+#!/bin/sh
+
+OUTPUTS="$(swaymsg -t get_outputs -r)"
+
+# Find active built-in laptop display.
+INTERNAL="$(
+    printf '%s' "$OUTPUTS" |
+    jq -r '
+        .[]
+        | select(.active == true)
+        | select(.name | test("^(eDP|LVDS)-"))
+        | .name
+    ' | head -n1
+)"
+
+if [ -z "$INTERNAL" ]; then
+    notify-send "Display layout" "Could not find the laptop display"
+    exit 1
+fi
+
+# Find the other active display.
+EXTERNAL="$(
+    printf '%s' "$OUTPUTS" |
+    jq -r --arg internal "$INTERNAL" '
+        .[]
+        | select(.active == true and .name != $internal)
+        | .name
+    ' | head -n1
+)"
+
+if [ -z "$EXTERNAL" ]; then
+    notify-send "Display layout" "No second active display"
+    exit 1
+fi
+
+# Get logical dimensions and current positions.
+INTERNAL_WIDTH="$(
+    printf '%s' "$OUTPUTS" |
+    jq -r --arg name "$INTERNAL" '
+        .[] | select(.name == $name) | .rect.width
+    '
+)"
+
+EXTERNAL_WIDTH="$(
+    printf '%s' "$OUTPUTS" |
+    jq -r --arg name "$EXTERNAL" '
+        .[] | select(.name == $name) | .rect.width
+    '
+)"
+
+INTERNAL_X="$(
+    printf '%s' "$OUTPUTS" |
+    jq -r --arg name "$INTERNAL" '
+        .[] | select(.name == $name) | .rect.x
+    '
+)"
+
+EXTERNAL_X="$(
+    printf '%s' "$OUTPUTS" |
+    jq -r --arg name "$EXTERNAL" '
+        .[] | select(.name == $name) | .rect.x
+    '
+)"
+
+# Toggle which monitor is on the left.
+if [ "$INTERNAL_X" -lt "$EXTERNAL_X" ]; then
+    # Laptop currently left -> put external left.
+    swaymsg output "$EXTERNAL" pos 0 0
+    swaymsg output "$INTERNAL" pos "$EXTERNAL_WIDTH" 0
+
+    notify-send "Display layout" "$EXTERNAL ← $INTERNAL"
+else
+    # External currently left -> put laptop left.
+    swaymsg output "$INTERNAL" pos 0 0
+    swaymsg output "$EXTERNAL" pos "$INTERNAL_WIDTH" 0
+
+    notify-send "Display layout" "$INTERNAL ← $EXTERNAL"
+fi

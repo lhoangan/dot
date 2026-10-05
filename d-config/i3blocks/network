@@ -1,0 +1,21 @@
+#!/bin/sh
+
+case "$BLOCK_BUTTON" in
+    1)
+        nm-connection-editor >/dev/null 2>&1 &
+        ;;
+esac
+
+wifi="$(nmcli -t -f TYPE,STATE,CONNECTION device status |
+    awk -F: '$1=="wifi" && $2=="connected" {print $3; exit}')"
+
+ethernet="$(nmcli -t -f TYPE,STATE,CONNECTION device status |
+    awk -F: '$1=="ethernet" && $2=="connected" {print $3; exit}')"
+
+if [ -n "$ethernet" ]; then
+    printf '🌐 WLAN%s\n' #"$ethernet" # 󰈁 󰱔
+elif [ -n "$wifi" ]; then
+    printf '🛜 WiFi%s\n' #"$wifi" # 󱚽
+else
+    printf '󰲛 󰖪 Offline\n' # 󰈂  󰱟
+fi

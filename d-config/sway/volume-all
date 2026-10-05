@@ -1,0 +1,32 @@
+#!/bin/sh
+
+case "$1" in
+    up)
+        swayosd-client --output-volume raise
+        ;;
+    down)
+        swayosd-client --output-volume lower
+        ;;
+    mute)
+        swayosd-client --output-volume mute-toggle
+        ;;
+    *)
+        exit 1
+        ;;
+esac
+
+# Give SwayOSD/PipeWire a moment to apply the change.
+sleep 0.05
+
+# Get volume and mute state of the default sink.
+DEFAULT="$(pactl get-default-sink)"
+VOLUME="$(pactl get-sink-volume "$DEFAULT" | awk 'NR==1 {print $5}')"
+MUTE="$(pactl get-sink-mute "$DEFAULT" | awk '{print $2}')"
+
+# Apply the same state to every sink.
+pactl list short sinks | cut -f2 | while read -r sink; do
+    [ "$sink" = "$DEFAULT" ] && continue
+
+    pactl set-sink-volume "$sink" "$VOLUME"
+    pactl set-sink-mute "$sink" "$MUTE"
+done

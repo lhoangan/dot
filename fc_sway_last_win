@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+set -u
+
+state="${XDG_RUNTIME_DIR:-/tmp}/sway-last-windows"
+
+current=""
+
+swaymsg -t subscribe '["window"]' |
+while IFS= read -r event; do
+    change=$(jq -r '.change // empty' <<< "$event")
+    [[ "$change" == "focus" ]] || continue
+
+    focused=$(jq -r '.container.id // empty' <<< "$event")
+    [[ -z "$focused" ]] && continue
+    [[ "$focused" == "$current" ]] && continue
+
+    previous="$current"
+    current="$focused"
+
+    printf '%s %s\n' "$current" "$previous" > "$state"
+done
